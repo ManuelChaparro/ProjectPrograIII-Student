@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.Icon;
+
 public class Constants {
 	
 	//Colors
@@ -14,7 +16,8 @@ public class Constants {
 	public static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	
 	//Paths
-	public static final String APP_ICON = "/img/iconApp.jpg";
+	public static final String PATH_APP_ICON = "/img/iconApp.jpg";
+	public static final String PATH_EYE_ICON = "/img/eyeIcon.png";
 	
 	//Fonts
 	public static final Font DEFAULT_FONT = new Font("Segoe UI", Font.PLAIN, 20);
@@ -25,5 +28,10 @@ public class Constants {
 
 	//Constants
 	public static final String INFO_LOGIN = "INICIO DE SESION";
+	public static final String INFO_CREATE = "CREAR NUEVA CUENTA";
+	public static final String MSJ_CREATE_ACCOUNT = "¿No tienes una cuenta? ¡Crea una nueva!";
+	public static final String MSJ_LOGIN_ACCOUNT = "¿Tienes una cuenta? ¡Inicia Sesion!";
+	public static final String BT_CREATE_ACCOUNT = "Crear cuenta";
+	public static final String BT_LOGIN_ACCOUNT = "Iniciar sesion";
 
 }

@@ -6,6 +6,8 @@ import java.awt.Menu;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import controller.Controller;
+
 public class JWindow extends JFrame{
 
 	/**
@@ -18,22 +20,20 @@ public class JWindow extends JFrame{
 	private LoginPanel login;
 	private MenuPanel menu;
 	
-	public JWindow() {
+	public JWindow(Controller controller) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle(TITLE_WINDOW);
 		setExtendedState(MAXIMIZED_BOTH);
-		setIconImage(new ImageIcon(getClass().getResource(Constants.APP_ICON)).getImage());
+		setIconImage(new ImageIcon(getClass().getResource(Constants.PATH_APP_ICON)).getImage());
 		setVisible(true);
-		setResizable(false);
-		setMinimumSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/2));
-		initWindow();
+		initWindow(controller);
 	}
 
-	private void initWindow() {
-		cards = new JCardsPanel();
+	private void initWindow(Controller controller) {
+		cards = new JCardsPanel(controller);
 		add(cards);
 		
-		login = new LoginPanel();
+		login = new LoginPanel(controller);
 		cards.add(login, "Login");
 		
 		menu = new MenuPanel();
@@ -42,5 +42,13 @@ public class JWindow extends JFrame{
 	
 	public void changeCard(String nameCard) {
 		cards.changeCardLayout(nameCard);
+	}
+
+	public void hidePassword() {
+		login.hidePassword();
+	}
+	
+	public void loginAccount() {
+		login.loginAccount();
 	}
 }
