@@ -22,9 +22,19 @@ public class Controller implements ActionListener{
 		case LOGIN_ACCOUNT:
 			window.loginAccount();
 			break;
-			
+		case GET_LOGIN_DATA:
+			String data = window.getLoginData();
+			if (!data.equalsIgnoreCase("confirmAccount")) {
+				window.changeCard("Student");
+			}
+			break;			
+		case CANCEL_NEW_ACCOUNT:
+			window.resetLogin();
+			break;
+		case SHOW_SCHEDULE:
+			window.showSchedule();
+			System.out.println(1);
+			break;
 		}
-	}
-	
-	
+	}	
 }
