@@ -28,7 +28,7 @@ public class Constants {
 	public static final Font DEFAULT_FONT_MIN = new Font("Segoe UI", Font.PLAIN, 15);
 	
 	//Days
-	public static final String[] DAYS = {"LUNES", "MARTES", "MIERCOLES" , "JUEVES" , "VIERNES" , "SABADO" , "DOMINGO"};
+	public static final String[] DAYS = {"HORAS", "LUNES", "MARTES", "MIERCOLES" , "JUEVES" , "VIERNES" , "SABADO" , "DOMINGO"};
 
 	//Constants
 	public static final String NAME_APP = "Xorder";
@@ -46,5 +46,7 @@ public class Constants {
 	public static final String BT_MODIFY_ACTIVITY_ST = "Modificar actividad";
 	public static final String BT_DELETE_ACTIVITY_ST = "Borrar actividad";
 	public static final String BT_SCHEDULE_ST = "Horario";
+	public static final int TOTAL_HOURS = 24;
+	public static final int TOTAL_DAYS = 8;
 
 }

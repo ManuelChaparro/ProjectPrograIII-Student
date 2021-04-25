@@ -1,8 +1,10 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import controller.Controller;
 
@@ -14,6 +16,7 @@ public class PanelInfoStudent extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private SchedulePanel schedule;
 	private JCardsPanel cards;
+	private JScrollPane scroll;
 	
 	public PanelInfoStudent(Controller controller) {
 		setBackground(Color.WHITE);
