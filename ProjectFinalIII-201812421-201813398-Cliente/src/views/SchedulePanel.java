@@ -5,109 +5,125 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class SchedulePanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private GridBagConstraints constraints;
+	private JPanel[][] matrix;
+	private JPanel north, center;
 
 	public SchedulePanel() {
-		setLayout(new GridLayout(7, 5));
-		setBackground(Color.WHITE);
-		setPreferredSize(new Dimension((int) (Constants.WIDTH / 1.4), (int) (Constants.HEIGHT / 1.13)));
-		constraints = new GridBagConstraints();
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		north = new JPanel();
+		north.setPreferredSize(new Dimension((int) (Constants.WIDTH / 1.4), (int) (Constants.HEIGHT / 16)));
+		north.setLayout(new GridLayout(1, Constants.TOTAL_DAYS, 20, 10));
+		north.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, Constants.WIDTH/81));
+		north.setBackground(Color.WHITE);
+		add(north);
+		
+		center = new JPanel();
+		JScrollPane scroll = new JScrollPane(center);
+		scroll.setPreferredSize(new Dimension((int) (Constants.WIDTH / 1.4), (int) (Constants.HEIGHT / 1.2)));
+		center.setLayout(new GridLayout(Constants.TOTAL_HOURS, Constants.TOTAL_DAYS, 20, 10));
+		center.setBackground(Color.WHITE);
+		center.setPreferredSize(new Dimension((int) (Constants.WIDTH/2), (int) (Constants.HEIGHT*2)));
+		add(scroll);
+		matrix = new JPanel[Constants.TOTAL_HOURS][Constants.TOTAL_DAYS];
 		initComponents();
 	}
 
 	private void initComponents() {
+		initMatrix();
+		initDays();
+		initHours();
 		initGrid();
-//		initDays();
-//		initHours();
+		
+		for (int i = 0; i < Constants.TOTAL_HOURS; i++) {
+			String msj = "";
+			for (int j = 0; j < Constants.TOTAL_DAYS; j++) {
+				msj += matrix[i][j].getBackground().toString()+"\t";
+			}
+			System.out.println(msj);
+			msj ="";
+		}
 	}
 
-	private void initGrid() {
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 7; j++) {
+	private void initMatrix() {
+		for (int i = 0; i < Constants.TOTAL_HOURS; i++) {
+			for (int j = 0; j < Constants.TOTAL_DAYS; j++) {
 				JPanel panel = new JPanel();
 				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 				panel.setPreferredSize(new Dimension(Constants.WIDTH / 10, Constants.HEIGHT / 50));
-				panel.setBackground(Constants.DARK_YELLLOW);
+				panel.setBackground(Color.WHITE);
 
-				JButton day = new JButton("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				JButton day = new JButton("");
 				day.setFont(Constants.DEFAULT_FONT_BOLD);
 				day.setForeground(Color.WHITE);
 				day.setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH / 100, 0, Constants.WIDTH / 100));
-
 				panel.add(day);
-				add(panel);
+				matrix[i][j] = panel; 
+			}
+		}		
+	}
 
-//				constraints.gridx = j;
-//				constraints.gridy = i;
-//				constraints.gridwidth = 1;
-//				constraints.gridheight = 1;
-//				add(panel, constraints);
+	private void initGrid() {
+		center.removeAll();
+		for (int i = 0; i < Constants.TOTAL_HOURS; i++) {
+			for (int j = 0; j < Constants.TOTAL_DAYS; j++) {
+				center.add(matrix[i][j]);
 			}
 		}
 	}
 
 	private void initHours() {
-		int initHour = 6;
-		for (int i = 1; i < 17; i++) {
+		for (int i = 0; i < Constants.TOTAL_HOURS; i++) {
 			JPanel panel = new JPanel();
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			panel.setPreferredSize(new Dimension(Constants.WIDTH / 5, Constants.HEIGHT / 20));
 			panel.setBackground(Constants.DARK_YELLLOW);
 
 			JLabel day = new JLabel();
-			day.setFont(Constants.DEFAULT_FONT_BOLD);
+			day.setFont(Constants.DEFAULT_FONT_MIN);
 			day.setForeground(Color.WHITE);
-			day.setText(String.valueOf(initHour));
+			if (i+1 != 24) {
+				day.setText(i+":00 - "+(i+1)+":00");
+			}else {
+				day.setText(i+":00 - "+0+":00");
+			}
 			day.setAlignmentX(RIGHT_ALIGNMENT);
-			initHour++;
-//			day.setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH / 100, 0, Constants.WIDTH / 100));
-
 			panel.add(day);
-
-			constraints.gridx = 0;
-			constraints.gridy = i;
-			constraints.gridwidth = 1;
-			constraints.gridheight = 1;
-			add(panel, constraints);
+			matrix[i][0] = panel;
 		}
 	}
 
-	private void initDays() {
-		
-		
-		for (int i = 1; i < 8; i++) {
-			
+	private void initDays() {		
+		for (int i = 0; i < Constants.TOTAL_DAYS; i++) {
 			JPanel panel = new JPanel();
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			panel.setPreferredSize(new Dimension(Constants.WIDTH / 10, Constants.HEIGHT / 20));
-			panel.setBackground(Constants.DARK_YELLLOW);
+			panel.setBackground(Constants.DARK_BLUE);
+			
 
-			JButton day = new JButton();
+			JLabel day = new JLabel();
 			day.setFont(Constants.DEFAULT_FONT_BOLD);
 			day.setForeground(Color.WHITE);
-			day.setText(Constants.DAYS[i - 1]);
+			day.setText(Constants.DAYS[i]);
+			if (Constants.DAYS[i].equalsIgnoreCase("HORAS")) {
+				panel.setBackground(Constants.DARK_YELLLOW);
+			}
 			day.setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH / 100, 0, Constants.WIDTH / 100));
-
 			panel.add(day);
-
-			constraints.gridx = i;
-			constraints.gridy = 0;
-			constraints.gridwidth = 1;
-			constraints.gridheight = 1;
-			add(panel, constraints);
+			north.add(panel);
 		}
-		
-		repaint();
 	}
+	
+	
 
 }
