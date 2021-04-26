@@ -57,4 +57,8 @@ public class JWindow extends JFrame{
 	public void changeCardStudent(String option) {
 		student.changeCardStudent(option);
 	}
+
+	public boolean isLogin() {
+		return login.isLogin();
+	}
 }

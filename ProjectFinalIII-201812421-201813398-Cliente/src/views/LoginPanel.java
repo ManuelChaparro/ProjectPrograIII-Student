@@ -252,7 +252,7 @@ public class LoginPanel extends JPanel{
 
 	public String getLoginData() {
 		if (!isCreateAccount) {
-			return "iniciosesion: "+userField.getText()+","+passwordField.getText();
+			return userField.getText()+","+passwordField.getText();
 		}else {
 			msjLogin.setText("¿Estas seguro?");
 			passwordField.setEditable(false);
@@ -267,7 +267,7 @@ public class LoginPanel extends JPanel{
 			acceptAccount.setVisible(true);
 			cancelAccount.setVisible(true);
 			if (isConfirmAccount) {
-				return "crearcuenta: "+userField.getText()+","+passwordField.getText();
+				return userField.getText()+","+passwordField.getText();
 			}else {
 				isConfirmAccount = true;
 				return "confirmAccount";
@@ -293,5 +293,9 @@ public class LoginPanel extends JPanel{
 		cancelAccount.setVisible(false);
 		isConfirmAccount = false;
 		changeAccount.setText(Constants.BT_LOGIN_ACCOUNT);
+	}
+
+	public boolean isLogin() {
+		return isCreateAccount;
 	}
 }
