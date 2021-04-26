@@ -27,9 +27,7 @@ public class InterfaceStudent extends JPanel{
 		add(info, BorderLayout.CENTER);
 	}
 
-	public void showSchedule() {
-		info.showSchedule();
-		
+	public void changeCardStudent(String option) {
+		info.changeCardStudent(option);
 	}
-
 }

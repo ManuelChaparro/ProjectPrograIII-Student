@@ -54,7 +54,7 @@ public class JWindow extends JFrame{
 		login.resetLogin();
 	}
 
-	public void showSchedule() {
-		student.showSchedule();
+	public void changeCardStudent(String option) {
+		student.changeCardStudent(option);
 	}
 }
