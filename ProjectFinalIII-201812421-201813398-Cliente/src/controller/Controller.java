@@ -12,6 +12,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import models.Course;
+import models.User;
 import net.Conection;
 import persistence.GSONFileManager;
 import views.Constants;
@@ -24,12 +25,7 @@ public class Controller implements ActionListener {
 
 	public Controller() {
 		conection = new Conection();
-		try {
-			conection.sendUTF("jelow");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-//		window = new JWindow(this);
+		window = new JWindow(this);
 	}
 
 	@Override
@@ -42,9 +38,19 @@ public class Controller implements ActionListener {
 			window.loginAccount();
 			break;
 		case GET_LOGIN_DATA:
+			System.out.println(window.isLogin());
+			conection.sendBoolean(window.isLogin());
 			String data = window.getLoginData();
+			String[] dataUser = data.split(",");
 			if (!data.equalsIgnoreCase("confirmAccount")) {
 				window.changeCard("Student");
+				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
+				try {
+					conection.sendUTF(stringUser);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case CANCEL_NEW_ACCOUNT:
