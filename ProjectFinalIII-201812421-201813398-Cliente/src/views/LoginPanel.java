@@ -21,7 +21,6 @@ import controller.Event;
 public class LoginPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private static final String NAME_APP = "Xorder";
 	private JTextField passwordField, userField;
 	private JPanel info, login;
 	private boolean isHidePassword, isCreateAccount, isConfirmAccount;
@@ -32,12 +31,32 @@ public class LoginPanel extends JPanel{
 		setLayout(new BorderLayout(0, Constants.HEIGHT/10));
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH/5, 0, Constants.WIDTH/5));
+		
 		info = new JPanel(new BorderLayout(0, 0));
 		login = new JPanel(new BorderLayout(Constants.WIDTH/10, 0));
+		
+		msjLogin = new JLabel(Constants.MSJ_LOGIN_ACCOUNT);
+		userConfirm = new JLabel();
+		passwordConfirm = new JLabel();
+		infoData = new JLabel(Constants.INFO_LOGIN);
+		
+		accept = new JButton("Aceptar");
+		acceptAccount = new JButton("Aceptar");
+		cancelAccount = new JButton("Cancelar");
+		changeAccount = new JButton(Constants.BT_CREATE_ACCOUNT);
+		showPass = new JButton();
+		
+		userField = new JTextField();
+		passwordField = new JTextField();
+		
+		initBooleans();
+		initLoginPanel(controller);		
+	}
+
+	private void initBooleans() {
 		isHidePassword = false;
 		isCreateAccount = false;
 		isConfirmAccount = false;
-		initLoginPanel(controller);		
 	}
 
 	private void initLoginPanel(Controller controller) {
@@ -49,23 +68,16 @@ public class LoginPanel extends JPanel{
 		login.setBackground(Color.WHITE);
 		login.setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH/10, Constants.HEIGHT/10, Constants.WIDTH/10));
 		
-		infoData = new JLabel(Constants.INFO_LOGIN);
+		
 		infoData.setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
 		infoData.setForeground(Color.GRAY);
 		infoData.setAlignmentX(CENTER_ALIGNMENT);
 		login.add(infoData, BorderLayout.NORTH);
 
 		JPanel containerLogin = new JPanel(new GridBagLayout());
-		userField = new JTextField();
-		passwordField = new JTextField();
-		msjLogin = new JLabel(Constants.MSJ_LOGIN_ACCOUNT);
-		userConfirm = new JLabel();
-		passwordConfirm = new JLabel();
-		accept = new JButton("Aceptar");
-		acceptAccount = new JButton("Aceptar");
-		cancelAccount = new JButton("Cancelar");
-		changeAccount = new JButton(Constants.BT_CREATE_ACCOUNT);
-		showPass = new JButton();
+
+
+
 		showPass.setPreferredSize(new Dimension(Constants.WIDTH/40, Constants.WIDTH/40));
 		showPass.setBackground(Color.WHITE);
 		showPass.addActionListener(controller);
@@ -199,7 +211,7 @@ public class LoginPanel extends JPanel{
 		info.add(iconApp, BorderLayout.WEST);
 		add(info, BorderLayout.NORTH);
 		
-		JLabel nameApp = new JLabel(NAME_APP);
+		JLabel nameApp = new JLabel(Constants.NAME_APP);
 		nameApp.setFont(new Font("Segoe UI", Font.PLAIN, 50));
 		nameApp.setForeground(Color.WHITE);
 		nameApp.setAlignmentX(LEFT_ALIGNMENT);
@@ -264,7 +276,6 @@ public class LoginPanel extends JPanel{
 	}
 
 	public void resetLogin() {
-		System.out.println("cancelarcreacion");
 		showPass.setVisible(true);
 		msjLogin.setText(Constants.MSJ_LOGIN_ACCOUNT);
 		accept.setActionCommand(Event.GET_LOGIN_DATA.toString());
