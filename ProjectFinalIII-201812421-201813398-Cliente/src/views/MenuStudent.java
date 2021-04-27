@@ -77,6 +77,7 @@ public class MenuStudent extends JPanel {
 		menuSchedule.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuSchedule.setBackground(Constants.DARK_BLUE);
 		showSchedule = new ButtonObj(Constants.BT_SCHEDULE_ST, actionListener, Event.SHOW_SCHEDULE.toString());
+		showSchedule.setBorder(null);
 		menuSchedule.add(showSchedule);
 		add(menuSchedule);
 	}
@@ -88,6 +89,7 @@ public class MenuStudent extends JPanel {
 		menuAddCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuAddCourse.setBackground(Constants.DARK_BLUE);
 		addCourse = new ButtonObj(Constants.BT_ADD_COURSE_ST, actionListener, Event.ADD_COURSE_ST.toString());
+		addCourse.setBorder(null);
 		menuAddCourse.add(addCourse);
 		add(menuAddCourse);
 	}
@@ -99,6 +101,7 @@ public class MenuStudent extends JPanel {
 		menuModifyCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuModifyCourse.setBackground(Constants.DARK_BLUE);
 		modifyCourse = new ButtonObj(Constants.BT_MODIFY_COURSE_ST, actionListener, Event.MODIFY_COURSE_ST.toString());
+		modifyCourse.setBorder(null);
 		menuModifyCourse.add(modifyCourse);
 		add(menuModifyCourse);
 	}
@@ -110,6 +113,7 @@ public class MenuStudent extends JPanel {
 		menuDeleteCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourse = new ButtonObj(Constants.BT_DELETE_COURSE_ST, actionListener, Event.DELETE_COURSE_ST.toString());
+		deleteCourse.setBorder(null);
 		menuDeleteCourse.add(deleteCourse);
 		add(menuDeleteCourse);
 	}
@@ -121,6 +125,7 @@ public class MenuStudent extends JPanel {
 		menuAddActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuAddActivity.setBackground(Constants.DARK_BLUE);
 		addActivity = new ButtonObj(Constants.BT_ADD_ACTIVITY_ST, actionListener, Event.ADD_ACTIVITY_ST.toString());
+		addActivity.setBorder(null);
 		menuAddActivity.add(addActivity);
 		add(menuAddActivity);
 	}
@@ -133,6 +138,7 @@ public class MenuStudent extends JPanel {
 		menuModifyActivity.setBackground(Constants.DARK_BLUE);
 		modifyActivity = new ButtonObj(Constants.BT_MODIFY_ACTIVITY_ST, actionListener,
 				Event.MODIFY_ACTIVITY_ST.toString());
+		modifyActivity.setBorder(null);
 		menuModifyActivity.add(modifyActivity);
 		add(menuModifyActivity);
 	}
@@ -145,6 +151,7 @@ public class MenuStudent extends JPanel {
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivity = new ButtonObj(Constants.BT_DELETE_ACTIVITY_ST, actionListener,
 				Event.DELETE_COURSE_ST.toString());
+		deleteAcitivity.setBorder(null);
 		menuDeleteActivity.add(deleteAcitivity);
 		add(menuDeleteActivity);
 	}

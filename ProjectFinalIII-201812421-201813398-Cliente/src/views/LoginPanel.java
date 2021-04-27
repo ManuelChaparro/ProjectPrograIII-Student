@@ -26,7 +26,7 @@ public class LoginPanel extends JPanel {
 	private JPanel info, login;
 	private boolean isHidePassword, isCreateAccount, isConfirmAccount;
 	private JLabel infoData, msjLogin, userConfirm, passwordConfirm;
-	private JButton changeAccount, accept, acceptAccount, cancelAccount, showPass;
+	private ButtonObj changeAccount, accept, acceptAccount, cancelAccount, showPass;
 
 	public LoginPanel(ActionListener actionListener) {
 		setLayout(new BorderLayout(0, Constants.HEIGHT / 10));
@@ -107,24 +107,13 @@ public class LoginPanel extends JPanel {
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 1, 1, 1);
 		containerLogin.add(passwordField, constraints);
 
-		showPass = new JButton();
+		showPass = new ButtonObj("", actionListener, Event.HIDE_PASSWORD.toString(), Constants.PATH_EYE_ICON);
 		showPass.setPreferredSize(new Dimension(Constants.WIDTH / 40, Constants.WIDTH / 40));
-		showPass.setBackground(Color.WHITE);
-		showPass.addActionListener(actionListener);
-		showPass.setActionCommand(Event.HIDE_PASSWORD.toString());
-		ImageIcon img = new ImageIcon(new ImageIcon(getClass().getResource(Constants.PATH_EYE_ICON)).getImage()
-				.getScaledInstance(Constants.WIDTH / 40, Constants.WIDTH / 40, Image.SCALE_SMOOTH));
-		showPass.setIcon(img);
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 2, 1, 1, 1);
 		containerLogin.add(showPass, constraints);
 
-		accept = new JButton("Aceptar");
+		accept = new ButtonObj("Aceptar", actionListener, Event.GET_LOGIN_DATA.toString());
 		accept.setFont(Constants.DEFAULT_FONT);
-		accept.setForeground(Color.WHITE);
-		accept.setBackground(Constants.DARK_BLUE);
-		accept.setFocusable(false);
-		accept.addActionListener(actionListener);
-		accept.setActionCommand(Event.GET_LOGIN_DATA.toString());
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
 		containerLogin.add(accept, constraints);
 
@@ -134,13 +123,8 @@ public class LoginPanel extends JPanel {
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 3, 2, 1);
 		containerLogin.add(msjLogin, constraints);
 
-		changeAccount = new JButton(Constants.BT_CREATE_ACCOUNT);
+		changeAccount = new ButtonObj(Constants.BT_CREATE_ACCOUNT, actionListener, Event.LOGIN_ACCOUNT.toString());
 		changeAccount.setFont(Constants.DEFAULT_FONT);
-		changeAccount.setForeground(Constants.DARK_BLUE);
-		changeAccount.setBackground(Color.WHITE);
-		changeAccount.setFocusable(false);
-		changeAccount.setActionCommand(Event.LOGIN_ACCOUNT.toString());
-		changeAccount.addActionListener(actionListener);
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 4, 1, 1);
 		containerLogin.add(changeAccount, constraints);
 
@@ -158,25 +142,15 @@ public class LoginPanel extends JPanel {
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 6, 1, 1);
 		containerLogin.add(passwordConfirm, constraints);
 
-		acceptAccount = new JButton("Aceptar");
+		acceptAccount = new ButtonObj("Aceptar", actionListener, Event.GET_LOGIN_DATA.toString());
 		acceptAccount.setFont(Constants.DEFAULT_FONT);
-		acceptAccount.setForeground(Color.WHITE);
-		acceptAccount.setBackground(Constants.DARK_BLUE);
-		acceptAccount.setFocusable(false);
 		acceptAccount.setVisible(false);
-		acceptAccount.addActionListener(actionListener);
-		acceptAccount.setActionCommand(Event.GET_LOGIN_DATA.toString());
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
 		containerLogin.add(acceptAccount, constraints);
 
-		cancelAccount = new JButton("Cancelar");
+		cancelAccount = new ButtonObj("Cancelar", actionListener, Event.CANCEL_NEW_ACCOUNT.toString());
 		cancelAccount.setFont(Constants.DEFAULT_FONT);
-		cancelAccount.setForeground(Color.WHITE);
-		cancelAccount.setBackground(Constants.DARK_BLUE);
-		cancelAccount.setFocusable(false);
 		cancelAccount.setVisible(false);
-		cancelAccount.addActionListener(actionListener);
-		cancelAccount.setActionCommand(Event.CANCEL_NEW_ACCOUNT.toString());
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 1, 2, 1, 1);
 		containerLogin.add(cancelAccount, constraints);
 
@@ -225,7 +199,7 @@ public class LoginPanel extends JPanel {
 		if (!isCreateAccount) {
 			return userField.getText() + "," + passwordField.getText();
 		} else {
-			msjLogin.setText("¿Estas seguro?");
+			msjLogin.setText("ï¿½Estas seguro?");
 			passwordField.setEditable(false);
 			userField.setEditable(false);
 			infoData.setText(Constants.CONFIRM_DATA);
