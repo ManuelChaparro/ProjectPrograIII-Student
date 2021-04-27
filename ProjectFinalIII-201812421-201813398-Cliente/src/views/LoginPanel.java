@@ -142,7 +142,7 @@ public class LoginPanel extends JPanel {
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 6, 1, 1);
 		containerLogin.add(passwordConfirm, constraints);
 
-		acceptAccount = new ButtonObj("Aceptar", actionListener, Event.GET_LOGIN_DATA.toString());
+		acceptAccount = new ButtonObj("Crear", actionListener, Event.GET_CREATE_DATA.toString());
 		acceptAccount.setFont(Constants.DEFAULT_FONT);
 		acceptAccount.setVisible(false);
 		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
@@ -240,7 +240,7 @@ public class LoginPanel extends JPanel {
 		changeAccount.setText(Constants.BT_LOGIN_ACCOUNT);
 	}
 
-	public boolean isLogin() {
+	public boolean isCreate() {
 		return isCreateAccount;
 	}
 }
