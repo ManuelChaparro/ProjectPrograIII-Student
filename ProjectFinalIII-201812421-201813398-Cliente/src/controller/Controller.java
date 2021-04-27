@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -7,6 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
@@ -61,11 +65,12 @@ public class Controller implements ActionListener {
 			String dataCreateLog = window.getLoginData();
 			String[] dataUser = dataCreateLog.split(",");
 			try {
-				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
+				String stringUser = new Gson().toJson(new User(dataUser[0], dataUser[1], dataUser[2])).toString();
 				conection.sendBoolean(false);
 				conection.sendUTF(stringUser);
 				if(conection.receiveBoolean()) {
-					JOptionPane.showMessageDialog(null, "Creado exitosamente.");
+					JOptionPane.showMessageDialog(null, "Creado Exitosamente", Constants.NAME_APP, JOptionPane.INFORMATION_MESSAGE);
+					window.resetLogin();
 					window.changeCard("Login");
 				}else {
 					JOptionPane.showMessageDialog(null, "El usuario ya existe.");
