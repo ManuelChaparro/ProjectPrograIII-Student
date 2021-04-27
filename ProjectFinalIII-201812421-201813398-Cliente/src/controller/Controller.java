@@ -38,19 +38,42 @@ public class Controller implements ActionListener {
 			window.loginAccount();
 			break;
 		case GET_LOGIN_DATA:
-			System.out.println(window.isLogin());
-			conection.sendBoolean(window.isLogin());
 			String data = window.getLoginData();
-			String[] dataUser = data.split(",");
-			if (!data.equalsIgnoreCase("confirmAccount")) {
+			if (!window.isCreate()) {
+				String[] dataUser = data.split(",");
 				window.changeCard("Student");
 				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
 				try {
+					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
+			break;
+		case GET_CREATE_DATA:
+			data = window.getLoginData();
+			String[] dataUser = data.split(",");
+			try {
+				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
+				conection.sendBoolean(false);
+				conection.sendUTF(stringUser);
+
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+//			try {
+//				if (conection.receiveBoolean()) {
+//					System.out.println("Creado con exito");
+//				}else {
+//					
+//				}
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+			
 			break;
 		case CANCEL_NEW_ACCOUNT:
 			window.resetLogin();

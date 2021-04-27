@@ -31,12 +31,12 @@ public class Conection {
 		output.writeUTF(info);
 	}
 	
-	public boolean receiveBoolean() {
-		return true;
+	public boolean receiveBoolean() throws IOException {
+		return input.readBoolean();
 	}
 	
-	public void sendBoolean(boolean info) {
-		
+	public void sendBoolean(boolean info) throws IOException {
+		output.writeBoolean(info);
 	}
 	
 	public void closeConection() throws IOException {
