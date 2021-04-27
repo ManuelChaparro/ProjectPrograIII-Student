@@ -1,26 +1,15 @@
 package controller;
 
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import models.Course;
+
 import models.User;
 import net.Conection;
-import persistence.GSONFileManager;
 import views.Constants;
 import views.JWindow;
 
@@ -73,23 +62,11 @@ public class Controller implements ActionListener {
 					window.resetLogin();
 					window.changeCard("Login");
 				}else {
-					JOptionPane.showMessageDialog(null, "El usuario ya existe.");
+					JOptionPane.showMessageDialog(null, "El usuario ya existe.", Constants.NAME_APP, JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
-//			try {
-//				if (conection.receiveBoolean()) {
-//					System.out.println("Creado con exito");
-//				}else {
-//					
-//				}
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-			
 			break;
 		case CANCEL_NEW_ACCOUNT:
 			window.resetLogin();
@@ -97,8 +74,15 @@ public class Controller implements ActionListener {
 		case SHOW_SCHEDULE:
 			window.changeCardStudent("Schedule");
 			break;
-		case ADD_COURSE_ST:	
-			window.changeCardStudent("AddCourse");
+		case ADD_COURSE_ST:
+			try {
+				conection.sendInt(2);
+				window.changeCardStudent("AddCourse");
+				String courses = conection.receiveUTF();
+				
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case ADD_S_COURSE:
 

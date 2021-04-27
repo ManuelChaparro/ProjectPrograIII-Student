@@ -39,6 +39,14 @@ public class Conection {
 		output.writeBoolean(info);
 	}
 	
+	public void sendInt(int info) throws IOException {
+		output.writeInt(info);
+	}
+	
+	public int receiveInt() throws IOException {
+		return input.readInt();
+	}
+	
 	public void closeConection() throws IOException {
 		server.close();
 	}
