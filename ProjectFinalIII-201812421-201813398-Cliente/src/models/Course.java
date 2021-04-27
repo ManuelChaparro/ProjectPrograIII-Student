@@ -4,8 +4,9 @@ public class Course extends Activity{
 	
 	private String nameCourseTeacher;
 	
-	public Course(String nameCourse, String descriptionCourse, String scheduleCourse) {
+	public Course(String nameCourse, String nameTeacher, String descriptionCourse, String scheduleCourse) {
 		super(nameCourse, descriptionCourse, scheduleCourse);
+		this.nameCourseTeacher = nameTeacher;
 	}
 	
 	public Course(String nameCourse) {
