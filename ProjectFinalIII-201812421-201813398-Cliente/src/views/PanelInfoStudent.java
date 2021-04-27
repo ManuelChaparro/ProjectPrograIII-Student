@@ -30,4 +30,8 @@ public class PanelInfoStudent extends JPanel{
 	public void setComboBoxCourses(String courses) {
 		addCourse.setComboBoxCourses(courses);
 	}
+
+	public void setInfoSchedule(String infoSchedule) {
+		addCourse.setInfoSchedule(infoSchedule);
+	}
 }

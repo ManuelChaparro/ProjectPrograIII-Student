@@ -88,6 +88,7 @@ public class Controller implements ActionListener {
 					String[] dataCourses = courses[i].split("&");
 					Course course = new Course(dataCourses[0], dataCourses[1], dataCourses[2], dataCourses[3]);
 				}
+				window.setInfoSchedule("LUN#6#8%MIE#10#12");
 				
 //				window.setComboBoxCourses(conection.receiveUTF());
 			} catch (IOException e1) {

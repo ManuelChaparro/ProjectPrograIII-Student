@@ -3,11 +3,15 @@ package views;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -20,20 +24,23 @@ public class AddCoursePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> course, teacher;
 	private JPanel containerSchedule;
+	private JLabel infoSchedule;
 	
 	public AddCoursePanel(Controller controller) {
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBackground(Color.CYAN);
+		setLayout(new GridLayout(2, 1, 50, 50));
+		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension((int) (Constants.WIDTH / 1.4), (int) (Constants.HEIGHT / 1.2)));
 		initComponents(controller);
 	}
 
 	private void initComponents(Controller controller) {
+		JPanel containerBox = new JPanel(new GridLayout(2, 1));
+		containerBox.setBackground(Color.WHITE);
+		containerBox.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/10, 0, Constants.HEIGHT/10, 0));
 		course = new JComboBox<String>();
 		course.setBackground(Color.WHITE);
 		course.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50,
-						Constants.HEIGHT/10, Constants.WIDTH/50),
+				BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"ASIGNATURA", TitledBorder.LEFT, TitledBorder.TOP, 
 				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		course.addActionListener(controller);
@@ -41,14 +48,11 @@ public class AddCoursePanel extends JPanel{
 		course.setFont(Constants.DEFAULT_FONT_BOLD);
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
-
-		add(course);
 		
 		teacher = new JComboBox<String>();
 		teacher.setBackground(Color.WHITE);
 		teacher.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50,
-						Constants.HEIGHT/10, Constants.WIDTH/50),
+				BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"PROFESOR", TitledBorder.LEFT, TitledBorder.TOP, 
 				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		teacher.addActionListener(controller);
@@ -56,11 +60,18 @@ public class AddCoursePanel extends JPanel{
 		teacher.setFont(Constants.DEFAULT_FONT_BOLD);
 		teacher.setForeground(Color.BLACK);
 		teacher.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
-		add(teacher);
 		
-		containerSchedule = new JPanel();
-		containerSchedule.setBackground(Color.YELLOW);
-		containerSchedule.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/20, Constants.WIDTH/20, Constants.HEIGHT/20, Constants.WIDTH/20));
+		containerBox.add(course);
+		containerBox.add(teacher);
+		
+		add(containerBox);
+		
+		containerSchedule = new JPanel(new GridBagLayout());
+		containerSchedule.setBackground(Color.WHITE);
+		containerSchedule.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Constants.DARK_YELLLOW, 2),
+				"DATOS ASIGNATURA", TitledBorder.LEFT, TitledBorder.TOP, 
+				Constants.DEFAULT_FONT_BOLD, Constants.DARK_YELLLOW));
 		add(containerSchedule);
 	}
 
@@ -74,6 +85,19 @@ public class AddCoursePanel extends JPanel{
 				course.addItem(coursesVector[i]);
 			}	
 		}
-		
+	}
+	
+	public void setInfoSchedule(String schedule) {
+		GridBagConstraints constraints = new GridBagConstraints();
+		String[] schedules = schedule.split("%");
+		for (int i = 0; i < schedules.length; i++) {
+			String[] dataSchedule = schedules[i].split("#");
+			infoSchedule = new JLabel();
+			infoSchedule.setFont(Constants.DEFAULT_FONT);
+			infoSchedule.setForeground(Color.BLACK);
+			infoSchedule.setText("DIA: " + dataSchedule[0] + ". HORA INICIO: " + dataSchedule[1] + ". HORA FIN: " + dataSchedule[2]);
+			GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, i, 1, 1);
+			containerSchedule.add(infoSchedule, constraints);
+		}
 	}
 }
