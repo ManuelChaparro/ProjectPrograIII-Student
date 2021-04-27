@@ -61,4 +61,8 @@ public class JWindow extends JFrame{
 	public boolean isCreate() {
 		return login.isCreate();
 	}
+
+	public void setComboBoxCourses(String courses) {
+		student.setComboBoxCourses(courses);
+	}
 }

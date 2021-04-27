@@ -30,4 +30,9 @@ public class StudentInterface extends JPanel{
 	public void changeCardStudent(String option) {
 		info.changeCardStudent(option);
 	}
+
+	public void setComboBoxCourses(String courses) {
+		info.setComboBoxCourses(courses);
+		
+	}
 }

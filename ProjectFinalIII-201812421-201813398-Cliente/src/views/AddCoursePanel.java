@@ -3,11 +3,13 @@ package views;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import controller.Controller;
 import controller.Event;
@@ -29,37 +31,49 @@ public class AddCoursePanel extends JPanel{
 	private void initComponents(Controller controller) {
 		course = new JComboBox<String>();
 		course.setBackground(Color.WHITE);
-		course.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50, Constants.HEIGHT/10, Constants.WIDTH/50));
+		course.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50,
+						Constants.HEIGHT/10, Constants.WIDTH/50),
+				"ASIGNATURA", TitledBorder.LEFT, TitledBorder.TOP, 
+				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		course.addActionListener(controller);
 		course.setActionCommand(Event.ADD_S_COURSE.toString());
 		course.setFont(Constants.DEFAULT_FONT_BOLD);
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
-		
-		course.addItem("Progra");
-		course.addItem("Calculo");
-		course.addItem("Ingles");
-		course.addItem("TGS");
+
 		add(course);
 		
 		teacher = new JComboBox<String>();
 		teacher.setBackground(Color.WHITE);
-		teacher.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50, Constants.HEIGHT/10, Constants.WIDTH/50));
+		teacher.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createEmptyBorder(Constants.HEIGHT/10, Constants.WIDTH/50,
+						Constants.HEIGHT/10, Constants.WIDTH/50),
+				"PROFESOR", TitledBorder.LEFT, TitledBorder.TOP, 
+				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		teacher.addActionListener(controller);
 		teacher.setActionCommand(Event.ADD_S_COURSE.toString());
 		teacher.setFont(Constants.DEFAULT_FONT_BOLD);
 		teacher.setForeground(Color.BLACK);
 		teacher.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
-		
-		teacher.addItem("Omaewa <333");
-		teacher.addItem("Hoyitos");
-		teacher.addItem("El perro hp del alexander");
-		teacher.addItem("valero");
 		add(teacher);
 		
 		containerSchedule = new JPanel();
 		containerSchedule.setBackground(Color.YELLOW);
 		containerSchedule.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/20, Constants.WIDTH/20, Constants.HEIGHT/20, Constants.WIDTH/20));
 		add(containerSchedule);
+	}
+
+	public void setComboBoxCourses(String courses) {
+		String repet = "";
+		String[] coursesVector = courses.split(";");
+		String[] dataCourses = courses.split("&");
+		for (int i = 0; i < coursesVector.length; i++) {
+			if (!repet.contentEquals(coursesVector[i])) {
+				repet+=coursesVector[i];
+				course.addItem(coursesVector[i]);
+			}	
+		}
+		
 	}
 }

@@ -3,11 +3,13 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
+import models.Course;
 import models.User;
 import net.Conection;
 import views.Constants;
@@ -40,9 +42,9 @@ public class Controller implements ActionListener {
 				try {
 					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
-					if(conection.receiveBoolean()) {
+					if (conection.receiveBoolean()) {
 						window.changeCard("Student");
-					}else {
+					} else {
 						JOptionPane.showMessageDialog(null, "El usuario no existe");
 					}
 				} catch (IOException e1) {
@@ -57,12 +59,14 @@ public class Controller implements ActionListener {
 				String stringUser = new Gson().toJson(new User(dataUser[0], dataUser[1], dataUser[2])).toString();
 				conection.sendBoolean(false);
 				conection.sendUTF(stringUser);
-				if(conection.receiveBoolean()) {
-					JOptionPane.showMessageDialog(null, "Creado Exitosamente", Constants.NAME_APP, JOptionPane.INFORMATION_MESSAGE);
+				if (conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, "Creado Exitosamente", Constants.NAME_APP,
+							JOptionPane.INFORMATION_MESSAGE);
 					window.resetLogin();
 					window.changeCard("Login");
-				}else {
-					JOptionPane.showMessageDialog(null, "El usuario ya existe.", Constants.NAME_APP, JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "El usuario ya existe.", Constants.NAME_APP,
+							JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -78,8 +82,14 @@ public class Controller implements ActionListener {
 			try {
 				conection.sendInt(2);
 				window.changeCardStudent("AddCourse");
-				String courses = conection.receiveUTF();
+				String string = conection.receiveUTF();
+				String[] courses = string.split(";");
+				for (int i = 0; i < courses.length; i++) {
+					String[] dataCourses = courses[i].split("&");
+					Course course = new Course(dataCourses[0], dataCourses[1], dataCourses[2], dataCourses[3]);
+				}
 				
+//				window.setComboBoxCourses(conection.receiveUTF());
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
