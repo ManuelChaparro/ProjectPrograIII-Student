@@ -22,7 +22,7 @@ import controller.Event;
 public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField passwordField, userField;
+	private JTextField nameField, passwordField, userField;
 	private JPanel info, login;
 	private boolean isHidePassword, isCreateAccount, isConfirmAccount;
 	private JLabel infoData, msjLogin, userConfirm, passwordConfirm;
@@ -87,6 +87,16 @@ public class LoginPanel extends JPanel {
 		containerLogin.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
 		containerLogin.setBackground(Color.WHITE);
 		GridBagConstraints constraints = new GridBagConstraints();
+		
+		nameField = new JTextField();
+		nameField.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE),
+				"Nombre", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_MIN, Constants.DARK_BLUE));
+		nameField.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 10));
+		nameField.setFont(Constants.DEFAULT_FONT);
+		nameField.setForeground(Color.BLACK);
+		nameField.setVisible(false);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 0, 1, 1);
+		containerLogin.add(nameField, constraints);
 
 		userField = new JTextField();
 		userField.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE),
@@ -94,7 +104,7 @@ public class LoginPanel extends JPanel {
 		userField.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 10));
 		userField.setFont(Constants.DEFAULT_FONT);
 		userField.setForeground(Color.BLACK);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 0, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 1, 1, 1);
 		containerLogin.add(userField, constraints);
 
 		passwordField = new JTextField();
@@ -104,54 +114,54 @@ public class LoginPanel extends JPanel {
 		passwordField.setFont(Constants.DEFAULT_FONT);
 		passwordField.setForeground(Color.BLACK);
 		passwordField.setSelectionColor(Constants.DARK_BLUE);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 1, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
 		containerLogin.add(passwordField, constraints);
 
 		showPass = new ButtonObj("", actionListener, Event.HIDE_PASSWORD.toString(), Constants.PATH_EYE_ICON);
 		showPass.setPreferredSize(new Dimension(Constants.WIDTH / 40, Constants.WIDTH / 40));
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 2, 1, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 2, 2, 1, 1);
 		containerLogin.add(showPass, constraints);
 
 		accept = new ButtonObj("Aceptar", actionListener, Event.GET_LOGIN_DATA.toString());
 		accept.setFont(Constants.DEFAULT_FONT);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 3, 1, 1);
 		containerLogin.add(accept, constraints);
 
 		msjLogin = new JLabel(Constants.MSJ_LOGIN_ACCOUNT);
 		msjLogin.setFont(Constants.DEFAULT_FONT);
 		msjLogin.setForeground(Color.GRAY);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 3, 2, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 4, 2, 1);
 		containerLogin.add(msjLogin, constraints);
 
 		changeAccount = new ButtonObj(Constants.BT_CREATE_ACCOUNT, actionListener, Event.LOGIN_ACCOUNT.toString());
 		changeAccount.setFont(Constants.DEFAULT_FONT);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 4, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 5, 1, 1);
 		containerLogin.add(changeAccount, constraints);
 
 		userConfirm = new JLabel();
 		userConfirm.setFont(Constants.DEFAULT_FONT);
 		userConfirm.setForeground(Color.GRAY);
 		userConfirm.setVisible(false);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 5, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 6, 1, 1);
 		containerLogin.add(userConfirm, constraints);
 
 		passwordConfirm = new JLabel();
 		passwordConfirm.setFont(Constants.DEFAULT_FONT);
 		passwordConfirm.setForeground(Color.GRAY);
 		passwordConfirm.setVisible(false);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 6, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 7, 1, 1);
 		containerLogin.add(passwordConfirm, constraints);
 
 		acceptAccount = new ButtonObj("Crear", actionListener, Event.GET_CREATE_DATA.toString());
 		acceptAccount.setFont(Constants.DEFAULT_FONT);
 		acceptAccount.setVisible(false);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 2, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 0, 3, 1, 1);
 		containerLogin.add(acceptAccount, constraints);
 
 		cancelAccount = new ButtonObj("Cancelar", actionListener, Event.CANCEL_NEW_ACCOUNT.toString());
 		cancelAccount.setFont(Constants.DEFAULT_FONT);
 		cancelAccount.setVisible(false);
-		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 1, 2, 1, 1);
+		GridBagConstrainsForm.gridBagConstrainsForm(constraints, 1, 3, 1, 1);
 		containerLogin.add(cancelAccount, constraints);
 
 		login.add(containerLogin, BorderLayout.CENTER);
@@ -181,6 +191,7 @@ public class LoginPanel extends JPanel {
 		if (!isCreateAccount) {
 			isCreateAccount = true;
 			showPass.setVisible(false);
+			nameField.setVisible(true);
 			passwordField.setForeground(Color.BLACK);
 			passwordField.setText("");
 			infoData.setText(Constants.INFO_CREATE);
@@ -189,6 +200,7 @@ public class LoginPanel extends JPanel {
 		} else {
 			isCreateAccount = false;
 			showPass.setVisible(true);
+			nameField.setVisible(false);
 			infoData.setText(Constants.INFO_LOGIN);
 			msjLogin.setText(Constants.MSJ_CREATE_ACCOUNT);
 			changeAccount.setText(Constants.BT_CREATE_ACCOUNT);
@@ -202,6 +214,7 @@ public class LoginPanel extends JPanel {
 			msjLogin.setText("�Estas seguro?");
 			passwordField.setEditable(false);
 			userField.setEditable(false);
+			nameField.setEditable(false);
 			infoData.setText(Constants.CONFIRM_DATA);
 			changeAccount.setVisible(false);
 			userConfirm.setText("Usuario:" + userField.getText());
@@ -212,7 +225,7 @@ public class LoginPanel extends JPanel {
 			acceptAccount.setVisible(true);
 			cancelAccount.setVisible(true);
 			if (isConfirmAccount) {
-				return userField.getText() + "," + passwordField.getText();
+				return nameField.getText()+","+userField.getText() + "," + passwordField.getText();
 			} else {
 				isConfirmAccount = true;
 				return "confirmAccount";
@@ -221,6 +234,11 @@ public class LoginPanel extends JPanel {
 	}
 
 	public void resetLogin() {
+		nameField.setVisible(false);
+		nameField.setEditable(true);
+		nameField.setText("");
+		userField.setText("");
+		passwordField.setText("");
 		showPass.setVisible(true);
 		msjLogin.setText(Constants.MSJ_LOGIN_ACCOUNT);
 		accept.setActionCommand(Event.GET_LOGIN_DATA.toString());
@@ -229,6 +247,7 @@ public class LoginPanel extends JPanel {
 		passwordField.setEditable(true);
 		infoData.setText(Constants.INFO_LOGIN);
 		changeAccount.setVisible(true);
+		changeAccount.setText(Constants.BT_CREATE_ACCOUNT);
 		userConfirm.setText("");
 		userConfirm.setVisible(false);
 		passwordConfirm.setText("");
@@ -237,7 +256,6 @@ public class LoginPanel extends JPanel {
 		acceptAccount.setVisible(false);
 		cancelAccount.setVisible(false);
 		isConfirmAccount = false;
-		changeAccount.setText(Constants.BT_LOGIN_ACCOUNT);
 	}
 
 	public boolean isCreate() {
