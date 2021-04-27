@@ -26,4 +26,8 @@ public class PanelInfoStudent extends JPanel{
 	public void changeCardStudent(String nameCard) {
 		cards.changeCardLayout(nameCard);
 	}
+
+	public void setComboBoxCourses(String courses) {
+		addCourse.setComboBoxCourses(courses);
+	}
 }
