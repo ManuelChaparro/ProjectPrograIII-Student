@@ -65,4 +65,8 @@ public class JWindow extends JFrame{
 	public void setComboBoxCourses(String courses) {
 		student.setComboBoxCourses(courses);
 	}
+
+	public void setInfoSchedule(String infoSchedule) {
+		student.setInfoSchedule(infoSchedule);
+	}
 }

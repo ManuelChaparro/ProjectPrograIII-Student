@@ -35,4 +35,8 @@ public class StudentInterface extends JPanel{
 		info.setComboBoxCourses(courses);
 		
 	}
+
+	public void setInfoSchedule(String infoSchedule) {
+		info.setInfoSchedule(infoSchedule);
+	}
 }
