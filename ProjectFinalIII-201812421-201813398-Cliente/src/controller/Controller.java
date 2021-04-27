@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParser;
@@ -41,24 +43,33 @@ public class Controller implements ActionListener {
 			String data = window.getLoginData();
 			if (!window.isCreate()) {
 				String[] dataUser = data.split(",");
-				window.changeCard("Student");
 				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
 				try {
 					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
+					if(conection.receiveBoolean()) {
+						window.changeCard("Student");
+					}else {
+						JOptionPane.showMessageDialog(null, "El usuario no existe");
+					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
 			break;
 		case GET_CREATE_DATA:
-			data = window.getLoginData();
-			String[] dataUser = data.split(",");
+			String dataCreateLog = window.getLoginData();
+			String[] dataUser = dataCreateLog.split(",");
 			try {
 				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
 				conection.sendBoolean(false);
 				conection.sendUTF(stringUser);
-
+				if(conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, "Creado exitosamente.");
+					window.changeCard("Login");
+				}else {
+					JOptionPane.showMessageDialog(null, "El usuario ya existe.");
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
