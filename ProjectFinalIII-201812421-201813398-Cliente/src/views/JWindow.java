@@ -12,7 +12,7 @@ public class JWindow extends JFrame{
 	
 	private JCardsPanel cards;
 	private LoginPanel login;
-	private InterfaceStudent student;
+	private StudentInterface student;
 	
 	public JWindow(Controller controller) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,7 +30,7 @@ public class JWindow extends JFrame{
 		login = new LoginPanel(controller);
 		cards.add(login, "Login");
 		
-		student = new InterfaceStudent(controller);
+		student = new StudentInterface(controller);
 		cards.add(student, "Student");
 	}
 	

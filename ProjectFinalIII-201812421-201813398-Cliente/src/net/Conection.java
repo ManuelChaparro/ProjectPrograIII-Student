@@ -19,7 +19,7 @@ public class Conection {
 			input = new DataInputStream(server.getInputStream());
 			output = new DataOutputStream(server.getOutputStream());
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("No se pudo conectar con el servidor");
 		}
 	}
 

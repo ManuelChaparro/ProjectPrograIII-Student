@@ -7,13 +7,13 @@ import javax.swing.JPanel;
 
 import controller.Controller;
 
-public class InterfaceStudent extends JPanel{
+public class StudentInterface extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private MenuStudent menu;
 	private PanelInfoStudent info;
 	
-	public InterfaceStudent(Controller controller) {
+	public StudentInterface(Controller controller) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
 		initComponents(controller);
