@@ -85,7 +85,7 @@ public class Controller implements ActionListener {
 				window.resertComboBoxCourses();
 				window.changeCardStudent("AddCourse");
 				window.setComboBoxCourses(conection.receiveUTF());
-//				window.setInfoSchedule("LUN#6#8%MIE#10#12");
+				window.setInfoSchedule("LUN#6#8%MIE#10#12");
 			} catch (IOException e3) {
 				e3.printStackTrace();
 			}
