@@ -44,7 +44,7 @@ public class AddCoursePanel extends JPanel{
 				"ASIGNATURA", TitledBorder.LEFT, TitledBorder.TOP, 
 				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		course.addActionListener(controller);
-		course.setActionCommand(Event.ADD_S_COURSE.toString());
+		course.setActionCommand(Event.ADD_COMBOBOX_COURSE.toString());
 		course.setFont(Constants.DEFAULT_FONT_BOLD);
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
@@ -56,7 +56,7 @@ public class AddCoursePanel extends JPanel{
 				"PROFESOR", TitledBorder.LEFT, TitledBorder.TOP, 
 				Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		teacher.addActionListener(controller);
-		teacher.setActionCommand(Event.ADD_S_COURSE.toString());
+		teacher.setActionCommand(Event.ADD_COMBOBOX_TEACHER.toString());
 		teacher.setFont(Constants.DEFAULT_FONT_BOLD);
 		teacher.setForeground(Color.BLACK);
 		teacher.setPreferredSize(new Dimension(Constants.WIDTH/2, Constants.HEIGHT/12));
@@ -76,16 +76,36 @@ public class AddCoursePanel extends JPanel{
 	}
 
 	public void setComboBoxCourses(String courses) {
-		String repet = "";
 		String[] coursesVector = courses.split(";");
-		String[] dataCourses = courses.split("&");
 		for (int i = 0; i < coursesVector.length; i++) {
-			if (!repet.contentEquals(coursesVector[i])) {
-				repet+=coursesVector[i];
 				course.addItem(coursesVector[i]);
-			}	
 		}
 	}
+
+	public void resertComboBoxCourses() {
+		course.removeAllItems();
+	}
+	
+	public String getComboBoxCoursesValue() {
+		return course.getSelectedItem().toString();
+	}
+	
+	
+	public void setComboBoxTeachers(String teachers) {
+		String[] teachersVector = teachers.split(";");
+		for (int i = 0; i < teachersVector.length; i++) {
+			teacher.addItem(teachersVector[i]);
+		}
+	}
+	
+	public void resetComboBoxTeachers() {
+		teacher.removeAllItems();
+	}
+	
+	public String getComboBoxTeachersValue() {
+		return teacher.getSelectedItem().toString();
+	}
+	
 	
 	public void setInfoSchedule(String schedule) {
 		GridBagConstraints constraints = new GridBagConstraints();

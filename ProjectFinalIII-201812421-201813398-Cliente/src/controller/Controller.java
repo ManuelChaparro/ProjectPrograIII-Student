@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -81,22 +82,25 @@ public class Controller implements ActionListener {
 		case ADD_COURSE_ST:
 			try {
 				conection.sendInt(2);
+				window.resertComboBoxCourses();
 				window.changeCardStudent("AddCourse");
-				String string = conection.receiveUTF();
-				String[] courses = string.split(";");
-				for (int i = 0; i < courses.length; i++) {
-					String[] dataCourses = courses[i].split("&");
-					Course course = new Course(dataCourses[0], dataCourses[1], dataCourses[2], dataCourses[3]);
-				}
-				window.setInfoSchedule("LUN#6#8%MIE#10#12");
-				
-//				window.setComboBoxCourses(conection.receiveUTF());
-			} catch (IOException e1) {
-				e1.printStackTrace();
+				window.setComboBoxCourses(conection.receiveUTF());
+//				window.setInfoSchedule("LUN#6#8%MIE#10#12");
+			} catch (IOException e3) {
+				e3.printStackTrace();
 			}
 			break;
-		case ADD_S_COURSE:
-
+		case ADD_COMBOBOX_COURSE:
+			try {
+				conection.sendInt(3);
+				window.resetComboBoxTeachers();
+				conection.sendUTF(window.getComboBoxCoursesValue());
+				window.setComboBoxTeachers(conection.receiveUTF());
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			break;
+		case ADD_COMBOBOX_TEACHER:
 			break;
 		default:
 			break;
