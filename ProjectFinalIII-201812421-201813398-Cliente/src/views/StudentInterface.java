@@ -62,4 +62,14 @@ public class StudentInterface extends JPanel{
 	public void enableAddCourse(boolean b) {
 		menu.enableAddCourse(b);
 	}
+
+	public void setVisibleTeachers(boolean b) {
+		info.setVisibleTeachers(b);
+		
+	}
+
+	public void setVisibleSchedule(boolean b) {
+		info.setVisibleSchedule(b);
+		
+	}
 }

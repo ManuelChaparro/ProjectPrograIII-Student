@@ -14,6 +14,7 @@ public class Controller implements ActionListener {
 
 	private JWindow window;
 	private Conection conection;
+	private String code;
 
 	public Controller() {
 		conection = new Conection();
@@ -22,8 +23,6 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		boolean condition = false;
-		String[] dataAddCourse = new String[200];
 		switch (Event.valueOf(e.getActionCommand())) {
 		case HIDE_PASSWORD:
 			window.hidePassword();
@@ -40,6 +39,7 @@ public class Controller implements ActionListener {
 					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
 					if (conection.receiveBoolean()) {
+						code = dataUser[0];
 						window.changeCard("Student");
 					} else {
 						JOptionPane.showMessageDialog(null, "El usuario no existe");
@@ -87,16 +87,53 @@ public class Controller implements ActionListener {
 				window.resertComboBoxCourses();
 				window.resetComboBoxTeachers();
 				window.setComboBoxCourses(conection.receiveUTF());
-				conection.sendUTF(window.getComboBoxCoursesValue());
-				window.setComboBoxTeachers(conection.receiveUTF());
 				window.changeCardStudent("AddCourse");
 			} catch (IOException e3) {
 				e3.printStackTrace();
 			}
 			break;
-		case ADD_COMBOBOX_TEACHER:
-//			conection.sendUTF("ADD_COMBOBOX_COURSE");
+		case FIND_TEACHERS:
+			try {
+				conection.sendUTF("FIND_TEACHERS");
+				window.setVisibleTeachers(true);
+				window.resetComboBoxTeachers();
+				conection.sendUTF(window.getComboBoxCoursesValue());
+				window.setComboBoxTeachers(conection.receiveUTF());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
+		case FIND_INFO_ADD_COURSE:
+			try {
+				conection.sendUTF("FIND_INFO_ADD_COURSE");
+				window.setVisibleSchedule(true);
+				conection.sendUTF(window.getComboBoxCoursesValue());
+				conection.sendUTF(window.getComboBoxTeachersValue());
+				window.setInfoSchedule(conection.receiveUTF());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case VISIBLE_TEACHERS:
+			window.setVisibleTeachers(false);
+			window.setVisibleSchedule(false);
+			break;
+		case VISIBLE_SCHEDULE:
+			window.setVisibleSchedule(false);
+			break;
+		case INSERT_COURSE:
+			try {
+				conection.sendUTF("INSERT_COURSE");
+				conection.sendUTF(
+						code + ";;;" + window.getComboBoxCoursesValue() + ";;;" + window.getComboBoxTeachersValue());
+				if (conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, "Inscrito exitosamente", "ASIGNATURA", JOptionPane.YES_OPTION);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al inscribir", "ASIGNATURA", JOptionPane.NO_OPTION);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		default:
 			break;
 		}
