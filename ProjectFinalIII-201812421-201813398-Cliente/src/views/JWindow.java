@@ -93,4 +93,12 @@ public class JWindow extends JFrame{
 	public void enableAddCourse(boolean b) {
 		student.enableAddCourse(b);
 	}
+
+	public void setVisibleTeachers(boolean b) {
+		student.setVisibleTeachers(b);		
+	}
+
+	public void setVisibleSchedule(boolean b) {
+		student.setVisibleSchedule(b);
+	}
 }
