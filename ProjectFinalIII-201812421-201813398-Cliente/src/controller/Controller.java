@@ -22,6 +22,7 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		boolean condition = false;
 		String[] dataAddCourse = new String[200];
 		switch (Event.valueOf(e.getActionCommand())) {
 		case HIDE_PASSWORD:
@@ -72,37 +73,29 @@ public class Controller implements ActionListener {
 			window.resetLogin();
 			break;
 		case SHOW_SCHEDULE:
+			try {
+				conection.sendUTF("SHOW_SCHEDULE");
+				System.out.println(conection.receiveUTF());
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
 			window.changeCardStudent("Schedule");
 			break;
 		case ADD_COURSE_ST:
 			try {
-				conection.sendInt(2);
+				conection.sendUTF("ADD_COURSE_ST");
 				window.resertComboBoxCourses();
+				window.resetComboBoxTeachers();
+				window.setComboBoxCourses(conection.receiveUTF());
+				conection.sendUTF(window.getComboBoxCoursesValue());
+				window.setComboBoxTeachers(conection.receiveUTF());
 				window.changeCardStudent("AddCourse");
-				System.out.println(conection.receiveUTF());
-				for (String string : dataAddCourse) {
-					window.setComboBoxCourses(string);
-				}
 			} catch (IOException e3) {
 				e3.printStackTrace();
 			}
 			break;
-		case ADD_COMBOBOX_COURSE:
-			window.resetComboBoxTeachers();
-			String[] coursesValue = window.getComboBoxCoursesValue().split(":");
-			for (int i = 0; i < dataAddCourse.length; i++) {
-				String palabra = dataAddCourse[i];
-				String texto = coursesValue[0];
-				boolean resultado = texto.contains(palabra);
-
-				if(resultado){
-				    System.out.println(palabra);
-				}else{
-				    System.out.println("palabra no encontrada");
-				}			
-			}
-			break;
 		case ADD_COMBOBOX_TEACHER:
+//			conection.sendUTF("ADD_COMBOBOX_COURSE");
 			break;
 		default:
 			break;

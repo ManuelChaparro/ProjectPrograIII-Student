@@ -58,4 +58,8 @@ public class StudentInterface extends JPanel{
 	public void setInfoSchedule(String infoSchedule) {
 		info.setInfoSchedule(infoSchedule);
 	}
+
+	public void enableAddCourse(boolean b) {
+		menu.enableAddCourse(b);
+	}
 }

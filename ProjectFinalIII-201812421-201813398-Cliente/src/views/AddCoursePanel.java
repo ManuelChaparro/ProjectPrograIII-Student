@@ -71,8 +71,11 @@ public class AddCoursePanel extends JPanel {
 	}
 
 	public void setComboBoxCourses(String courses) {
-		String[] coursesVector = courses.split("&");
-		course.addItem(coursesVector[0] + " :" + coursesVector[1]);
+		String[] coursesVector = courses.split(";");
+		for (int i = 0; i < coursesVector.length; i++) {
+			System.out.println(coursesVector[i]);
+			course.addItem(coursesVector[i]);
+		}
 	}
 
 	public void resertComboBoxCourses() {
@@ -80,7 +83,11 @@ public class AddCoursePanel extends JPanel {
 	}
 
 	public String getComboBoxCoursesValue() {
-		return course.getSelectedItem().toString();
+		if (course.getSelectedItem()!=null) {
+			return course.getSelectedItem().toString();
+		}else {
+			return "";
+		}
 	}
 
 	public void setComboBoxTeachers(String teachers) {
