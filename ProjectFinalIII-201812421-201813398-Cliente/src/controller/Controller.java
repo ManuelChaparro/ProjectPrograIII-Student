@@ -152,6 +152,7 @@ public class Controller implements ActionListener {
 		case FIND_INFO_HOMEWORK:
 			window.setVisibleModify(true);
 			break;
+			
 		default:
 			break;
 		}

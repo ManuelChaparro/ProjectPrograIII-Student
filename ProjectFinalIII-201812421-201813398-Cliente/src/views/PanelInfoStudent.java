@@ -66,6 +66,7 @@ public class PanelInfoStudent extends JPanel {
 	public void setVisibleTeachers(boolean b) {
 		addCourse.setVisibleTeachers(b);
 	}
+	
 
 	public void setVisibleSchedule(boolean b) {
 		addCourse.setVisibleSchedule(b);

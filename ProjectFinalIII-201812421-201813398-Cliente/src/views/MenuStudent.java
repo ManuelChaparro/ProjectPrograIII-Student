@@ -93,6 +93,8 @@ public class MenuStudent extends JPanel {
 		menuAddCourse.add(addCourse);
 		add(menuAddCourse);
 	}
+	
+	
 
 	private void initModifyCourse(ActionListener actionListener) {
 		JPanel menuModifyCourse = new JPanel();

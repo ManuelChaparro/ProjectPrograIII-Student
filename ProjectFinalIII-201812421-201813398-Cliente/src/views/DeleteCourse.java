@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import controller.Controller;
 
+
 public class DeleteCourse extends JPanel{
 
 	private static final long serialVersionUID = 1L;

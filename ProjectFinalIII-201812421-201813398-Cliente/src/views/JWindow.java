@@ -110,4 +110,5 @@ public class JWindow extends JFrame{
 	public void setVisibleModify(boolean b) {
 		student.setVisibleModify(b);
 	}
+	
 }

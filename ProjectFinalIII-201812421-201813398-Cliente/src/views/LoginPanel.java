@@ -186,6 +186,7 @@ public class LoginPanel extends JPanel {
 			passwordField.setSelectionColor(Constants.DARK_BLUE);
 		}
 	}
+	
 
 	public void loginAccount() {
 		if (!isCreateAccount) {
