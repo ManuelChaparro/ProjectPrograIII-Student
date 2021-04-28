@@ -3,14 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import com.google.gson.Gson;
-
-import models.Course;
 import models.User;
 import net.Conection;
 import views.Constants;
@@ -28,6 +22,8 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		boolean condition = false;
+		String[] dataAddCourse = new String[200];
 		switch (Event.valueOf(e.getActionCommand())) {
 		case HIDE_PASSWORD:
 			window.hidePassword();
@@ -77,30 +73,29 @@ public class Controller implements ActionListener {
 			window.resetLogin();
 			break;
 		case SHOW_SCHEDULE:
+			try {
+				conection.sendUTF("SHOW_SCHEDULE");
+				System.out.println(conection.receiveUTF());
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
 			window.changeCardStudent("Schedule");
 			break;
 		case ADD_COURSE_ST:
 			try {
-				conection.sendInt(2);
+				conection.sendUTF("ADD_COURSE_ST");
 				window.resertComboBoxCourses();
-				window.changeCardStudent("AddCourse");
+				window.resetComboBoxTeachers();
 				window.setComboBoxCourses(conection.receiveUTF());
-				window.setInfoSchedule("LUN#6#8%MIE#10#12");
+				conection.sendUTF(window.getComboBoxCoursesValue());
+				window.setComboBoxTeachers(conection.receiveUTF());
+				window.changeCardStudent("AddCourse");
 			} catch (IOException e3) {
 				e3.printStackTrace();
 			}
 			break;
-		case ADD_COMBOBOX_COURSE:
-			try {
-				conection.sendInt(3);
-				window.resetComboBoxTeachers();
-				conection.sendUTF(window.getComboBoxCoursesValue());
-				window.setComboBoxTeachers(conection.receiveUTF());
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
-			break;
 		case ADD_COMBOBOX_TEACHER:
+//			conection.sendUTF("ADD_COMBOBOX_COURSE");
 			break;
 		default:
 			break;

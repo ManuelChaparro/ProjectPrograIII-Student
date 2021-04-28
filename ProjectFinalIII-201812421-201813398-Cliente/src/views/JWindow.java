@@ -89,4 +89,8 @@ public class JWindow extends JFrame{
 	public void setInfoSchedule(String infoSchedule) {
 		student.setInfoSchedule(infoSchedule);
 	}
+
+	public void enableAddCourse(boolean b) {
+		student.enableAddCourse(b);
+	}
 }

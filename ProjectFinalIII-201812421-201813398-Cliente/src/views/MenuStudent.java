@@ -155,4 +155,8 @@ public class MenuStudent extends JPanel {
 		menuDeleteActivity.add(deleteAcitivity);
 		add(menuDeleteActivity);
 	}
+
+	public void enableAddCourse(boolean b) {
+		addCourse.setEnabled(b);		
+	}
 }
