@@ -33,9 +33,28 @@ public class StudentInterface extends JPanel{
 
 	public void setComboBoxCourses(String courses) {
 		info.setComboBoxCourses(courses);
-		
+	}
+	
+	public void resertComboBoxCourses() {
+		info.resertComboBoxCourses();
+	}
+	
+	public String getComboBoxCoursesValue() {
+		return info.getComboBoxCoursesValue();
 	}
 
+	public void setComboBoxTeachers(String teachers) {
+		info.setComboBoxTeachers(teachers);
+	}
+	
+	public void resetComboBoxTeachers() {
+		info.resetComboBoxTeachers();
+	}
+	
+	public String getComboBoxTeachersValue() {
+		return info.getComboBoxTeachersValue();
+	}
+	
 	public void setInfoSchedule(String infoSchedule) {
 		info.setInfoSchedule(infoSchedule);
 	}

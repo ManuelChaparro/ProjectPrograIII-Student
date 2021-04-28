@@ -57,6 +57,10 @@ public class JWindow extends JFrame{
 	public void changeCardStudent(String option) {
 		student.changeCardStudent(option);
 	}
+	
+	public void resertComboBoxCourses() {
+		student.resertComboBoxCourses();
+	}
 
 	public boolean isCreate() {
 		return login.isCreate();
@@ -64,6 +68,22 @@ public class JWindow extends JFrame{
 
 	public void setComboBoxCourses(String courses) {
 		student.setComboBoxCourses(courses);
+	}
+	
+	public String getComboBoxCoursesValue() {
+		return student.getComboBoxCoursesValue();
+	}
+	
+	public void setComboBoxTeachers(String teachers) {
+		student.setComboBoxTeachers(teachers);
+	}
+	
+	public void resetComboBoxTeachers() {
+		student.resetComboBoxTeachers();
+	}
+	
+	public String getComboBoxTeachersValue() {
+		return student.getComboBoxTeachersValue();
 	}
 
 	public void setInfoSchedule(String infoSchedule) {
