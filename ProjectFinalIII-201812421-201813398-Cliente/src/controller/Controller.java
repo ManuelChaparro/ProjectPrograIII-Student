@@ -128,12 +128,31 @@ public class Controller implements ActionListener {
 						code + ";;;" + window.getComboBoxCoursesValue() + ";;;" + window.getComboBoxTeachersValue());
 				if (conection.receiveBoolean()) {
 					JOptionPane.showMessageDialog(null, "Inscrito exitosamente", "ASIGNATURA", JOptionPane.YES_OPTION);
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "Error al inscribir", "ASIGNATURA", JOptionPane.NO_OPTION);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		case MODIFY_COURSE_ST:
+			window.setVisibleHomework(false);
+			window.setVisibleModify(false);
+			window.changeCardStudent("ModifyCourse");
+			break;
+		case VISIBLE_HOMEWORK:
+			window.setVisibleHomework(false);
+			window.setVisibleModify(false);
+			break;
+		case VISIBLE_MODIFY:
+			window.setVisibleModify(false);
+			break;
+		case FIND_HOMEWORK:
+			window.setVisibleHomework(true);
+			break;
+		case FIND_INFO_HOMEWORK:
+			window.setVisibleModify(true);
+			break;
+			
 		default:
 			break;
 		}

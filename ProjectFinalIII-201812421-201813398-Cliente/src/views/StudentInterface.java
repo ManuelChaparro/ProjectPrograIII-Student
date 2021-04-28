@@ -72,4 +72,15 @@ public class StudentInterface extends JPanel{
 		info.setVisibleSchedule(b);
 		
 	}
+	
+
+	public void setVisibleHomework(boolean b) {
+		info.setVisibleHomework(b);
+		
+	}
+
+	public void setVisibleModify(boolean b) {
+		info.setVisibleModify(b);
+		
+	}
 }
