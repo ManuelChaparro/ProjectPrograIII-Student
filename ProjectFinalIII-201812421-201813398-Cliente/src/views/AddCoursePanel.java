@@ -1,23 +1,17 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.Iterator;
-
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
 import controller.Controller;
 import controller.Event;
-import models.Course;
 
 public class AddCoursePanel extends JPanel {
 
@@ -37,7 +31,6 @@ public class AddCoursePanel extends JPanel {
 	private void initComponents(Controller controller) {
 		JPanel containerBox = new JPanel(new GridLayout(4, 1));
 		containerBox.setBackground(Color.WHITE);
-//		containerBox.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT/25, 0, Constants.HEIGHT / 25, 0));
 		course = new JComboBox<String>();
 		course.addActionListener(controller);
 		course.setActionCommand(Event.VISIBLE_TEACHERS.toString());
