@@ -1,20 +1,28 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import controller.Controller;
 
-public class ButtonObj extends JButton implements MouseListener {
+public class ButtonObj extends JButton{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	public ButtonObj(String name, Controller controller, String event) {
+	public ButtonObj(String name, ActionListener actionListener, String event) {
+		setText(name);
+		setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
+		setForeground(Color.WHITE);
+		setBackground(Constants.DARK_BLUE);
+		setFocusable(false);
+		setVisible(true);
+		addActionListener(actionListener);
+		setActionCommand(event);
+	}
+
+	public ButtonObj(String name, ActionListener actionListener, String event, String pathImg) {
 		setText(name);
 		setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
 		setForeground(Color.WHITE);
@@ -22,32 +30,10 @@ public class ButtonObj extends JButton implements MouseListener {
 		setFocusable(false);
 		setVisible(true);
 		setBorder(null);
-		addActionListener(controller);
+		addActionListener(actionListener);
 		setActionCommand(event);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		ImageIcon img = new ImageIcon(new ImageIcon(getClass().getResource(pathImg)).getImage()
+				.getScaledInstance(Constants.WIDTH / 40, Constants.WIDTH / 40, Image.SCALE_SMOOTH));
+		setIcon(img);
 	}
 }

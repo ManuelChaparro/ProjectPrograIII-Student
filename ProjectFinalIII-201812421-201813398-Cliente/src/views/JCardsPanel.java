@@ -9,6 +9,7 @@ import controller.Controller;
 
 public class JCardsPanel extends JPanel{
 	
+	
 	private static final long serialVersionUID = 1L;
 	
 	public JCardsPanel(Controller controller) {

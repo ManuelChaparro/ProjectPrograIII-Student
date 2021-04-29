@@ -12,7 +12,7 @@ public class JWindow extends JFrame{
 	
 	private JCardsPanel cards;
 	private LoginPanel login;
-	private InterfaceStudent student;
+	private StudentInterface student;
 	
 	public JWindow(Controller controller) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,7 +30,7 @@ public class JWindow extends JFrame{
 		login = new LoginPanel(controller);
 		cards.add(login, "Login");
 		
-		student = new InterfaceStudent(controller);
+		student = new StudentInterface(controller);
 		cards.add(student, "Student");
 	}
 	
@@ -54,7 +54,108 @@ public class JWindow extends JFrame{
 		login.resetLogin();
 	}
 
-	public void showSchedule() {
-		student.showSchedule();
+	public void changeCardStudent(String option) {
+		student.changeCardStudent(option);
+	}
+	
+	public void resertComboBoxCourses() {
+		student.resertComboBoxCourses();
+	}
+
+	public boolean isCreate() {
+		return login.isCreate();
+	}
+
+	public void setComboBoxCourses(String courses) {
+		student.setComboBoxCourses(courses);
+	}
+	
+	public String getComboBoxCoursesValue() {
+		return student.getComboBoxCoursesValue();
+	}
+	
+	public void setComboBoxTeachers(String teachers) {
+		student.setComboBoxTeachers(teachers);
+	}
+	
+	public void resetComboBoxTeachers() {
+		student.resetComboBoxTeachers();
+	}
+	
+	public String getComboBoxTeachersValue() {
+		return student.getComboBoxTeachersValue();
+	}
+
+	public void setInfoSchedule(String infoSchedule) {
+		student.setInfoSchedule(infoSchedule);
+	}
+
+	public void enableAddCourse(boolean b) {
+		student.enableAddCourse(b);
+	}
+
+	public void setVisibleTeachers(boolean b) {
+		student.setVisibleTeachers(b);		
+	}
+
+	public void setVisibleSchedule(boolean b) {
+		student.setVisibleSchedule(b);
+	}
+
+	public void setVisibleHomework(boolean b) {
+		student.setVisibleHomework(b);
+		
+	}
+
+	public void setVisibleModify(boolean b) {
+		student.setVisibleModify(b);
+	}
+
+	public void setComboBoxStudentCourses(String courses) {
+		student.setComboBoxStudentCourses(courses);		
+	}
+
+	public String getComboModHomeworkCourse() {
+		return student.getComboBoxStudentCourses();
+	}
+
+	public void setComboBoxStudentHomework(String homeworks) {
+		student.setComboBoxStudentHomework(homeworks);
+	}
+
+	public void resetComboBoxStudentHomework() {
+		student.resetComboBoxStudentHomework();
+	}
+
+	public String getComboModHomework() {
+		return student.getComboBoxHomework();
+	}
+
+	public void setInfoHomeWork(String[] dataHomework) {
+		student.setInfoHomeWork(dataHomework);		
+	}
+
+	public void setEditableNameHomework(boolean b) {
+		student.setEditableNameHomework(b);		
+	}
+
+	public boolean isNewHomework() {
+		return student.isNewHomework();
+	}
+
+	public String getNameHomework() {
+		return student.getNameHomework();
+	}
+
+	public String getAnotationHomework() {
+		return student.getAnotationHomework();
+	}
+
+	public String getCalificationHomework() {
+		return student.getCalificationHomework();
+	}
+
+	public void resetComboModifyHomeCourses() {
+		student.resetComboModifyHomeCourses();
 	}
 }
