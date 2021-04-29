@@ -33,9 +33,14 @@ public class Controller implements ActionListener {
 		case GET_LOGIN_DATA:
 			String data = window.getLoginData();
 			if (!window.isCreate()) {
-				String[] dataUser = data.split(",");
-				String stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
 				try {
+					String[] dataUser = data.split(",");
+					String stringUser = "";
+					try {
+						stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
+					} catch (Exception e2) {
+						stringUser = new Gson().toJson(new User("", "", "")).toString();
+					}
 					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
 					if (conection.receiveBoolean()) {
@@ -45,7 +50,7 @@ public class Controller implements ActionListener {
 						JOptionPane.showMessageDialog(null, "El usuario no existe");
 					}
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.out.println(e1);
 				}
 			}
 			break;
@@ -219,6 +224,21 @@ public class Controller implements ActionListener {
 			break;
 		default:
 			break;
+		}
+	}
+
+	private boolean isUserValid(String[] dataUser) {
+		if (dataUser.length == 0) {
+			return false;
+		} else {
+			for (int i = 0; i < dataUser.length; i++) {
+				if (dataUser[i].equals("") || dataUser[i] == null) {
+					System.out.println("Usuario invalido");
+					return false;
+				}
+			}
+			System.out.println("usuario valido");
+			return true;
 		}
 	}
 }
