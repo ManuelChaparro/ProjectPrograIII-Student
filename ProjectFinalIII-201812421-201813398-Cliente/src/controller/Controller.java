@@ -74,6 +74,7 @@ public class Controller implements ActionListener {
 			break;
 		case SHOW_SCHEDULE:
 			try {
+				window.changeColorMenuBtn(Event.SHOW_SCHEDULE);
 				conection.sendUTF("SHOW_SCHEDULE");
 				System.out.println(conection.receiveUTF());
 			} catch (IOException e2) {
@@ -83,6 +84,7 @@ public class Controller implements ActionListener {
 			break;
 		case ADD_COURSE_ST:
 			try {
+				window.changeColorMenuBtn(Event.ADD_COURSE_ST);
 				conection.sendUTF("ADD_COURSE_ST");
 				window.resertComboBoxCourses();
 				window.resetComboBoxTeachers();
@@ -127,15 +129,19 @@ public class Controller implements ActionListener {
 				conection.sendUTF(
 						code + ";;;" + window.getComboBoxCoursesValue() + ";;;" + window.getComboBoxTeachersValue());
 				if (conection.receiveBoolean()) {
-					JOptionPane.showMessageDialog(null, "Inscrito exitosamente", "ASIGNATURA", JOptionPane.YES_OPTION);
+					JOptionPane.showMessageDialog(null, "Inscrito exitosamente", "ASIGNATURA",
+							JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Error al inscribir", "ASIGNATURA", JOptionPane.NO_OPTION);
+					JOptionPane.showMessageDialog(null, "Error al inscribir", "ASIGNATURA",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			break;
 		case MODIFY_COURSE_ST:
 			try {
+				window.changeColorMenuBtn(Event.MODIFY_COURSE_ST);
 				window.setVisibleHomework(false);
 				window.setVisibleModify(false);
 				window.resetComboModifyHomeCourses();
@@ -169,15 +175,19 @@ public class Controller implements ActionListener {
 		case FIND_INFO_HOMEWORK:
 			try {
 				conection.sendUTF("FIND_INFO_HOMEWORK");
-				if (!window.getComboModHomework().equalsIgnoreCase("AÑADIR TAREA")) {
+				if (!window.getComboModHomework().equalsIgnoreCase("ANADIR TAREA")) {
 					conection.sendBoolean(false);
-					conection.sendUTF(code+";;;"+window.getComboModHomeworkCourse()+";;;"+window.getComboModHomework());
+					conection.sendUTF(
+							code + ";;;" + window.getComboModHomeworkCourse() + ";;;" + window.getComboModHomework());
 					String[] dataHomework = conection.receiveUTF().split("&");
 					window.setEditableNameHomework(false);
 					window.setInfoHomeWork(dataHomework);
 					window.setVisibleModify(true);
-				}else {
+				} else {
 					conection.sendBoolean(true);
+					window.resetNameHomework();
+					window.resetAnnotationHomework();
+					window.resetCalification();
 					window.setEditableNameHomework(true);
 					window.setVisibleModify(true);
 				}
@@ -189,9 +199,20 @@ public class Controller implements ActionListener {
 			try {
 				conection.sendUTF("ADD_OR_MODIFY_HOMEWORK");
 				conection.sendBoolean(window.isNewHomework());
-				conection.sendUTF(code+";;;"+window.getComboModHomeworkCourse()+";;;"
-						+window.getNameHomework()+";;;"+window.getAnotationHomework()+";;;"
-						+window.getCalificationHomework());
+				conection.sendUTF(code + ";;;" + window.getComboModHomeworkCourse() + ";;;" + window.getNameHomework()
+						+ ";;;" + window.getAnotationHomework() + ";;;" + window.getCalificationHomework());
+				if (conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, "Proceso exitoso.", "ANADIR/MODIFICAR TAREA",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "A ocurrido un error.", "ANADIR/MODIFICAR TAREA",
+							JOptionPane.WARNING_MESSAGE);
+				}
+				window.resetNameHomework();
+				window.resetAnnotationHomework();
+				window.resetCalification();
+				window.setVisibleHomework(false);
+				window.setVisibleModify(false);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -201,6 +222,3 @@ public class Controller implements ActionListener {
 		}
 	}
 }
-
-
-

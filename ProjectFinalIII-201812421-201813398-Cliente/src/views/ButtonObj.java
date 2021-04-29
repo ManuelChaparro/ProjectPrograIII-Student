@@ -1,13 +1,14 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class ButtonObj extends JButton{
+public class ButtonObj extends JButton {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +21,7 @@ public class ButtonObj extends JButton{
 		setVisible(true);
 		addActionListener(actionListener);
 		setActionCommand(event);
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 
 	public ButtonObj(String name, ActionListener actionListener, String event, String pathImg) {
@@ -35,5 +37,6 @@ public class ButtonObj extends JButton{
 		ImageIcon img = new ImageIcon(new ImageIcon(getClass().getResource(pathImg)).getImage()
 				.getScaledInstance(Constants.WIDTH / 40, Constants.WIDTH / 40, Image.SCALE_SMOOTH));
 		setIcon(img);
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 }

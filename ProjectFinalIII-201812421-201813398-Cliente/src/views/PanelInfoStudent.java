@@ -63,21 +63,21 @@ public class PanelInfoStudent extends JPanel {
 		addCourse.setInfoSchedule(infoSchedule);
 	}
 
-	public void setVisibleTeachers(boolean b) {
-		addCourse.setVisibleTeachers(b);
+	public void setVisibleTeachers(boolean isVisible) {
+		addCourse.setVisibleTeachers(isVisible);
 	}
 	
 
-	public void setVisibleSchedule(boolean b) {
-		addCourse.setVisibleSchedule(b);
+	public void setVisibleSchedule(boolean isVisible) {
+		addCourse.setVisibleSchedule(isVisible);
 	}
 
-	public void setVisibleHomework(boolean b) {
-		modifyCourse.setVisibleHomework(b);
+	public void setVisibleHomework(boolean isVisible) {
+		modifyCourse.setVisibleHomework(isVisible);
 	}
 
-	public void setVisibleModify(boolean b) {
-		modifyCourse.setVisibleModify(b);
+	public void setVisibleModify(boolean isVisible) {
+		modifyCourse.setVisibleModify(isVisible);
 	}
 
 	public void setComboBoxStudentCourses(String courses) {
@@ -104,8 +104,8 @@ public class PanelInfoStudent extends JPanel {
 		modifyCourse.setInfoHomeWork(dataHomework);		
 	}
 
-	public void setEditableNameHomework(boolean b) {
-		modifyCourse.setEditableNameHomework(b);		
+	public void setEditableNameHomework(boolean isVisible) {
+		modifyCourse.setEditableNameHomework(isVisible);		
 	}
 
 	public boolean isNewHomework() {
@@ -122,6 +122,18 @@ public class PanelInfoStudent extends JPanel {
 
 	public String getCalificationHomework() {
 		return modifyCourse.getCalificationHomework();
+	}
+	
+	public void resetNameHomework() {
+		modifyCourse.resetNameHomework();
+	}
+	
+	public void resetAnnotationHomework() {
+		modifyCourse.resetAnnotationHomework();
+	}
+	
+	public void resetCalification() {
+		modifyCourse.resetCalification();
 	}
 
 	public void resetComboModifyHomeCourses() {

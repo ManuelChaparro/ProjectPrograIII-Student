@@ -8,7 +8,7 @@ public class Constants {
 	
 	//Colors
 	public static final Color DARK_BLUE = Color.decode("#2D366F");
-	public static final Color DARK_YELLLOW = Color.decode("#EC9C11");
+	public static final Color DARK_YELLOW = Color.decode("#EC9C11");
 	
 	//Panels
 	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -34,15 +34,15 @@ public class Constants {
 	public static final String NAME_APP = "Xorder";
 	public static final String INFO_LOGIN = "INICIO DE SESION";
 	public static final String INFO_CREATE = "CREAR NUEVA CUENTA";
-	public static final String MSJ_CREATE_ACCOUNT = "Â¿No tienes una cuenta? Â¡Crea una nueva!";
-	public static final String MSJ_LOGIN_ACCOUNT = "Â¿Tienes una cuenta? Â¡Inicia Sesion!";
+	public static final String MSJ_CREATE_ACCOUNT = "¿No tienes una cuenta? ¡Crea una nueva!";
+	public static final String MSJ_LOGIN_ACCOUNT = "¿Tienes una cuenta? ¡Inicia Sesion!";
 	public static final String BT_CREATE_ACCOUNT = "Crear cuenta";
 	public static final String BT_LOGIN_ACCOUNT = "Iniciar sesion";
 	public static final String CONFIRM_DATA = "CONFIRMAR DATOS";
-	public static final String BT_ADD_COURSE_ST = "AÃ±adir curso";
-	public static final String BT_MODIFY_COURSE_ST = "AÃ±adir/Modificar Tarea";
-	public static final String BT_DELETE_COURSE_ST = "Borrar Tarea/Curso";
-	public static final String BT_ADD_ACTIVITY_ST = "AÃ±adir actividad";
+	public static final String BT_ADD_COURSE_ST = "Inscribir Asignatura";
+	public static final String BT_MODIFY_COURSE_ST = "Agregar/Modificar Tarea";
+	public static final String BT_DELETE_COURSE_ST = "Borrar Tarea/Asignatura";
+	public static final String BT_ADD_ACTIVITY_ST = "Agregar actividad";
 	public static final String BT_MODIFY_ACTIVITY_ST = "Modificar actividad";
 	public static final String BT_DELETE_ACTIVITY_ST = "Borrar actividad";
 	public static final String BT_SCHEDULE_ST = "Horario";

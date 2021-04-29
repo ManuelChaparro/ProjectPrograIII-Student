@@ -17,7 +17,10 @@ import controller.Event;
 public class MenuStudent extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private ButtonObj addCourse, modifyCourse, deleteCourse, addActivity, modifyActivity, deleteAcitivity, showSchedule;
+	private JPanel menuSchedule, menuAddCourse, menuModifyCourse, menuDeleteCourse, menuAddActivity, menuModifyActivity,
+			menuDeleteActivity;
+	private ButtonObj addCourseBtn, modifyCourseBtn, deleteCourseBtn, addActivityBtn, modifyActivityBtn,
+			deleteAcitivityBtn, showScheduleBtn;
 
 	public MenuStudent(ActionListener actionListener) {
 		setBackground(Color.WHITE);
@@ -71,94 +74,242 @@ public class MenuStudent extends JPanel {
 	}
 
 	private void initSchedule(ActionListener actionListener) {
-		JPanel menuSchedule = new JPanel();
+		menuSchedule = new JPanel();
 		menuSchedule.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 200, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuSchedule.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
-		menuSchedule.setBackground(Constants.DARK_BLUE);
-		showSchedule = new ButtonObj(Constants.BT_SCHEDULE_ST, actionListener, Event.SHOW_SCHEDULE.toString());
-		showSchedule.setBorder(null);
-		menuSchedule.add(showSchedule);
+		menuSchedule.setBackground(Constants.DARK_YELLOW);
+		showScheduleBtn = new ButtonObj(Constants.BT_SCHEDULE_ST, actionListener, Event.SHOW_SCHEDULE.toString());
+		showScheduleBtn.setBackground(Constants.DARK_YELLOW);
+		showScheduleBtn.setBorder(null);
+		menuSchedule.add(showScheduleBtn);
 		add(menuSchedule);
 	}
 
 	private void initAddCourse(ActionListener actionListener) {
-		JPanel menuAddCourse = new JPanel();
+		menuAddCourse = new JPanel();
 		menuAddCourse.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuAddCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuAddCourse.setBackground(Constants.DARK_BLUE);
-		addCourse = new ButtonObj(Constants.BT_ADD_COURSE_ST, actionListener, Event.ADD_COURSE_ST.toString());
-		addCourse.setBorder(null);
-		menuAddCourse.add(addCourse);
+		addCourseBtn = new ButtonObj(Constants.BT_ADD_COURSE_ST, actionListener, Event.ADD_COURSE_ST.toString());
+		addCourseBtn.setBorder(null);
+		menuAddCourse.add(addCourseBtn);
 		add(menuAddCourse);
 	}
-	
-	
 
 	private void initModifyCourse(ActionListener actionListener) {
-		JPanel menuModifyCourse = new JPanel();
+		menuModifyCourse = new JPanel();
 		menuModifyCourse.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuModifyCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuModifyCourse.setBackground(Constants.DARK_BLUE);
-		modifyCourse = new ButtonObj(Constants.BT_MODIFY_COURSE_ST, actionListener, Event.MODIFY_COURSE_ST.toString());
-		modifyCourse.setBorder(null);
-		menuModifyCourse.add(modifyCourse);
+		modifyCourseBtn = new ButtonObj(Constants.BT_MODIFY_COURSE_ST, actionListener,
+				Event.MODIFY_COURSE_ST.toString());
+		modifyCourseBtn.setBorder(null);
+		menuModifyCourse.add(modifyCourseBtn);
 		add(menuModifyCourse);
 	}
 
 	private void initDeleteCourse(ActionListener actionListener) {
-		JPanel menuDeleteCourse = new JPanel();
+		menuDeleteCourse = new JPanel();
 		menuDeleteCourse.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuDeleteCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
-		deleteCourse = new ButtonObj(Constants.BT_DELETE_COURSE_ST, actionListener, Event.DELETE_COURSE_ST.toString());
-		deleteCourse.setBorder(null);
-		menuDeleteCourse.add(deleteCourse);
+		deleteCourseBtn = new ButtonObj(Constants.BT_DELETE_COURSE_ST, actionListener,
+				Event.DELETE_COURSE_ST.toString());
+		deleteCourseBtn.setBorder(null);
+		menuDeleteCourse.add(deleteCourseBtn);
 		add(menuDeleteCourse);
 	}
 
 	private void initAddActivity(ActionListener actionListener) {
-		JPanel menuAddActivity = new JPanel();
+		menuAddActivity = new JPanel();
 		menuAddActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuAddActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivity = new ButtonObj(Constants.BT_ADD_ACTIVITY_ST, actionListener, Event.ADD_ACTIVITY_ST.toString());
-		addActivity.setBorder(null);
-		menuAddActivity.add(addActivity);
+		addActivityBtn = new ButtonObj(Constants.BT_ADD_ACTIVITY_ST, actionListener, Event.ADD_ACTIVITY_ST.toString());
+		addActivityBtn.setBorder(null);
+		menuAddActivity.add(addActivityBtn);
 		add(menuAddActivity);
 	}
 
 	private void initModifyActivity(ActionListener actionListener) {
-		JPanel menuModifyActivity = new JPanel();
+		menuModifyActivity = new JPanel();
 		menuModifyActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuModifyActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivity = new ButtonObj(Constants.BT_MODIFY_ACTIVITY_ST, actionListener,
+		modifyActivityBtn = new ButtonObj(Constants.BT_MODIFY_ACTIVITY_ST, actionListener,
 				Event.MODIFY_ACTIVITY_ST.toString());
-		modifyActivity.setBorder(null);
-		menuModifyActivity.add(modifyActivity);
+		modifyActivityBtn.setBorder(null);
+		menuModifyActivity.add(modifyActivityBtn);
 		add(menuModifyActivity);
 	}
 
 	private void initDeleteActivity(ActionListener actionListener) {
-		JPanel menuDeleteActivity = new JPanel();
+		menuDeleteActivity = new JPanel();
 		menuDeleteActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 200, 0, Color.BLACK));
 		menuDeleteActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
-		deleteAcitivity = new ButtonObj(Constants.BT_DELETE_ACTIVITY_ST, actionListener,
-				Event.DELETE_COURSE_ST.toString());
-		deleteAcitivity.setBorder(null);
-		menuDeleteActivity.add(deleteAcitivity);
+		deleteAcitivityBtn = new ButtonObj(Constants.BT_DELETE_ACTIVITY_ST, actionListener,
+				Event.DELETE_ACTIVITY_ST.toString());
+		deleteAcitivityBtn.setBorder(null);
+		menuDeleteActivity.add(deleteAcitivityBtn);
 		add(menuDeleteActivity);
 	}
 
-	public void enableAddCourse(boolean b) {
-		addCourse.setEnabled(b);		
+	public void enableAddCourse(boolean isEnable) {
+		addCourseBtn.setEnabled(isEnable);
+	}
+
+	public void changeColorMenuBtn(Event event) {
+		switch (event) {
+		case SHOW_SCHEDULE:
+			changeColorShowSchedulerBtn();
+			break;
+		case ADD_COURSE_ST:
+			changeColorAddCourseBtn();
+			break;
+		case MODIFY_COURSE_ST:
+			changeColorModifyCourseBtn();
+			break;
+		case DELETE_COURSE_ST:
+			changeColorDeleteCourseBtn();
+			break;
+		case ADD_ACTIVITY_ST:
+			changeColorAddActivityBtn();
+			break;
+		case MODIFY_ACTIVITY_ST:
+			changeColorModifyActivityBtn();
+			break;
+		case DELETE_ACTIVITY_ST:
+			changeColorDeleteActivityBtn();
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void changeColorShowSchedulerBtn() {
+		menuSchedule.setBackground(Constants.DARK_YELLOW);
+		showScheduleBtn.setBackground(Constants.DARK_YELLOW);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+	}
+
+	private void changeColorDeleteActivityBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_YELLOW);
+		deleteAcitivityBtn.setBackground(Constants.DARK_YELLOW);
+	}
+
+	private void changeColorModifyActivityBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_YELLOW);
+		modifyActivityBtn.setBackground(Constants.DARK_YELLOW);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+	}
+
+	private void changeColorAddActivityBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_YELLOW);
+		addActivityBtn.setBackground(Constants.DARK_YELLOW);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+	}
+
+	private void changeColorDeleteCourseBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_YELLOW);
+		deleteCourseBtn.setBackground(Constants.DARK_YELLOW);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+	}
+
+	private void changeColorModifyCourseBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_BLUE);
+		addCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyCourse.setBackground(Constants.DARK_YELLOW);
+		modifyCourseBtn.setBackground(Constants.DARK_YELLOW);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+	}
+
+	private void changeColorAddCourseBtn() {
+		menuSchedule.setBackground(Constants.DARK_BLUE);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
+		menuAddCourse.setBackground(Constants.DARK_YELLOW);
+		addCourseBtn.setBackground(Constants.DARK_YELLOW);
+		menuModifyCourse.setBackground(Constants.DARK_BLUE);
+		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
+		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
+		menuAddActivity.setBackground(Constants.DARK_BLUE);
+		addActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuModifyActivity.setBackground(Constants.DARK_BLUE);
+		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
+		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
 	}
 }

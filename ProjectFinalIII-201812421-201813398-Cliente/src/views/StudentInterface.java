@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import controller.Controller;
+import controller.Event;
 
 public class StudentInterface extends JPanel{
 
@@ -59,28 +60,32 @@ public class StudentInterface extends JPanel{
 		info.setInfoSchedule(infoSchedule);
 	}
 
-	public void enableAddCourse(boolean b) {
-		menu.enableAddCourse(b);
+	public void enableAddCourse(boolean isEnable) {
+		menu.enableAddCourse(isEnable);
+	}
+	
+	public void changeColorMenuBtn(Event event) {
+		menu.changeColorMenuBtn(event);
 	}
 
-	public void setVisibleTeachers(boolean b) {
-		info.setVisibleTeachers(b);
+	public void setVisibleTeachers(boolean isVisible) {
+		info.setVisibleTeachers(isVisible);
 		
 	}
 
-	public void setVisibleSchedule(boolean b) {
-		info.setVisibleSchedule(b);
+	public void setVisibleSchedule(boolean isVisible) {
+		info.setVisibleSchedule(isVisible);
 		
 	}
 	
 
-	public void setVisibleHomework(boolean b) {
-		info.setVisibleHomework(b);
+	public void setVisibleHomework(boolean isVisible) {
+		info.setVisibleHomework(isVisible);
 		
 	}
 
-	public void setVisibleModify(boolean b) {
-		info.setVisibleModify(b);
+	public void setVisibleModify(boolean isVisible) {
+		info.setVisibleModify(isVisible);
 		
 	}
 
@@ -108,8 +113,8 @@ public class StudentInterface extends JPanel{
 		info.setInfoHomeWork(dataHomework);		
 	}
 
-	public void setEditableNameHomework(boolean b) {
-		info.setEditableNameHomework(b);		
+	public void setEditableNameHomework(boolean isEditable) {
+		info.setEditableNameHomework(isEditable);		
 	}
 
 	public boolean isNewHomework() {
@@ -126,6 +131,18 @@ public class StudentInterface extends JPanel{
 
 	public String getCalificationHomework() {
 		return info.getCalificationHomework();
+	}
+	
+	public void resetNameHomework() {
+		info.resetNameHomework();
+	}
+	
+	public void resetAnnotationHomework() {
+		info.resetAnnotationHomework();
+	}
+	
+	public void resetCalification() {
+		info.resetCalification();
 	}
 
 	public void resetComboModifyHomeCourses() {
