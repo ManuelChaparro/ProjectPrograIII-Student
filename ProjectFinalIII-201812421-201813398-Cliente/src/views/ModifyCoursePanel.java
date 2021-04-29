@@ -22,7 +22,7 @@ public class ModifyCoursePanel extends JPanel {
 	private JPanel containerModify;
 	private JComboBox<String> course, homework;
 	private ButtonObj findHomework, infoHomework, acceptModify;
-	private JTextArea anotation, name;
+	private JTextArea annotation, name;
 	private JSpinner calification;
 
 	public ModifyCoursePanel(Controller controller) {
@@ -42,7 +42,7 @@ public class ModifyCoursePanel extends JPanel {
 
 	private void addComponensThis(JPanel containerButton) {
 		containerModify.add(name);
-		containerModify.add(anotation);
+		containerModify.add(annotation);
 		containerModify.add(calification);
 		containerModify.add(containerButton);
 		add(containerModify);
@@ -51,23 +51,23 @@ public class ModifyCoursePanel extends JPanel {
 	private JPanel initCompModify(Controller controller) {
 		containerModify = new JPanel(new GridLayout(2, 2, 20, 20));
 		containerModify.setBackground(Color.WHITE);
-		
+
 		name = new JTextArea();
-		name.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
-				"TAREA", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
+		name.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1), "TAREA",
+				TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		name.setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
 		name.setForeground(Constants.DARK_BLUE);
 		name.setBackground(Color.WHITE);
 		name.setLineWrap(true);
-		
-		anotation = new JTextArea();
-		anotation.setLineWrap(true);
-		anotation.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
-				"ANOTACIONES", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
-		anotation.setFont(Constants.DEFAULT_FONT);
-		anotation.setForeground(Color.BLACK);
 
-		SpinnerModel sm = new SpinnerNumberModel(3.0, 0.0, 5.0, 0.1); // default value,lower bound,upper bound,increment
+		annotation = new JTextArea();
+		annotation.setLineWrap(true);
+		annotation.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
+				"ANOTACIONES", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
+		annotation.setFont(Constants.DEFAULT_FONT);
+		annotation.setForeground(Color.BLACK);
+
+		SpinnerModel sm = new SpinnerNumberModel(0.0, 0.0, 5.0, 0.1); // default value,lower bound,upper bound,increment
 																		// by
 		calification = new JSpinner(sm);
 		calification.setBackground(Color.WHITE);
@@ -83,7 +83,7 @@ public class ModifyCoursePanel extends JPanel {
 		containerButton.setBorder(
 				BorderFactory.createEmptyBorder(Constants.HEIGHT / 20, Constants.WIDTH / 20, 0, Constants.WIDTH / 20));
 		acceptModify = new ButtonObj("Aceptar", controller, Event.ADD_OR_MODIFY_HOMEWORK.toString());
-		acceptModify.setBackground(Constants.DARK_YELLLOW);
+		acceptModify.setBackground(Constants.DARK_YELLOW);
 		containerButton.add(acceptModify);
 		return containerButton;
 	}
@@ -109,7 +109,7 @@ public class ModifyCoursePanel extends JPanel {
 		homework.setForeground(Color.BLACK);
 		homework.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		infoHomework = new ButtonObj("Mostrar Info", controller, Event.FIND_INFO_HOMEWORK.toString());
+		infoHomework = new ButtonObj("Confirmar", controller, Event.FIND_INFO_HOMEWORK.toString());
 	}
 
 	private void initSearchHomework(Controller controller) {
@@ -126,13 +126,13 @@ public class ModifyCoursePanel extends JPanel {
 		findHomework = new ButtonObj("Buscar Tareas", controller, Event.FIND_HOMEWORK.toString());
 	}
 
-	public void setVisibleHomework(boolean b) {
-		homework.setVisible(b);
-		infoHomework.setVisible(b);
+	public void setVisibleHomework(boolean isVisible) {
+		homework.setVisible(isVisible);
+		infoHomework.setVisible(isVisible);
 	}
 
-	public void setVisibleModify(boolean b) {
-		containerModify.setVisible(b);
+	public void setVisibleModify(boolean isVisible) {
+		containerModify.setVisible(isVisible);
 	}
 
 	public void setComboBoxStudentCourses(String courses) {
@@ -155,7 +155,7 @@ public class ModifyCoursePanel extends JPanel {
 
 	public void resetComboBoxStudentHomework() {
 		homework.removeAllItems();
-		homework.addItem("AÑADIR TAREA");
+		homework.addItem("ANADIR TAREA");
 	}
 
 	public String getComboBoxHomework() {
@@ -164,12 +164,12 @@ public class ModifyCoursePanel extends JPanel {
 
 	public void setInfoHomeWork(String[] dataHomework) {
 		name.setText(dataHomework[0]);
-		anotation.setText(dataHomework[1]);
+		annotation.setText(dataHomework[1]);
 		calification.setValue(Double.parseDouble(dataHomework[2]));
 	}
 
-	public void setEditableNameHomework(boolean b) {
-		name.setEditable(b);	
+	public void setEditableNameHomework(boolean isEditable) {
+		name.setEditable(isEditable);
 	}
 
 	public boolean isNewHomework() {
@@ -181,14 +181,26 @@ public class ModifyCoursePanel extends JPanel {
 	}
 
 	public String getAnotationHomework() {
-		return anotation.getText();
+		return annotation.getText();
 	}
 
 	public String getCalificationHomework() {
 		return calification.getValue().toString();
 	}
 
+	public void resetNameHomework() {
+		name.setText("");
+	}
+
+	public void resetAnnotationHomework() {
+		annotation.setText("");
+	}
+
+	public void resetCalification() {
+		calification.setValue(0);
+	}
+
 	public void resetComboModifyHomeCourses() {
-		course.removeAllItems();		
+		course.removeAllItems();
 	}
 }

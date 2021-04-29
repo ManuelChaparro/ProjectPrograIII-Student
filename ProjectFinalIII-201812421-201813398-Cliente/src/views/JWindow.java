@@ -4,11 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import controller.Controller;
+import controller.Event;
 
 public class JWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	private final String TITLE_WINDOW = "Aplicacion Usuario";
+	private final String TITLE_WINDOW = "Xorder-Usuario";
 	
 	private JCardsPanel cards;
 	private LoginPanel login;
@@ -90,25 +91,29 @@ public class JWindow extends JFrame{
 		student.setInfoSchedule(infoSchedule);
 	}
 
-	public void enableAddCourse(boolean b) {
-		student.enableAddCourse(b);
+	public void enableAddCourse(boolean isEnable) {
+		student.enableAddCourse(isEnable);
+	}
+	
+	public void changeColorMenuBtn(Event event) {
+		student.changeColorMenuBtn(event);
 	}
 
-	public void setVisibleTeachers(boolean b) {
-		student.setVisibleTeachers(b);		
+	public void setVisibleTeachers(boolean isVisible) {
+		student.setVisibleTeachers(isVisible);		
 	}
 
-	public void setVisibleSchedule(boolean b) {
-		student.setVisibleSchedule(b);
+	public void setVisibleSchedule(boolean isVisible) {
+		student.setVisibleSchedule(isVisible);
 	}
 
-	public void setVisibleHomework(boolean b) {
-		student.setVisibleHomework(b);
+	public void setVisibleHomework(boolean isVisible) {
+		student.setVisibleHomework(isVisible);
 		
 	}
 
-	public void setVisibleModify(boolean b) {
-		student.setVisibleModify(b);
+	public void setVisibleModify(boolean isVisible) {
+		student.setVisibleModify(isVisible);
 	}
 
 	public void setComboBoxStudentCourses(String courses) {
@@ -135,8 +140,8 @@ public class JWindow extends JFrame{
 		student.setInfoHomeWork(dataHomework);		
 	}
 
-	public void setEditableNameHomework(boolean b) {
-		student.setEditableNameHomework(b);		
+	public void setEditableNameHomework(boolean isEditable) {
+		student.setEditableNameHomework(isEditable);		
 	}
 
 	public boolean isNewHomework() {
@@ -153,6 +158,18 @@ public class JWindow extends JFrame{
 
 	public String getCalificationHomework() {
 		return student.getCalificationHomework();
+	}
+	
+	public void resetNameHomework() {
+		student.resetNameHomework();
+	}
+	
+	public void resetAnnotationHomework() {
+		student.resetAnnotationHomework();
+	}
+	
+	public void resetCalification() {
+		student.resetCalification();
 	}
 
 	public void resetComboModifyHomeCourses() {

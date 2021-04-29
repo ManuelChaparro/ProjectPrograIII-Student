@@ -57,8 +57,8 @@ public class AddCoursePanel extends JPanel {
 		containerSchedule = new JPanel(new GridBagLayout());
 		containerSchedule.setBackground(Color.WHITE);
 		containerSchedule.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Constants.DARK_YELLLOW, 2), "DATOS ASIGNATURA", TitledBorder.LEFT,
-				TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_YELLLOW));
+				BorderFactory.createLineBorder(Constants.DARK_YELLOW, 2), "DATOS ASIGNATURA", TitledBorder.LEFT,
+				TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_YELLOW));
 
 		containerBox.add(course);
 		containerBox.add(findTeachers);

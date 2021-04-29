@@ -85,7 +85,7 @@ public class SchedulePanel extends JPanel {
 			day.setForeground(Color.WHITE);
 			day.setText(Constants.DAYS[i]);
 			if (Constants.DAYS[i].equalsIgnoreCase("HORAS")) {
-				panel.setBackground(Constants.DARK_YELLLOW);
+				panel.setBackground(Constants.DARK_YELLOW);
 			}
 			day.setBorder(BorderFactory.createEmptyBorder(0, Constants.WIDTH / 100, 0, Constants.WIDTH / 100));
 			panel.add(day);
@@ -98,7 +98,7 @@ public class SchedulePanel extends JPanel {
 			JPanel panel = new JPanel();
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			panel.setPreferredSize(new Dimension(Constants.WIDTH / 5, Constants.HEIGHT / 20));
-			panel.setBackground(Constants.DARK_YELLLOW);
+			panel.setBackground(Constants.DARK_YELLOW);
 			doHoursColumn(i, panel);
 		}
 	}
