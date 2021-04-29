@@ -40,8 +40,8 @@ public class Constants {
 	public static final String BT_LOGIN_ACCOUNT = "Iniciar sesion";
 	public static final String CONFIRM_DATA = "CONFIRMAR DATOS";
 	public static final String BT_ADD_COURSE_ST = "Añadir curso";
-	public static final String BT_MODIFY_COURSE_ST = "Modificar curso";
-	public static final String BT_DELETE_COURSE_ST = "Borrar curso";
+	public static final String BT_MODIFY_COURSE_ST = "Añadir/Modificar Tarea";
+	public static final String BT_DELETE_COURSE_ST = "Borrar Tarea/Curso";
 	public static final String BT_ADD_ACTIVITY_ST = "Añadir actividad";
 	public static final String BT_MODIFY_ACTIVITY_ST = "Modificar actividad";
 	public static final String BT_DELETE_ACTIVITY_ST = "Borrar actividad";
