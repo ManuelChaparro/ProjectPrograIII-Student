@@ -110,5 +110,52 @@ public class JWindow extends JFrame{
 	public void setVisibleModify(boolean b) {
 		student.setVisibleModify(b);
 	}
-	
+
+	public void setComboBoxStudentCourses(String courses) {
+		student.setComboBoxStudentCourses(courses);		
+	}
+
+	public String getComboModHomeworkCourse() {
+		return student.getComboBoxStudentCourses();
+	}
+
+	public void setComboBoxStudentHomework(String homeworks) {
+		student.setComboBoxStudentHomework(homeworks);
+	}
+
+	public void resetComboBoxStudentHomework() {
+		student.resetComboBoxStudentHomework();
+	}
+
+	public String getComboModHomework() {
+		return student.getComboBoxHomework();
+	}
+
+	public void setInfoHomeWork(String[] dataHomework) {
+		student.setInfoHomeWork(dataHomework);		
+	}
+
+	public void setEditableNameHomework(boolean b) {
+		student.setEditableNameHomework(b);		
+	}
+
+	public boolean isNewHomework() {
+		return student.isNewHomework();
+	}
+
+	public String getNameHomework() {
+		return student.getNameHomework();
+	}
+
+	public String getAnotationHomework() {
+		return student.getAnotationHomework();
+	}
+
+	public String getCalificationHomework() {
+		return student.getCalificationHomework();
+	}
+
+	public void resetComboModifyHomeCourses() {
+		student.resetComboModifyHomeCourses();
+	}
 }

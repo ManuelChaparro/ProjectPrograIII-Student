@@ -79,4 +79,52 @@ public class PanelInfoStudent extends JPanel {
 	public void setVisibleModify(boolean b) {
 		modifyCourse.setVisibleModify(b);
 	}
+
+	public void setComboBoxStudentCourses(String courses) {
+		modifyCourse.setComboBoxStudentCourses(courses);		
+	}
+
+	public String getComboBoxStudentCourses() {
+		return modifyCourse.getComboBoxStudentCourses();
+	}
+
+	public void setComboBoxStudentHomework(String homeworks) {
+		modifyCourse.setComboBoxStudentHomework(homeworks);		
+	}
+
+	public void resetComboBoxStudentHomework() {
+		modifyCourse.resetComboBoxStudentHomework();
+	}
+
+	public String getComboBoxHomework() {
+		return modifyCourse.getComboBoxHomework();
+	}
+
+	public void setInfoHomeWork(String[] dataHomework) {
+		modifyCourse.setInfoHomeWork(dataHomework);		
+	}
+
+	public void setEditableNameHomework(boolean b) {
+		modifyCourse.setEditableNameHomework(b);		
+	}
+
+	public boolean isNewHomework() {
+		return modifyCourse.isNewHomework();
+	}
+
+	public String getNameHomework() {
+		return modifyCourse.getNameHomework();
+	}
+
+	public String getAnotationHomework() {
+		return modifyCourse.getAnotationHomework();
+	}
+
+	public String getCalificationHomework() {
+		return modifyCourse.getCalificationHomework();
+	}
+
+	public void resetComboModifyHomeCourses() {
+		modifyCourse.resetComboModifyHomeCourses();		
+	}
 }

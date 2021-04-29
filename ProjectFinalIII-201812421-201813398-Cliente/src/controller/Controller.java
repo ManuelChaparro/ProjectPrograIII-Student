@@ -135,9 +135,17 @@ public class Controller implements ActionListener {
 				e1.printStackTrace();
 			}
 		case MODIFY_COURSE_ST:
-			window.setVisibleHomework(false);
-			window.setVisibleModify(false);
-			window.changeCardStudent("ModifyCourse");
+			try {
+				window.setVisibleHomework(false);
+				window.setVisibleModify(false);
+				window.resetComboModifyHomeCourses();
+				conection.sendUTF("MODIFY_COURSE_ST");
+				conection.sendUTF(code);
+				window.setComboBoxStudentCourses(conection.receiveUTF());
+				window.changeCardStudent("ModifyCourse");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case VISIBLE_HOMEWORK:
 			window.setVisibleHomework(false);
@@ -147,14 +155,52 @@ public class Controller implements ActionListener {
 			window.setVisibleModify(false);
 			break;
 		case FIND_HOMEWORK:
-			window.setVisibleHomework(true);
+			try {
+				conection.sendUTF("FIND_HOMEWORK");
+				conection.sendUTF(code);
+				window.resetComboBoxStudentHomework();
+				conection.sendUTF(window.getComboModHomeworkCourse());
+				window.setComboBoxStudentHomework(conection.receiveUTF());
+				window.setVisibleHomework(true);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case FIND_INFO_HOMEWORK:
-			window.setVisibleModify(true);
+			try {
+				conection.sendUTF("FIND_INFO_HOMEWORK");
+				if (!window.getComboModHomework().equalsIgnoreCase("AÑADIR TAREA")) {
+					conection.sendBoolean(false);
+					conection.sendUTF(code+";;;"+window.getComboModHomeworkCourse()+";;;"+window.getComboModHomework());
+					String[] dataHomework = conection.receiveUTF().split("&");
+					window.setEditableNameHomework(false);
+					window.setInfoHomeWork(dataHomework);
+					window.setVisibleModify(true);
+				}else {
+					conection.sendBoolean(true);
+					window.setEditableNameHomework(true);
+					window.setVisibleModify(true);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
-			
+		case ADD_OR_MODIFY_HOMEWORK:
+			try {
+				conection.sendUTF("ADD_OR_MODIFY_HOMEWORK");
+				conection.sendBoolean(window.isNewHomework());
+				conection.sendUTF(code+";;;"+window.getComboModHomeworkCourse()+";;;"
+						+window.getNameHomework()+";;;"+window.getAnotationHomework()+";;;"
+						+window.getCalificationHomework());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			break;
 		default:
 			break;
 		}
 	}
 }
+
+
+
