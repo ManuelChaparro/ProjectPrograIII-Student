@@ -41,10 +41,10 @@ public class Constants {
 	public static final String CONFIRM_DATA = "CONFIRMAR DATOS";
 	public static final String BT_ADD_COURSE_ST = "Inscribir Asignatura";
 	public static final String BT_MODIFY_COURSE_ST = "Agregar/Modificar Tarea";
-	public static final String BT_DELETE_COURSE_ST = "Borrar Tarea/Asignatura";
-	public static final String BT_ADD_ACTIVITY_ST = "Agregar actividad";
-	public static final String BT_MODIFY_ACTIVITY_ST = "Modificar actividad";
-	public static final String BT_DELETE_ACTIVITY_ST = "Borrar actividad";
+	public static final String BT_DELETE_COURSE_ST = "Cancelar Tarea/Asignatura";
+	public static final String BT_ADD_OR_MOD_ACTIVITY_ST = "Agregar/Modificar Actividad";
+	public static final String BT_AVG_ST = "Calcular Promedios";
+	public static final String BT_DELETE_ACTIVITY_ST = "Cancelar actividad";
 	public static final String BT_SCHEDULE_ST = "Horario";
 
 }

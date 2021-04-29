@@ -17,9 +17,9 @@ import controller.Event;
 public class MenuStudent extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel menuSchedule, menuAddCourse, menuModifyCourse, menuDeleteCourse, menuAddActivity, menuModifyActivity,
+	private JPanel menuSchedule, menuAddCourse, menuModifyCourse, menuDeleteCourse, menuAddOrModActivity, menuAVG,
 			menuDeleteActivity;
-	private ButtonObj addCourseBtn, modifyCourseBtn, deleteCourseBtn, addActivityBtn, modifyActivityBtn,
+	private ButtonObj addCourseBtn, modifyCourseBtn, deleteCourseBtn, addOrModActivityBtn, avgBtn,
 			deleteAcitivityBtn, showScheduleBtn;
 
 	public MenuStudent(ActionListener actionListener) {
@@ -36,8 +36,8 @@ public class MenuStudent extends JPanel {
 		initModifyCourse(actionListener);
 		initDeleteCourse(actionListener);
 		initAddActivity(actionListener);
-		initModifyActivity(actionListener);
 		initDeleteActivity(actionListener);
+		initCalculateAVG(actionListener);
 	}
 
 	private void initLogoApp() {
@@ -125,28 +125,15 @@ public class MenuStudent extends JPanel {
 	}
 
 	private void initAddActivity(ActionListener actionListener) {
-		menuAddActivity = new JPanel();
-		menuAddActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
+		menuAddOrModActivity = new JPanel();
+		menuAddOrModActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
-		menuAddActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn = new ButtonObj(Constants.BT_ADD_ACTIVITY_ST, actionListener, Event.ADD_ACTIVITY_ST.toString());
-		addActivityBtn.setBorder(null);
-		menuAddActivity.add(addActivityBtn);
-		add(menuAddActivity);
-	}
-
-	private void initModifyActivity(ActionListener actionListener) {
-		menuModifyActivity = new JPanel();
-		menuModifyActivity.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
-				Constants.HEIGHT / 400, 0, Color.BLACK));
-		menuModifyActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn = new ButtonObj(Constants.BT_MODIFY_ACTIVITY_ST, actionListener,
-				Event.MODIFY_ACTIVITY_ST.toString());
-		modifyActivityBtn.setBorder(null);
-		menuModifyActivity.add(modifyActivityBtn);
-		add(menuModifyActivity);
+		menuAddOrModActivity.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn = new ButtonObj(Constants.BT_ADD_OR_MOD_ACTIVITY_ST, actionListener, Event.ADD_OR_MOD_ACTIVITY_ST.toString());
+		addOrModActivityBtn.setBorder(null);
+		menuAddOrModActivity.add(addOrModActivityBtn);
+		add(menuAddOrModActivity);
 	}
 
 	private void initDeleteActivity(ActionListener actionListener) {
@@ -161,6 +148,20 @@ public class MenuStudent extends JPanel {
 		menuDeleteActivity.add(deleteAcitivityBtn);
 		add(menuDeleteActivity);
 	}
+	
+	private void initCalculateAVG(ActionListener actionListener) {
+		menuAVG = new JPanel();
+		menuAVG.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 400, Constants.WIDTH / 137,
+				Constants.HEIGHT / 400, 0, Color.BLACK));
+		menuAVG.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn = new ButtonObj(Constants.BT_AVG_ST, actionListener,
+				Event.AVG_ST.toString());
+		avgBtn.setBorder(null);
+		menuAVG.add(avgBtn);
+		add(menuAVG);
+	}
+
 
 	public void enableAddCourse(boolean isEnable) {
 		addCourseBtn.setEnabled(isEnable);
@@ -180,10 +181,10 @@ public class MenuStudent extends JPanel {
 		case DELETE_COURSE_ST:
 			changeColorDeleteCourseBtn();
 			break;
-		case ADD_ACTIVITY_ST:
+		case ADD_OR_MOD_ACTIVITY_ST:
 			changeColorAddActivityBtn();
 			break;
-		case MODIFY_ACTIVITY_ST:
+		case AVG_ST:
 			changeColorModifyActivityBtn();
 			break;
 		case DELETE_ACTIVITY_ST:
@@ -203,12 +204,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 
 	private void changeColorDeleteActivityBtn() {
@@ -220,12 +221,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_YELLOW);
 		deleteAcitivityBtn.setBackground(Constants.DARK_YELLOW);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 
 	private void changeColorModifyActivityBtn() {
@@ -237,12 +238,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_YELLOW);
-		modifyActivityBtn.setBackground(Constants.DARK_YELLOW);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_YELLOW);
+		avgBtn.setBackground(Constants.DARK_YELLOW);
 	}
 
 	private void changeColorAddActivityBtn() {
@@ -254,12 +255,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_YELLOW);
-		addActivityBtn.setBackground(Constants.DARK_YELLOW);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_YELLOW);
+		addOrModActivityBtn.setBackground(Constants.DARK_YELLOW);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 
 	private void changeColorDeleteCourseBtn() {
@@ -271,12 +272,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_YELLOW);
 		deleteCourseBtn.setBackground(Constants.DARK_YELLOW);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 
 	private void changeColorModifyCourseBtn() {
@@ -288,12 +289,12 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_YELLOW);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 
 	private void changeColorAddCourseBtn() {
@@ -305,11 +306,11 @@ public class MenuStudent extends JPanel {
 		modifyCourseBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn.setBackground(Constants.DARK_BLUE);
-		menuAddActivity.setBackground(Constants.DARK_BLUE);
-		addActivityBtn.setBackground(Constants.DARK_BLUE);
-		menuModifyActivity.setBackground(Constants.DARK_BLUE);
-		modifyActivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAddOrModActivity.setBackground(Constants.DARK_BLUE);
+		addOrModActivityBtn.setBackground(Constants.DARK_BLUE);
 		menuDeleteActivity.setBackground(Constants.DARK_BLUE);
 		deleteAcitivityBtn.setBackground(Constants.DARK_BLUE);
+		menuAVG.setBackground(Constants.DARK_BLUE);
+		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
 }
