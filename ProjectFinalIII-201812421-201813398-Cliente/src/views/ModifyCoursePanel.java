@@ -209,4 +209,28 @@ public class ModifyCoursePanel extends JPanel {
 	public void resetComboModifyHomeCourses() {
 		course.removeAllItems();
 	}
+
+	public boolean getItemsModifyCourses() {
+		for (int i = 0; i < course.getItemCount(); i++) {
+			if (course.getItemAt(i).equalsIgnoreCase("")) {
+				course.removeItemAt(i);
+			}
+		}
+		
+		if (course.getItemCount()!=0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public void setEditBtnModifyCourse(boolean b) {
+		findHomework.setEnabled(b);
+		course.setVisible(b);
+		if (b) {
+			findHomework.setText("Buscar Tareas");
+		}else {
+			findHomework.setText("No hay Asignaturas por modificar");
+		}
+	}
 }

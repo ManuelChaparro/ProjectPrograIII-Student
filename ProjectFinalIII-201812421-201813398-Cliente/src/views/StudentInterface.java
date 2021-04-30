@@ -231,4 +231,44 @@ public class StudentInterface extends JPanel {
 	public void setVisibleAVG(boolean b) {
 		info.setVisibleAVG(b);
 	}
+
+	public void setComboBoxDeleteCourses(String[] split) {
+		info.setComboBoxDeleteCourses(split);
+	}
+
+	public void setComboBoxDeleteHomeworks(String[] homeworks) {
+		info.setComboBoxDeleteHomeworks(homeworks);
+	}
+
+	public void resetFindHomework() {
+		info.resetFindHomework();
+	}
+
+	public void resetComboDeleteCourses() {
+		info.resetComboDeleteCourses();
+	}
+
+	public void removeSpecificCourse(String deleteCourse) {
+		info.removeSpecificCourse(deleteCourse);
+	}
+
+	public boolean getItemsModifyCourses() {
+		return info.getItemsModifyCourses();
+	}
+
+	public void setEditBtnModifyCourse(boolean b) {
+		info.setEditBtnModifyCourse(b);
+	}
+
+	public void removeSpecificHomework(String deleteHomework) {
+		info.removeSpecificHomework(deleteHomework);
+	}
+
+	public boolean getItemsDeleteHomework() {
+		return info.getItemsDeleteHomework();
+	}
+
+	public void setEditBtnDeleteHomework(boolean b) {
+		info.setEditBtnDeleteHomework(b);
+	}
 }

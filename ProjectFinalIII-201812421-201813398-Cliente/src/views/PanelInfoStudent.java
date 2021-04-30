@@ -237,4 +237,44 @@ public class PanelInfoStudent extends JPanel {
 	public void setVisibleAVG(boolean b) {
 		average.setVisibleAVG(b);
 	}
+
+	public void setComboBoxDeleteCourses(String[] split) {
+		deleteCourse.setComboBoxDeleteCourses(split);
+	}
+
+	public void setComboBoxDeleteHomeworks(String[] homeworks) {
+		deleteCourse.setComboBoxDeleteHomeworks(homeworks);
+	}
+
+	public void resetFindHomework() {
+		deleteCourse.resetFindHomework();
+	}
+
+	public void resetComboDeleteCourses() {
+		deleteCourse.resetComboDeleteCourses();		
+	}
+
+	public void removeSpecificCourse(String deleteCourse2) {
+		deleteCourse.removeSpecificCourse(deleteCourse2);
+	}
+
+	public boolean getItemsModifyCourses() {
+		return modifyCourse.getItemsModifyCourses();
+	}
+
+	public void setEditBtnModifyCourse(boolean b) {
+		modifyCourse.setEditBtnModifyCourse(b);
+	}
+
+	public void removeSpecificHomework(String deleteHomework) {
+		deleteCourse.removeSpecificHomework(deleteHomework);
+	}
+
+	public boolean getItemsDeleteHomework() {
+		return deleteCourse.getItemsDeleteHomework();
+	}
+
+	public void setEditBtnDeleteHomework(boolean b) {
+		deleteCourse.setEditBtnDeleteHomework(b);
+	}
 }

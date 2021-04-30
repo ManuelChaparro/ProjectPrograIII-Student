@@ -158,6 +158,11 @@ public class Controller implements ActionListener {
 				conection.sendUTF("MODIFY_COURSE_ST");
 				conection.sendUTF(code);
 				window.setComboBoxStudentCourses(conection.receiveUTF());
+				if (!window.getItemsModifyCourses()) {
+					window.setEditBtnModifyCourse(false);
+				}else {
+					window.setEditBtnModifyCourse(true);
+				}
 				window.changeCardStudent("ModifyCourse");
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -228,21 +233,41 @@ public class Controller implements ActionListener {
 			}
 			break;
 		case DELETE_COURSE_OR_HOMEWORK:
-			window.changeColorMenuBtn(Event.DELETE_COURSE_OR_HOMEWORK);
-			window.setVisibleHomework(false);
-			window.setVisibleConfirmDelete(false);
-			window.resetComboDeleteHomeCourses();
-			
-			
-			
-			//Despues de setear info en combobox
-			if (!window.getSelectedItemsCourse()) {
-				window.setEditBtnDeleteCourse(false);
+			try {
+				conection.sendUTF("DELETE_COURSE_OR_HOMEWORK");
+				window.changeColorMenuBtn(Event.DELETE_COURSE_OR_HOMEWORK);
+				window.setVisibleHomework(false);
+				window.setVisibleConfirmDelete(false);
+				window.resetComboDeleteHomeCourses();
+				window.resetComboDeleteCourses();
+				conection.sendUTF(code);
+				window.setComboBoxDeleteCourses(conection.receiveUTF().split(";"));
+				if (!window.getSelectedItemsCourse()) {
+					window.setEditBtnDeleteCourse(false);
+				}else {
+					window.setEditBtnDeleteCourse(true);
+				}
+				window.changeCardStudent("DeleteCourse");
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
-			window.changeCardStudent("DeleteCourse");
 			break;
 		case FIND_HOMEWORK_DELETE:
-			window.setVisibleHomework(true);
+			try {
+				window.resetFindHomework();
+				window.setVisibleHomework(true);
+				conection.sendUTF("FIND_HOMEWORK_DELETE");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getDeleteCourse());
+				window.setComboBoxDeleteHomeworks(conection.receiveUTF().split(";"));
+				if (!window.getItemsDeleteHomework()) {
+					window.setEditBtnDeleteHomework(false);
+				}else {
+					window.setEditBtnDeleteHomework(true);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case DELETE_COURSE:
 			window.setVisibleDeleteCourse(true);
@@ -251,12 +276,36 @@ public class Controller implements ActionListener {
 			window.setVisibleDeleteHomework(true);
 			break;
 		case CONFIRM_DELETE_COURSE:
-			String course = window.getDeleteCourse();
-			//Enviar datos de borrado curso
+			try {
+				conection.sendUTF("CONFIRM_DELETE_COURSE");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getDeleteCourse());
+				window.removeSpecificCourse(window.getDeleteCourse());
+				if (!window.getSelectedItemsCourse()) {
+					window.setEditBtnDeleteCourse(false);
+				}else {
+					window.setEditBtnDeleteCourse(true);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case CONFIRM_DELETE_HOMEWORK:
-			String homework = window.getDeleteHomework();
-			//Enviar datos de borrado asignatura
+			try {
+				conection.sendUTF("CONFIRM_DELETE_HOMEWORK");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getDeleteCourse());
+				conection.sendUTF(window.getDeleteHomework());
+				window.removeSpecificHomework(window.getDeleteHomework());
+				if (!window.getItemsDeleteHomework()) {
+					window.setEditBtnDeleteHomework(false);
+				}else {
+					window.setEditBtnDeleteHomework(true);
+				}
+				window.setVisibleConfirmDelete(false);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		case ADD_OR_MOD_ACTIVITY_ST:
 			window.changeColorMenuBtn(Event.ADD_OR_MOD_ACTIVITY_ST);

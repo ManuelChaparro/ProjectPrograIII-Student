@@ -259,4 +259,44 @@ public class JWindow extends JFrame{
 	public void setVisibleAVG(boolean b) {
 		student.setVisibleAVG(b);
 	}
+
+	public void setComboBoxDeleteCourses(String[] split) {
+		student.setComboBoxDeleteCourses(split);	
+	}
+
+	public void setComboBoxDeleteHomeworks(String[] homeworks) {
+		student.setComboBoxDeleteHomeworks(homeworks);		
+	}
+
+	public void resetFindHomework() {
+		student.resetFindHomework();
+	}
+
+	public void resetComboDeleteCourses() {
+		student.resetComboDeleteCourses();	
+	}
+
+	public void removeSpecificCourse(String deleteCourse) {
+		student.removeSpecificCourse(deleteCourse);
+	}
+
+	public boolean getItemsModifyCourses() {
+		return student.getItemsModifyCourses();
+	}
+
+	public void setEditBtnModifyCourse(boolean b) {
+		student.setEditBtnModifyCourse(b);	
+	}
+
+	public void removeSpecificHomework(String deleteHomework) {
+		student.removeSpecificHomework(deleteHomework);		
+	}
+
+	public boolean getItemsDeleteHomework() {
+		return student.getItemsDeleteHomework();
+	}
+
+	public void setEditBtnDeleteHomework(boolean b) {
+		student.setEditBtnDeleteHomework(b);
+	}
 }

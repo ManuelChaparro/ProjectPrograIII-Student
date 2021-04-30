@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Iterator;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -115,6 +117,7 @@ public class DeleteCourse extends JPanel {
 	public void setVisibleHomework(boolean isVisible) {
 		homework.setVisible(isVisible);
 		deleteHomework.setVisible(isVisible);
+		confirmDeleteContainer.setVisible(false);
 	}
 
 	public void resetComboDeleteHomeCourses() {
@@ -148,7 +151,7 @@ public class DeleteCourse extends JPanel {
 	}
 
 	public boolean getSelectedItemsCourse() {
-		if (course.getItemAt(0) != null) {
+		if (course.getItemCount()!=0) {
 			return true;
 		}else {
 			return false;
@@ -163,6 +166,66 @@ public class DeleteCourse extends JPanel {
 			deleteCourse.setText("ELIMINAR ASIGNATURA");
 		}else {
 			deleteCourse.setText("No hay Asignaturas por eliminar");
+		}
+	}
+
+	public void setComboBoxDeleteCourses(String[] courses) {
+		for (int i = 0; i < courses.length; i++) {
+			if (!courses[i].equalsIgnoreCase("")) {
+				course.addItem(courses[i]);
+			}
+		}
+	}
+
+	public void setComboBoxDeleteHomeworks(String[] homeworks) {
+		for (String homework : homeworks) {
+			if (!homework.equalsIgnoreCase("")) {
+				this.homework.addItem(homework);
+			}
+		}
+	}
+	
+	public void resetFindHomework() {
+		homework.removeAllItems();
+		confirmDeleteContainer.setVisible(false);
+	}
+
+	public void resetComboDeleteCourses() {
+		course.removeAllItems();		
+	}
+	
+	public void removeSpecificCourse(String deleteCourse) {
+		for (int i = 0; i < course.getItemCount(); i++) {
+			if (course.getItemAt(i).toString().equalsIgnoreCase(deleteCourse)) {
+				course.removeItemAt(i);
+			}
+		}
+	}
+
+	public void removeSpecificHomework(String deleteHomework2) {
+		for (int i = 0; i < homework.getItemCount(); i++) {
+			if (homework.getItemAt(i).toString().equalsIgnoreCase(deleteHomework2)) {
+				homework.removeItemAt(i);
+			}
+		}
+	}
+
+	public boolean getItemsDeleteHomework() {
+		if (homework.getItemCount()!=0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public void setEditBtnDeleteHomework(boolean b) {
+		homework.setVisible(b);
+		deleteHomework.setVisible(true);
+		deleteHomework.setEnabled(b);
+		if (b) {
+			deleteHomework.setText("ELIMINAR ASIGNATURA");
+		}else {
+			deleteHomework.setText("No hay Tareas por eliminar");
 		}
 	}
 }
