@@ -67,8 +67,7 @@ public class ModifyCoursePanel extends JPanel {
 		annotation.setFont(Constants.DEFAULT_FONT);
 		annotation.setForeground(Color.BLACK);
 
-		SpinnerModel sm = new SpinnerNumberModel(0.0, 0.0, 5.0, 0.1); // default value,lower bound,upper bound,increment
-																		// by
+		SpinnerModel sm = new SpinnerNumberModel(0.0, 0.0, 5.0, 0.1); 
 		calification = new JSpinner(sm);
 		calification.setBackground(Color.WHITE);
 		((DefaultEditor) calification.getEditor()).getTextField().setEditable(false);
@@ -82,8 +81,7 @@ public class ModifyCoursePanel extends JPanel {
 		containerButton.setBackground(Color.WHITE);
 		containerButton.setBorder(
 				BorderFactory.createEmptyBorder(Constants.HEIGHT / 20, Constants.WIDTH / 20, 0, Constants.WIDTH / 20));
-		acceptModify = new ButtonObj("Aceptar", controller, Event.ADD_OR_MODIFY_HOMEWORK.toString());
-		acceptModify.setBackground(Constants.DARK_YELLOW);
+		acceptModify = new ButtonObj("Aceptar", controller, Event.ADD_OR_MODIFY_HOMEWORK.toString(), Constants.DARK_YELLOW);
 		containerButton.add(acceptModify);
 		return containerButton;
 	}
@@ -92,9 +90,15 @@ public class ModifyCoursePanel extends JPanel {
 		JPanel containerBox = new JPanel(new GridLayout(4, 1));
 		containerBox.setBackground(Color.WHITE);
 		containerBox.add(course);
-		containerBox.add(findHomework);
+		JPanel containerButtonFH = new JPanel();
+		containerButtonFH.add(findHomework);
+		containerButtonFH.setBackground(Color.WHITE);
+		containerBox.add(containerButtonFH);
 		containerBox.add(homework);
-		containerBox.add(infoHomework);
+		JPanel containerButtonIH = new JPanel();
+		containerButtonIH.add(infoHomework);
+		containerButtonIH.setBackground(Color.WHITE);
+		containerBox.add(containerButtonIH);
 		add(containerBox);
 	}
 
@@ -109,7 +113,7 @@ public class ModifyCoursePanel extends JPanel {
 		homework.setForeground(Color.BLACK);
 		homework.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		infoHomework = new ButtonObj("Confirmar", controller, Event.FIND_INFO_HOMEWORK.toString());
+		infoHomework = new ButtonObj("Confirmar", controller, Event.FIND_INFO_HOMEWORK.toString(), Constants.DARK_BLUE);
 	}
 
 	private void initSearchHomework(Controller controller) {
@@ -123,7 +127,7 @@ public class ModifyCoursePanel extends JPanel {
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		findHomework = new ButtonObj("Buscar Tareas", controller, Event.FIND_HOMEWORK.toString());
+		findHomework = new ButtonObj("Buscar Tareas", controller, Event.FIND_HOMEWORK.toString(), Constants.DARK_BLUE);
 	}
 
 	public void setVisibleHomework(boolean isVisible) {
@@ -149,7 +153,9 @@ public class ModifyCoursePanel extends JPanel {
 	public void setComboBoxStudentHomework(String homeworks) {
 		String[] coursesVector = homeworks.split(";");
 		for (int i = 0; i < coursesVector.length; i++) {
-			homework.addItem(coursesVector[i]);
+			if (!coursesVector[i].equalsIgnoreCase("")) {
+				homework.addItem(coursesVector[i]);
+			}
 		}
 	}
 

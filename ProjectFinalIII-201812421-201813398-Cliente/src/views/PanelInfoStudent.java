@@ -11,6 +11,9 @@ public class PanelInfoStudent extends JPanel {
 	private AddCoursePanel addCourse;
 	private ModifyCoursePanel modifyCourse;
 	private DeleteCourse deleteCourse;
+	private ModifyActivityPanel modifyActivity;
+	private DeleteActivityPanel deleteActivity;
+	private AveragePanel average;
 	private JCardsPanel cards;
 
 	public PanelInfoStudent(Controller controller) {
@@ -29,6 +32,16 @@ public class PanelInfoStudent extends JPanel {
 
 		deleteCourse = new DeleteCourse(controller);
 		cards.add(deleteCourse, "DeleteCourse");
+
+		modifyActivity = new ModifyActivityPanel(controller);
+		cards.add(modifyActivity, "ModifyActivity");
+
+		deleteActivity = new DeleteActivityPanel(controller);
+		cards.add(deleteActivity, "DeleteActivity");
+
+		average = new AveragePanel(controller);
+		cards.add(average, "Average");
+
 	}
 
 	public void changeCardStudent(String nameCard) {
@@ -66,7 +79,6 @@ public class PanelInfoStudent extends JPanel {
 	public void setVisibleTeachers(boolean isVisible) {
 		addCourse.setVisibleTeachers(isVisible);
 	}
-	
 
 	public void setVisibleSchedule(boolean isVisible) {
 		addCourse.setVisibleSchedule(isVisible);
@@ -74,6 +86,7 @@ public class PanelInfoStudent extends JPanel {
 
 	public void setVisibleHomework(boolean isVisible) {
 		modifyCourse.setVisibleHomework(isVisible);
+		deleteCourse.setVisibleHomework(isVisible);
 	}
 
 	public void setVisibleModify(boolean isVisible) {
@@ -81,7 +94,7 @@ public class PanelInfoStudent extends JPanel {
 	}
 
 	public void setComboBoxStudentCourses(String courses) {
-		modifyCourse.setComboBoxStudentCourses(courses);		
+		modifyCourse.setComboBoxStudentCourses(courses);
 	}
 
 	public String getComboBoxStudentCourses() {
@@ -89,7 +102,7 @@ public class PanelInfoStudent extends JPanel {
 	}
 
 	public void setComboBoxStudentHomework(String homeworks) {
-		modifyCourse.setComboBoxStudentHomework(homeworks);		
+		modifyCourse.setComboBoxStudentHomework(homeworks);
 	}
 
 	public void resetComboBoxStudentHomework() {
@@ -101,11 +114,11 @@ public class PanelInfoStudent extends JPanel {
 	}
 
 	public void setInfoHomeWork(String[] dataHomework) {
-		modifyCourse.setInfoHomeWork(dataHomework);		
+		modifyCourse.setInfoHomeWork(dataHomework);
 	}
 
 	public void setEditableNameHomework(boolean isVisible) {
-		modifyCourse.setEditableNameHomework(isVisible);		
+		modifyCourse.setEditableNameHomework(isVisible);
 	}
 
 	public boolean isNewHomework() {
@@ -123,20 +136,105 @@ public class PanelInfoStudent extends JPanel {
 	public String getCalificationHomework() {
 		return modifyCourse.getCalificationHomework();
 	}
-	
+
 	public void resetNameHomework() {
 		modifyCourse.resetNameHomework();
 	}
-	
+
 	public void resetAnnotationHomework() {
 		modifyCourse.resetAnnotationHomework();
 	}
-	
+
 	public void resetCalification() {
 		modifyCourse.resetCalification();
 	}
 
 	public void resetComboModifyHomeCourses() {
-		modifyCourse.resetComboModifyHomeCourses();		
+		modifyCourse.resetComboModifyHomeCourses();
+	}
+
+	public void resetComboDeleteHomeCourses() {
+		deleteCourse.resetComboDeleteHomeCourses();
+	}
+
+	public void setVisibleConfirmDelete(boolean b) {
+		deleteCourse.setVisibleConfirmDelete(b);
+		deleteActivity.setVisibleConfirmDelete(b);
+	}
+
+	public void setVisibleDeleteCourse(boolean b) {
+		deleteCourse.setVisibleDeleteCourse(b);
+	}
+
+	public void setVisibleDeleteHomework(boolean b) {
+		deleteCourse.setVisibleDeleteHomework(b);
+	}
+
+	public void setVisibleModifyActivity(boolean b) {
+		modifyActivity.setVisibleModifyActivity(b);
+	}
+
+	public void resetModifyPanel() {
+		modifyActivity.resetModifyPanel();
+	}
+
+	public String getOptionModifyAct() {
+		return modifyActivity.getOptionModifyAct();
+	}
+
+	public void setEditableNameActivity(boolean b) {
+		modifyActivity.setEditableNameActivity(b);
+	}
+
+	public void resetDeleteActivity() {
+		deleteActivity.resetDeleteActivity();
+	}
+
+	public boolean getSelectedItemsActivity() {
+		return deleteActivity.getSelectedItemsActivity();
+	}
+
+	public void setEditBtnDeleteAct(boolean b) {
+		deleteActivity.setEditBtnDeleteAct(b);
+	}
+
+	public String getDeleteActString() {
+		return deleteActivity.getDeleteActString();
+	}
+
+	public String getModActString() {
+		return modifyActivity.getModActString();
+			}
+
+	public String getDeleteHomework() {
+		return deleteCourse.getDeleteHomework();
+	}
+
+	public String getDeleteCourse() {
+		return deleteCourse.getDeleteCourse();
+	}
+
+	public boolean getSelectedItemsCourse() {
+		return deleteCourse.getSelectedItemsCourse();
+	}
+
+	public void setEditBtnDeleteCourse(boolean b) {
+		deleteCourse.setEditBtnDeleteCourse(b);
+	}
+
+	public boolean getSelectedItemsAVG() {
+		return average.getSelectedItemsAVG();
+	}
+
+	public void setEditBtnAVG(boolean b) {
+		average.setEditBtnAVG(b);
+	}
+
+	public void resetAvgCourses() {
+		average.resetAvgCourses();
+	}
+
+	public void setVisibleAVG(boolean b) {
+		average.setVisibleAVG(b);
 	}
 }

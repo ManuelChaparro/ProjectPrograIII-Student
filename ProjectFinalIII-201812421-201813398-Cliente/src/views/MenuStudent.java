@@ -118,7 +118,7 @@ public class MenuStudent extends JPanel {
 		menuDeleteCourse.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
 		menuDeleteCourse.setBackground(Constants.DARK_BLUE);
 		deleteCourseBtn = new ButtonObj(Constants.BT_DELETE_COURSE_ST, actionListener,
-				Event.DELETE_COURSE_ST.toString());
+				Event.DELETE_COURSE_OR_HOMEWORK.toString());
 		deleteCourseBtn.setBorder(null);
 		menuDeleteCourse.add(deleteCourseBtn);
 		add(menuDeleteCourse);
@@ -178,7 +178,7 @@ public class MenuStudent extends JPanel {
 		case MODIFY_COURSE_ST:
 			changeColorModifyCourseBtn();
 			break;
-		case DELETE_COURSE_ST:
+		case DELETE_COURSE_OR_HOMEWORK:
 			changeColorDeleteCourseBtn();
 			break;
 		case ADD_OR_MOD_ACTIVITY_ST:
