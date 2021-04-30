@@ -200,10 +200,6 @@ public class JWindow extends JFrame{
 		student.resetModifyPanel();
 	}
 
-	public String getOptionModifyAct() {
-		return student.getOptionModifyAct();
-	}
-
 	public void setEditableNameActivity(boolean b) {
 		student.setEditableNameActivity(b);
 	}
@@ -298,5 +294,25 @@ public class JWindow extends JFrame{
 
 	public void setEditBtnDeleteHomework(boolean b) {
 		student.setEditBtnDeleteHomework(b);
+	}
+
+	public void setComboBoxActivities(String activities) {
+		student.setComboBoxActivities(activities);
+	}
+
+	public String getComboBoxActivity() {
+		return student.getComboBoxActivity();
+	}
+
+	public void setEnableModifyActivity(boolean b) {
+		student.setEnableModifyActivity(b);		
+	}
+
+	public boolean getEnableModifyActivity() {
+		return student.getEnableModifyActivity();
+	}
+
+	public void setComboBoxActivity(String infoActivity) {
+		student.setComboBoxActivity(infoActivity);
 	}
 }

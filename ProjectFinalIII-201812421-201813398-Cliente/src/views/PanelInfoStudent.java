@@ -178,10 +178,6 @@ public class PanelInfoStudent extends JPanel {
 		modifyActivity.resetModifyPanel();
 	}
 
-	public String getOptionModifyAct() {
-		return modifyActivity.getOptionModifyAct();
-	}
-
 	public void setEditableNameActivity(boolean b) {
 		modifyActivity.setEditableNameActivity(b);
 	}
@@ -276,5 +272,26 @@ public class PanelInfoStudent extends JPanel {
 
 	public void setEditBtnDeleteHomework(boolean b) {
 		deleteCourse.setEditBtnDeleteHomework(b);
+	}
+
+	public void setComboBoxActivities(String activities) {
+		modifyActivity.setComboBoxActivities(activities);
+		deleteActivity.setComboBoxActivities(activities);
+	}
+
+	public String getComboBoxActivity() {
+		return modifyActivity.getComboBoxActivity();
+	}
+
+	public void setEnableModifyActivity(boolean b) {
+		modifyActivity.setEnableModifyActivity(b);
+	}
+
+	public boolean getEnableModifyActivity() {
+		return modifyActivity.getEnableModifyActivity();
+	}
+
+	public void setComboBoxActivity(String infoActivity) {
+		modifyActivity.setComboBoxActivity(infoActivity);
 	}
 }

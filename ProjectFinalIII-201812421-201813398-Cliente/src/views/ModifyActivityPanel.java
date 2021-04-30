@@ -24,7 +24,7 @@ public class ModifyActivityPanel extends JPanel {
 	private JSpinner init, end;
 	private JTextArea annotation, name;
 	private ButtonObj modifyHomework, acceptModify;
-	private JPanel containerModify, containerSchedule,schedule;
+	private JPanel containerModify, containerSchedule, schedule;
 
 	public ModifyActivityPanel(Controller controller) {
 		setLayout(new GridLayout(3, 1, 50, 10));
@@ -39,17 +39,17 @@ public class ModifyActivityPanel extends JPanel {
 		JPanel containerButton = initCompModify(controller);
 		addComponensThis(containerButton);
 	}
-	
+
 	private void addComponensThis(JPanel containerButton) {
 		containerModify.add(name);
 		containerModify.add(annotation);
-		
-		schedule = new JPanel(new GridLayout(1,2));
+
+		schedule = new JPanel(new GridLayout(1, 2));
 		schedule.setBackground(Color.WHITE);
-		
+
 		schedule.add(containerSchedule);
 		schedule.add(containerButton);
-	
+
 		add(containerModify);
 		add(schedule);
 	}
@@ -57,7 +57,7 @@ public class ModifyActivityPanel extends JPanel {
 	private void initSearchActivity(Controller controller) {
 		activity = new JComboBox<String>();
 		activity.addActionListener(controller);
-		activity.setActionCommand(Event.VISIBLE_HOMEWORK.toString());
+		activity.setActionCommand(Event.RESET_MODIFY_ACTIVITY.toString());
 		activity.setBackground(Color.WHITE);
 		activity.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"ACTIVIDADES", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
@@ -65,7 +65,7 @@ public class ModifyActivityPanel extends JPanel {
 		activity.setForeground(Color.BLACK);
 		activity.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		modifyHomework = new ButtonObj("Confirmar", controller, Event.FIND_MODIFY_HOMEWORK.toString(), Constants.DARK_BLUE);
+		modifyHomework = new ButtonObj("Confirmar", controller, Event.MODIFY_ACTIVITY.toString(), Constants.DARK_BLUE);
 	}
 
 	private void addComponentsSearch() {
@@ -84,8 +84,9 @@ public class ModifyActivityPanel extends JPanel {
 		containerModify.setBackground(Color.WHITE);
 
 		name = new JTextArea();
-		name.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1), "NOMBRE DE LA ACTIVIDAD",
-				TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
+		name.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
+				"NOMBRE DE LA ACTIVIDAD", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD,
+				Constants.DARK_BLUE));
 		name.setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
 		name.setForeground(Constants.DARK_BLUE);
 		name.setBackground(Color.WHITE);
@@ -108,9 +109,8 @@ public class ModifyActivityPanel extends JPanel {
 		days.setFont(Constants.DEFAULT_FONT_BOLD);
 		days.setBackground(Color.WHITE);
 		days.setForeground(Color.BLACK);
-		days.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Constants.DARK_BLUE, 1), "DIA", TitledBorder.LEFT,
-				TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
+		days.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1), "DIA",
+				TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		for (int i = 1; i < Constants.DAYS.length; i++) {
 			days.addItem(Constants.DAYS[i]);
 		}
@@ -126,7 +126,7 @@ public class ModifyActivityPanel extends JPanel {
 				"HORA INICIO", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		init.setFont(Constants.DEFAULT_FONT_BOLD);
 		init.setForeground(Color.GRAY);
-		
+
 		SpinnerModel modelEnd = new SpinnerNumberModel(10, 0, 23, 1);
 		end = new JSpinner(modelEnd);
 		end.setBackground(Color.WHITE);
@@ -136,10 +136,10 @@ public class ModifyActivityPanel extends JPanel {
 				"HORA FIN", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		end.setFont(Constants.DEFAULT_FONT_BOLD);
 		end.setForeground(Color.GRAY);
-		
+
 		containerHours.add(init);
 		containerHours.add(end);
-		
+
 		containerSchedule.add(days);
 		containerSchedule.add(containerHours);
 
@@ -147,8 +147,7 @@ public class ModifyActivityPanel extends JPanel {
 		containerButton.setBackground(Color.WHITE);
 		containerButton.setBorder(
 				BorderFactory.createEmptyBorder(Constants.HEIGHT / 20, Constants.WIDTH / 20, 0, Constants.WIDTH / 20));
-		acceptModify = new ButtonObj("Aceptar", controller, Event.ADD_OR_MODIFY_ACTIVITY.toString(),
-				Constants.DARK_YELLOW);
+		acceptModify = new ButtonObj("Aceptar", controller, Event.SEND_ACTIVITY.toString(), Constants.DARK_YELLOW);
 		containerButton.add(acceptModify);
 		return containerButton;
 	}
@@ -166,16 +165,56 @@ public class ModifyActivityPanel extends JPanel {
 		setVisibleModifyActivity(false);
 	}
 
-	public String getOptionModifyAct() {
-		return activity.getSelectedItem().toString();
-	}
-
 	public void setEditableNameActivity(boolean b) {
-		name.setEditable(b);		
+		name.setEditable(b);
 	}
 
 	public String getModActString() {
-		return name.getText()+";;;"+annotation.getText()+";;;"+
-		days.getSelectedItem().toString().substring(0, 3)+"#"+init.getValue()+"#"+end.getValue();
+		if (!name.getText().equalsIgnoreCase("")) {
+			return name.getText() + ";;;" + annotation.getText() + ";;;" + days.getSelectedItem().toString() + "#"
+					+ init.getValue() + "#" + end.getValue();
+		} else {
+			return "emptyData";
+		}
+
+	}
+
+	public void setComboBoxActivities(String activities) {
+		String[] activitiesVector = activities.split(";;;");
+		for (String activityVector : activitiesVector) {
+			if (!activityVector.equalsIgnoreCase("")) {
+				activity.addItem(activityVector);
+			}
+		}
+	}
+
+	public String getComboBoxActivity() {
+		return activity.getSelectedItem().toString();
+	}
+
+	public void setEnableModifyActivity(boolean b) {
+		if (b) {
+			name.setEditable(b);
+			name.setText("");
+			annotation.setText("");
+		} else {
+			name.setEditable(b);
+		}
+	}
+
+	public boolean getEnableModifyActivity() {
+		return name.isEditable();
+	}
+
+	public void setComboBoxActivity(String infoActivity) {
+		String[] activityVector = infoActivity.split("&");
+		name.setText(activityVector[0]);
+		annotation.setText(activityVector[1]);
+		String[] schedule = activityVector[2].split("#");
+		for (int i = 0; i < days.getItemCount(); i++) {
+			if (schedule[0].equalsIgnoreCase(days.getItemAt(i).toString())) {
+				days.setSelectedIndex(i);
+			}
+		}
 	}
 }

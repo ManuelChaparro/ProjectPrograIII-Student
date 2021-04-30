@@ -308,44 +308,99 @@ public class Controller implements ActionListener {
 			}
 			break;
 		case ADD_OR_MOD_ACTIVITY_ST:
-			window.changeColorMenuBtn(Event.ADD_OR_MOD_ACTIVITY_ST);
-			window.resetModifyPanel();
-			window.setVisibleModifyActivity(false);
-			window.changeCardStudent("ModifyActivity");
-			break;
-		case FIND_MODIFY_HOMEWORK:
-			window.setVisibleModifyActivity(true);
-			if (window.getOptionModifyAct().equalsIgnoreCase("AÑADIR ACTIVIDAD")) {
-				window.setEditableNameActivity(true);
-			}else {
-				window.setEditableNameActivity(false);
+			try {
+				conection.sendUTF("ADD_OR_MOD_ACTIVITY_ST");
+				window.resetModifyPanel();
+				window.changeColorMenuBtn(Event.ADD_OR_MOD_ACTIVITY_ST);
+				conection.sendUTF(code);
+				window.setComboBoxActivities(conection.receiveUTF());
+				window.setVisibleModifyActivity(false);
+				window.changeCardStudent("ModifyActivity");
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 			break;
-		case ADD_OR_MODIFY_ACTIVITY:
-			String modActivity = window.getModActString();
-			//Enviar datos de actividad modificada/creada
-			
-			window.resetModifyPanel();
+		case MODIFY_ACTIVITY:
+			window.setVisibleModifyActivity(true);
+			if (window.getComboBoxActivity().equalsIgnoreCase("AÑADIR ACTIVIDAD")) {
+				window.setEnableModifyActivity(true);
+			}else {
+				try {window.setEnableModifyActivity(false);
+					conection.sendUTF("FIND_MODIFY_HOMEWORK");
+					conection.sendUTF(code);
+					conection.sendUTF(window.getComboBoxActivity());
+					window.setComboBoxActivity(conection.receiveUTF());
+					window.setEditableNameActivity(false);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			break;
+		case RESET_MODIFY_ACTIVITY:
+			window.setEditableNameActivity(false);
+			window.setVisibleModifyActivity(false);
+			break;
+		case SEND_ACTIVITY:
+			try {
+				if (!window.getModActString().equalsIgnoreCase("emptyData")) {
+					conection.sendUTF("SEND_ACTIVITY");
+					if (window.getEnableModifyActivity()) {
+						conection.sendBoolean(true);
+						conection.sendUTF(code);
+						conection.sendUTF(window.getModActString());
+					}else {
+						conection.sendBoolean(false);
+						conection.sendUTF(code);
+						conection.sendUTF(window.getModActString());
+					}
+					window.resetModifyPanel();
+					window.setComboBoxActivities(conection.receiveUTF());
+					window.setVisibleModifyActivity(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD", JOptionPane.ERROR_MESSAGE);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
 			break;
 		case DELETE_ACTIVITY_ST:
-			window.changeColorMenuBtn(Event.DELETE_ACTIVITY_ST);
-			window.resetDeleteActivity();
-			window.setVisibleConfirmDelete(false);
-			
-			//despues de setear la info en el combobox
-			if (!window.getSelectedItemsActivity()) {
-				window.setEditBtnDeleteAct(false);
+			try {
+				window.changeColorMenuBtn(Event.DELETE_ACTIVITY_ST);
+				window.resetDeleteActivity();
+				window.setVisibleConfirmDelete(false);
+				conection.sendUTF("DELETE_ACTIVITY_ST");
+				conection.sendUTF(code);
+				window.setComboBoxActivities(conection.receiveUTF());
+				if (!window.getSelectedItemsActivity()) {
+					window.setEditBtnDeleteAct(false);
+				}else {
+					window.setEditBtnDeleteAct(true);
+				}
+				window.changeCardStudent("DeleteActivity");
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
-			window.changeCardStudent("DeleteActivity");
 			break;
 		case DELETE_ACTIVITY:
 			window.setVisibleConfirmDelete(true);
 			break;
+		case RESET_DELETE_ACTIVITY:
+			window.setVisibleConfirmDelete(false);
+			break;
 		case CONFIRM_DELETE_ACTIVITY:
-			String activity = window.getDeleteActString();
-			//Enviar datos de actividad a borrar
-			
-			window.resetDeleteActivity();
+			try {
+				conection.sendUTF("CONFIRM_DELETE_ACTIVITY");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getDeleteActString());
+				window.resetDeleteActivity();
+				window.setComboBoxActivities(conection.receiveUTF());
+				if (!window.getSelectedItemsActivity()) {
+					window.setEditBtnDeleteAct(false);
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}			
 			break;
 		case AVG_ST:
 			window.changeColorMenuBtn(Event.AVG_ST);

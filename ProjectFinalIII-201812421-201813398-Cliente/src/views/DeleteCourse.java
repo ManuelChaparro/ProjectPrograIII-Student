@@ -223,7 +223,7 @@ public class DeleteCourse extends JPanel {
 		deleteHomework.setVisible(true);
 		deleteHomework.setEnabled(b);
 		if (b) {
-			deleteHomework.setText("ELIMINAR ASIGNATURA");
+			deleteHomework.setText("ELIMINAR TAREA");
 		}else {
 			deleteHomework.setText("No hay Tareas por eliminar");
 		}
