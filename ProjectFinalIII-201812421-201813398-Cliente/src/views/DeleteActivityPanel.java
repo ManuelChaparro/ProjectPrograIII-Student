@@ -60,7 +60,7 @@ public class DeleteActivityPanel extends JPanel {
 	private void initDeleteCourse(Controller controller) {
 		activity = new JComboBox<String>();
 		activity.addActionListener(controller);
-		activity.setActionCommand(Event.VISIBLE_HOMEWORK.toString());
+		activity.setActionCommand(Event.RESET_DELETE_ACTIVITY.toString());
 		activity.setBackground(Color.WHITE);
 		activity.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"ACTIVIDADES", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
@@ -96,6 +96,12 @@ public class DeleteActivityPanel extends JPanel {
 	}
 
 	public boolean getSelectedItemsActivity() {
+		for (int i = 0; i < activity.getItemCount(); i++) {
+			if (activity.getItemAt(i).equals("")) {
+				activity.removeItemAt(i);
+			}
+		}
+		
 		if (activity.getItemAt(0) != null) {
 			return true;
 		}else {
@@ -117,5 +123,10 @@ public class DeleteActivityPanel extends JPanel {
 		return activity.getSelectedItem().toString();
 	}
 
-
+	public void setComboBoxActivities(String activities) {
+		String[] activitiesVector = activities.split(";;;");
+		for (String activityVector : activitiesVector) {
+			activity.addItem(activityVector);
+		}
+	}
 }

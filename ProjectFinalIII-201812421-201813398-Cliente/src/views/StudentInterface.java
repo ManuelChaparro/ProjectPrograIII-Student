@@ -172,10 +172,6 @@ public class StudentInterface extends JPanel {
 		info.resetModifyPanel();
 	}
 
-	public String getOptionModifyAct() {
-		return info.getOptionModifyAct();
-	}
-
 	public void setEditableNameActivity(boolean b) {
 		info.setEditableNameActivity(b);
 	}
@@ -270,5 +266,25 @@ public class StudentInterface extends JPanel {
 
 	public void setEditBtnDeleteHomework(boolean b) {
 		info.setEditBtnDeleteHomework(b);
+	}
+
+	public void setComboBoxActivities(String activities) {
+		info.setComboBoxActivities(activities);
+	}
+
+	public String getComboBoxActivity() {
+		return info.getComboBoxActivity();
+	}
+
+	public void setEnableModifyActivity(boolean b) {
+		info.setEnableModifyActivity(b);
+	}
+
+	public boolean getEnableModifyActivity() {
+		return info.getEnableModifyActivity();
+	}
+
+	public void setComboBoxActivity(String infoActivity) {
+		info.setComboBoxActivity(infoActivity);
 	}
 }
