@@ -21,7 +21,6 @@ public class Controller implements ActionListener {
 		window = new JWindow(this);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (Event.valueOf(e.getActionCommand())) {
 		case HIDE_PASSWORD:
@@ -32,26 +31,31 @@ public class Controller implements ActionListener {
 			break;
 		case GET_LOGIN_DATA:
 			String data = window.getLoginData();
-			if (!window.isCreate()) {
-				try {
-					String[] dataUser = data.split(",");
-					String stringUser = "";
+			if (!data.equalsIgnoreCase("vacio")) {
+				if (!window.isCreate()) {
 					try {
-						stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
-					} catch (Exception e2) {
-						stringUser = new Gson().toJson(new User("", "", "")).toString();
+						String[] dataUser = data.split(",");
+						String stringUser = "";
+						try {
+							stringUser = new Gson().toJson(new User("", dataUser[0], dataUser[1])).toString();
+						} catch (Exception e2) {
+							stringUser = new Gson().toJson(new User("", "", "")).toString();
+						}
+						conection.sendBoolean(true);
+						conection.sendUTF(stringUser);
+						if (conection.receiveBoolean()) {
+							code = dataUser[0];
+							window.changeCard("Student");
+						} else {
+							JOptionPane.showMessageDialog(null, "El usuario no existe");
+						}
+					} catch (IOException e1) {
+						System.out.println(e1);
 					}
-					conection.sendBoolean(true);
-					conection.sendUTF(stringUser);
-					if (conection.receiveBoolean()) {
-						code = dataUser[0];
-						window.changeCard("Student");
-					} else {
-						JOptionPane.showMessageDialog(null, "El usuario no existe");
-					}
-				} catch (IOException e1) {
-					System.out.println(e1);
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Ingrese los datos solicitados", "Error creacion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		case GET_CREATE_DATA:
@@ -74,6 +78,7 @@ public class Controller implements ActionListener {
 				e1.printStackTrace();
 			}
 			break;
+
 		case CANCEL_NEW_ACCOUNT:
 			window.resetLogin();
 			break;
@@ -222,23 +227,93 @@ public class Controller implements ActionListener {
 				e1.printStackTrace();
 			}
 			break;
+		case DELETE_COURSE_OR_HOMEWORK:
+			window.changeColorMenuBtn(Event.DELETE_COURSE_OR_HOMEWORK);
+			window.setVisibleHomework(false);
+			window.setVisibleConfirmDelete(false);
+			window.resetComboDeleteHomeCourses();
+			
+			
+			
+			//Despues de setear info en combobox
+			if (!window.getSelectedItemsCourse()) {
+				window.setEditBtnDeleteCourse(false);
+			}
+			window.changeCardStudent("DeleteCourse");
+			break;
+		case FIND_HOMEWORK_DELETE:
+			window.setVisibleHomework(true);
+			break;
+		case DELETE_COURSE:
+			window.setVisibleDeleteCourse(true);
+			break;
+		case DELETE_HOMEWORK:
+			window.setVisibleDeleteHomework(true);
+			break;
+		case CONFIRM_DELETE_COURSE:
+			String course = window.getDeleteCourse();
+			//Enviar datos de borrado curso
+			break;
+		case CONFIRM_DELETE_HOMEWORK:
+			String homework = window.getDeleteHomework();
+			//Enviar datos de borrado asignatura
+			break;
+		case ADD_OR_MOD_ACTIVITY_ST:
+			window.changeColorMenuBtn(Event.ADD_OR_MOD_ACTIVITY_ST);
+			window.resetModifyPanel();
+			window.setVisibleModifyActivity(false);
+			window.changeCardStudent("ModifyActivity");
+			break;
+		case FIND_MODIFY_HOMEWORK:
+			window.setVisibleModifyActivity(true);
+			if (window.getOptionModifyAct().equalsIgnoreCase("AÑADIR ACTIVIDAD")) {
+				window.setEditableNameActivity(true);
+			}else {
+				window.setEditableNameActivity(false);
+			}
+			break;
+		case ADD_OR_MODIFY_ACTIVITY:
+			String modActivity = window.getModActString();
+			//Enviar datos de actividad modificada/creada
+			
+			window.resetModifyPanel();
+			break;
+		case DELETE_ACTIVITY_ST:
+			window.changeColorMenuBtn(Event.DELETE_ACTIVITY_ST);
+			window.resetDeleteActivity();
+			window.setVisibleConfirmDelete(false);
+			
+			//despues de setear la info en el combobox
+			if (!window.getSelectedItemsActivity()) {
+				window.setEditBtnDeleteAct(false);
+			}
+			window.changeCardStudent("DeleteActivity");
+			break;
+		case DELETE_ACTIVITY:
+			window.setVisibleConfirmDelete(true);
+			break;
+		case CONFIRM_DELETE_ACTIVITY:
+			String activity = window.getDeleteActString();
+			//Enviar datos de actividad a borrar
+			
+			window.resetDeleteActivity();
+			break;
+		case AVG_ST:
+			window.changeColorMenuBtn(Event.AVG_ST);
+			window.resetAvgCourses();
+//			window.setVisibleConfirmDelete(false);
+			
+			//despues de setear la info en el combobox
+			if (!window.getSelectedItemsAVG()) {
+				window.setEditBtnAVG(false);
+			}
+			window.changeCardStudent("Average");
+			break;
+		case CALCULATE_AVG:
+			window.setVisibleAVG(true);
+			break;
 		default:
 			break;
-		}
-	}
-
-	private boolean isUserValid(String[] dataUser) {
-		if (dataUser.length == 0) {
-			return false;
-		} else {
-			for (int i = 0; i < dataUser.length; i++) {
-				if (dataUser[i].equals("") || dataUser[i] == null) {
-					System.out.println("Usuario invalido");
-					return false;
-				}
-			}
-			System.out.println("usuario valido");
-			return true;
 		}
 	}
 }

@@ -175,4 +175,88 @@ public class JWindow extends JFrame{
 	public void resetComboModifyHomeCourses() {
 		student.resetComboModifyHomeCourses();
 	}
+
+	public void resetComboDeleteHomeCourses() {
+		student.resetComboDeleteHomeCourses();
+	}
+
+	public void setVisibleConfirmDelete(boolean b) {
+		student.setVisibleConfirmDelete(b);		
+	}
+
+	public void setVisibleDeleteCourse(boolean b) {
+		student.setVisibleDeleteCourse(b);		
+	}
+
+	public void setVisibleDeleteHomework(boolean b) {
+		student.setVisibleDeleteHomework(b);
+	}
+
+	public void setVisibleModifyActivity(boolean b) {
+		student.setVisibleModifyActivity(b);
+	}
+
+	public void resetModifyPanel() {
+		student.resetModifyPanel();
+	}
+
+	public String getOptionModifyAct() {
+		return student.getOptionModifyAct();
+	}
+
+	public void setEditableNameActivity(boolean b) {
+		student.setEditableNameActivity(b);
+	}
+
+	public void resetDeleteActivity() {
+		student.resetDeleteActivity();
+	}
+
+	public boolean getSelectedItemsActivity() {
+		return student.getSelectedItemsActivity();
+	}
+
+	public void setEditBtnDeleteAct(boolean b) {
+		student.setEditBtnDeleteAct(b);
+	}
+
+	public String getDeleteActString() {
+		return student.getDeleteActString();
+	}
+
+	public String getModActString() {
+		return student.getModActString();
+	}
+
+	public String getDeleteHomework() {
+		return student.getDeleteHomework();
+	}
+
+	public String getDeleteCourse() {
+		return student.getDeleteCourse();
+	}
+
+	public boolean getSelectedItemsCourse() {
+		return student.getSelectedItemsCourse();
+	}
+
+	public void setEditBtnDeleteCourse(boolean b) {
+		student.setEditBtnDeleteCourse(b);
+	}
+
+	public boolean getSelectedItemsAVG() {
+		return student.getSelectedItemsAVG();
+	}
+
+	public void setEditBtnAVG(boolean b) {
+		student.setEditBtnAVG(b);
+	}
+
+	public void resetAvgCourses() {
+		student.resetAvgCourses();
+	}
+
+	public void setVisibleAVG(boolean b) {
+		student.setVisibleAVG(b);
+	}
 }

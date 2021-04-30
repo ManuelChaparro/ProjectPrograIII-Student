@@ -41,7 +41,7 @@ public class AddCoursePanel extends JPanel {
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		findTeachers = new ButtonObj("Buscar Profesores", controller, Event.FIND_TEACHERS.toString());
+		findTeachers = new ButtonObj("Buscar Profesores", controller, Event.FIND_TEACHERS.toString(), Constants.DARK_BLUE);
 
 		teacher = new JComboBox<String>();
 		teacher.setBackground(Color.WHITE);
@@ -53,7 +53,7 @@ public class AddCoursePanel extends JPanel {
 		teacher.setForeground(Color.BLACK);
 		teacher.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		showInfoSchedule = new ButtonObj("Mostrar Info", controller, Event.FIND_INFO_ADD_COURSE.toString());
+		showInfoSchedule = new ButtonObj("Mostrar Info", controller, Event.FIND_INFO_ADD_COURSE.toString(), Constants.DARK_BLUE);
 		containerSchedule = new JPanel(new GridBagLayout());
 		containerSchedule.setBackground(Color.WHITE);
 		containerSchedule.setBorder(BorderFactory.createTitledBorder(
@@ -61,16 +61,22 @@ public class AddCoursePanel extends JPanel {
 				TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_YELLOW));
 
 		containerBox.add(course);
-		containerBox.add(findTeachers);
+		JPanel containerButtonT = new JPanel();
+		containerButtonT.add(findTeachers);
+		containerButtonT.setBackground(Color.WHITE);
+		containerBox.add(containerButtonT);
 		containerBox.add(teacher);
-		containerBox.add(showInfoSchedule);
+		JPanel containerButtonS = new JPanel();
+		containerButtonS.add(showInfoSchedule);
+		containerButtonS.setBackground(Color.WHITE);
+		containerBox.add(containerButtonS);
 
 		containerInsert = new JPanel();
 		containerInsert.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT / 15, Constants.WIDTH / 10,
 				Constants.HEIGHT / 15, Constants.WIDTH / 10));
 		containerInsert.setBackground(Color.WHITE);
 
-		insertCourse = new ButtonObj("Inscribir curso", controller, Event.INSERT_COURSE.toString());
+		insertCourse = new ButtonObj("Inscribir curso", controller, Event.INSERT_COURSE.toString(), Constants.DARK_BLUE);
 		insertCourse.setPreferredSize(new Dimension(Constants.WIDTH / 5, Constants.HEIGHT / 9));
 		containerInsert.add(containerSchedule);
 		containerInsert.add(insertCourse);
