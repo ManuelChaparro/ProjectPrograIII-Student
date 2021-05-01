@@ -1,7 +1,9 @@
 package views;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.TextArea;
 
@@ -9,6 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import controller.Controller;
@@ -19,7 +23,7 @@ public class AveragePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> course;
 	private ButtonObj calculateAVG;
-	private JTextArea courseAVG, totalAVG;
+	private JTextField courseAVG, totalAVG;
 	private JPanel containerAVG;
 
 	public AveragePanel(Controller controller) {
@@ -44,27 +48,29 @@ public class AveragePanel extends JPanel{
 	}
 
 	private void initDataAVG(Controller controller) {
-		courseAVG = new JTextArea();
-		courseAVG.setLineWrap(true);
+		courseAVG = new JTextField();
+		courseAVG.setHorizontalAlignment(SwingConstants.CENTER);
+		courseAVG.setBackground(Color.WHITE);
 		courseAVG.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"PROMEDIO DEL CURSO", TitledBorder.CENTER, TitledBorder.TOP, Constants.DEFAULT_FONT_MAX_BOLD, Constants.DARK_BLUE));
-		courseAVG.setFont(Constants.DEFAULT_FONT);
-		courseAVG.setForeground(Color.BLACK);
+		courseAVG.setFont(new Font("Segoe UI", Font.BOLD, 120));
+		courseAVG.setForeground(Constants.DARK_BLUE);
 		courseAVG.setEditable(false);
 		
-		totalAVG = new JTextArea();
-		totalAVG.setLineWrap(true);
+		totalAVG = new JTextField();
+		totalAVG.setHorizontalAlignment(SwingConstants.CENTER);
+		totalAVG.setBackground(Color.WHITE);
 		totalAVG.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_YELLOW, 1),
 				"PROMEDIO TOTAL", TitledBorder.CENTER, TitledBorder.TOP, Constants.DEFAULT_FONT_MAX_BOLD, Constants.DARK_YELLOW));
-		totalAVG.setFont(Constants.DEFAULT_FONT);
-		totalAVG.setForeground(Color.BLACK);
+		totalAVG.setFont(new Font("Segoe UI", Font.BOLD, 120));
+		totalAVG.setForeground(Constants.DARK_YELLOW);
 		totalAVG.setEditable(false);
 	}
 
 	private void initSearchHomework(Controller controller) {
 		course = new JComboBox<String>();
 		course.addActionListener(controller);
-		course.setActionCommand(Event.VISIBLE_HOMEWORK.toString());
+		course.setActionCommand(Event.VISIBLE_AVG.toString());
 		course.setBackground(Color.WHITE);
 		course.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_BLUE, 1),
 				"ASIGNATURA", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
@@ -72,7 +78,7 @@ public class AveragePanel extends JPanel{
 		course.setForeground(Color.BLACK);
 		course.setPreferredSize(new Dimension(Constants.WIDTH / 2, Constants.HEIGHT / 12));
 
-		calculateAVG = new ButtonObj("Calcular promedio", controller, Event.CALCULATE_AVG.toString(), Constants.DARK_BLUE);
+		calculateAVG = new ButtonObj("PROMEDIAR ASIGNATURA", controller, Event.CALCULATE_AVG.toString(), Constants.DARK_BLUE);
 	}
 	
 	private void addComponentsSearch() {
@@ -98,7 +104,7 @@ public class AveragePanel extends JPanel{
 		calculateAVG.setEnabled(b);
 		course.setVisible(b);
 		if (b) {
-			calculateAVG.setText("ELIMINAR ASIGNATURA");
+			calculateAVG.setText("PROMEDIAR ASIGNATURA");
 		}else {
 			calculateAVG.setText("No hay Asignaturas para promediar");
 		}
@@ -115,5 +121,24 @@ public class AveragePanel extends JPanel{
 		courseAVG.setVisible(b);
 		totalAVG.setVisible(b);
 		containerAVG.setVisible(b);
+	}
+
+	public String getSelectedItemCourseAVG() {
+		return course.getSelectedItem().toString();
+	}
+
+	public void setComboBoxAvgCourses(String courses) {
+		String[] coursesVector = courses.split(";");
+		for (String course : coursesVector) {
+			this.course.addItem(course);
+		}
+	}
+
+	public void setAvgCourse(String avgCourse) {
+		courseAVG.setText(avgCourse.substring(0, 3));
+	}
+
+	public void setAvgTotal(String avgTotal) {
+		totalAVG.setText(avgTotal.substring(0, 3));
 	}
 }

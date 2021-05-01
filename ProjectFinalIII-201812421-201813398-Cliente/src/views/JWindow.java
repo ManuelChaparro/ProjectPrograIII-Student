@@ -315,4 +315,20 @@ public class JWindow extends JFrame{
 	public void setComboBoxActivity(String infoActivity) {
 		student.setComboBoxActivity(infoActivity);
 	}
+
+	public String getSelectedItemCourseAVG() {
+		return student.getSelectedItemCourseAVG();
+	}
+
+	public void setComboBoxAvgCourses(String courses) {
+		student.setComboBoxAvgCourses(courses);
+	}
+
+	public void setAvgCourse(String avgCourse) {
+		student.setAvgCourse(avgCourse);
+	}
+
+	public void setAvgTotal(String avgTotal) {
+		student.setAvgTotal(avgTotal);
+	}
 }

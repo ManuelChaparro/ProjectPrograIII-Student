@@ -287,4 +287,20 @@ public class StudentInterface extends JPanel {
 	public void setComboBoxActivity(String infoActivity) {
 		info.setComboBoxActivity(infoActivity);
 	}
+
+	public String getSelectedItemCourseAVG() {
+		return info.getSelectedItemCourseAVG();
+	}
+
+	public void setComboBoxAvgCourses(String courses) {
+		info.setComboBoxAvgCourses(courses);
+	}
+
+	public void setAvgCourse(String avgCourse) {
+		info.setAvgCourse(avgCourse);
+	}
+
+	public void setAvgTotal(String avgTotal) {
+		info.setAvgTotal(avgTotal);
+	}
 }

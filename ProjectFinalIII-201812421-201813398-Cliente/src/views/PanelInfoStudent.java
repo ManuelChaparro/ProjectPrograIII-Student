@@ -294,4 +294,20 @@ public class PanelInfoStudent extends JPanel {
 	public void setComboBoxActivity(String infoActivity) {
 		modifyActivity.setComboBoxActivity(infoActivity);
 	}
+
+	public String getSelectedItemCourseAVG() {
+		return average.getSelectedItemCourseAVG();
+	}
+
+	public void setComboBoxAvgCourses(String courses) {
+		average.setComboBoxAvgCourses(courses);
+	}
+
+	public void setAvgCourse(String avgCourse) {
+		average.setAvgCourse(avgCourse);
+	}
+
+	public void setAvgTotal(String avgTotal) {
+		average.setAvgTotal(avgTotal);
+	}
 }

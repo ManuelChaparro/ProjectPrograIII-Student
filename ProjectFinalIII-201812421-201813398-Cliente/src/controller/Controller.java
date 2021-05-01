@@ -403,18 +403,37 @@ public class Controller implements ActionListener {
 			}			
 			break;
 		case AVG_ST:
-			window.changeColorMenuBtn(Event.AVG_ST);
-			window.resetAvgCourses();
-//			window.setVisibleConfirmDelete(false);
-			
-			//despues de setear la info en el combobox
-			if (!window.getSelectedItemsAVG()) {
-				window.setEditBtnAVG(false);
-			}
-			window.changeCardStudent("Average");
+
+			try {
+				conection.sendUTF("AVG_ST");
+				window.resetAvgCourses();
+				conection.sendUTF(code);
+				window.setComboBoxAvgCourses(conection.receiveUTF());
+				window.changeColorMenuBtn(Event.AVG_ST);
+				if (!window.getSelectedItemsAVG()) {
+					window.setEditBtnAVG(false);
+				}else {
+					window.setEditBtnAVG(true);
+				}
+				window.changeCardStudent("Average");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}			
 			break;
 		case CALCULATE_AVG:
-			window.setVisibleAVG(true);
+			try {
+				conection.sendUTF("CALCULATE_AVG");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getSelectedItemCourseAVG());
+				window.setAvgCourse(conection.receiveUTF());
+				window.setAvgTotal(conection.receiveUTF());
+				window.setVisibleAVG(true);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			break;
+		case VISIBLE_AVG:
+			window.setVisibleAVG(false);
 			break;
 		default:
 			break;
