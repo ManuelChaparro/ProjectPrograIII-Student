@@ -137,7 +137,6 @@ public class AveragePanel extends JPanel{
 	public void setAvgCourse(String avgCourse) {
 		courseAVG.setText(avgCourse.substring(0, 3));
 	}
-
 	public void setAvgTotal(String avgTotal) {
 		totalAVG.setText(avgTotal.substring(0, 3));
 	}

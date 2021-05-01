@@ -121,6 +121,7 @@ public class MenuStudent extends JPanel {
 				Event.DELETE_COURSE_OR_HOMEWORK.toString());
 		deleteCourseBtn.setBorder(null);
 		menuDeleteCourse.add(deleteCourseBtn);
+		
 		add(menuDeleteCourse);
 	}
 

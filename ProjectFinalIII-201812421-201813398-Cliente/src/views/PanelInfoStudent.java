@@ -234,6 +234,7 @@ public class PanelInfoStudent extends JPanel {
 		average.setVisibleAVG(b);
 	}
 
+	
 	public void setComboBoxDeleteCourses(String[] split) {
 		deleteCourse.setComboBoxDeleteCourses(split);
 	}

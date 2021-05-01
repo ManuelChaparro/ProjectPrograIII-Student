@@ -233,4 +233,5 @@ public class ModifyCoursePanel extends JPanel {
 			findHomework.setText("No hay Asignaturas por modificar");
 		}
 	}
+	
 }
