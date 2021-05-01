@@ -422,7 +422,6 @@ public class Controller implements ActionListener {
 			break;
 		case CALCULATE_AVG:
 			try {
-				
 				conection.sendUTF("CALCULATE_AVG");
 				conection.sendUTF(code);
 				conection.sendUTF(window.getSelectedItemCourseAVG());
