@@ -1,12 +1,15 @@
 package views;
 
 import java.awt.Color;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import controller.Controller;
 
 public class PanelInfoStudent extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JPanel welcomePanel;
 	private SchedulePanel schedule;
 	private AddCoursePanel addCourse;
 	private ModifyCoursePanel modifyCourse;
@@ -20,6 +23,8 @@ public class PanelInfoStudent extends JPanel {
 		setBackground(Color.WHITE);
 		cards = new JCardsPanel(controller);
 		add(cards);
+		
+		initWelcomePanel();
 
 		schedule = new SchedulePanel();
 		cards.add(schedule, "Schedule");
@@ -42,6 +47,15 @@ public class PanelInfoStudent extends JPanel {
 		average = new AveragePanel(controller);
 		cards.add(average, "Average");
 
+	}
+
+	private void initWelcomePanel() {
+		welcomePanel = new JPanel();
+		welcomePanel.setBackground(Color.WHITE);
+		JLabel hola = new JLabel("Bienvenido");
+		
+		welcomePanel.add(hola);
+		cards.add(welcomePanel);
 	}
 
 	public void changeCardStudent(String nameCard) {
@@ -218,12 +232,8 @@ public class PanelInfoStudent extends JPanel {
 		deleteCourse.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return average.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		average.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		average.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {

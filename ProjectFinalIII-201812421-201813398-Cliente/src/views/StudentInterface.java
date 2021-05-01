@@ -212,12 +212,8 @@ public class StudentInterface extends JPanel {
 		info.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return info.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		info.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		info.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {

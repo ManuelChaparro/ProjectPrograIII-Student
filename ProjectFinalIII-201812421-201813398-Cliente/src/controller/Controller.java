@@ -160,7 +160,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxStudentCourses(conection.receiveUTF());
 				if (!window.getItemsModifyCourses()) {
 					window.setEditBtnModifyCourse(false);
-				}else {
+				} else {
 					window.setEditBtnModifyCourse(true);
 				}
 				window.changeCardStudent("ModifyCourse");
@@ -244,7 +244,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxDeleteCourses(conection.receiveUTF().split(";"));
 				if (!window.getSelectedItemsCourse()) {
 					window.setEditBtnDeleteCourse(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteCourse(true);
 				}
 				window.changeCardStudent("DeleteCourse");
@@ -262,7 +262,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxDeleteHomeworks(conection.receiveUTF().split(";"));
 				if (!window.getItemsDeleteHomework()) {
 					window.setEditBtnDeleteHomework(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteHomework(true);
 				}
 			} catch (IOException e1) {
@@ -283,7 +283,7 @@ public class Controller implements ActionListener {
 				window.removeSpecificCourse(window.getDeleteCourse());
 				if (!window.getSelectedItemsCourse()) {
 					window.setEditBtnDeleteCourse(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteCourse(true);
 				}
 			} catch (IOException e1) {
@@ -299,7 +299,7 @@ public class Controller implements ActionListener {
 				window.removeSpecificHomework(window.getDeleteHomework());
 				if (!window.getItemsDeleteHomework()) {
 					window.setEditBtnDeleteHomework(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteHomework(true);
 				}
 				window.setVisibleConfirmDelete(false);
@@ -324,8 +324,9 @@ public class Controller implements ActionListener {
 			window.setVisibleModifyActivity(true);
 			if (window.getComboBoxActivity().equalsIgnoreCase("AÑADIR ACTIVIDAD")) {
 				window.setEnableModifyActivity(true);
-			}else {
-				try {window.setEnableModifyActivity(false);
+			} else {
+				try {
+					window.setEnableModifyActivity(false);
 					conection.sendUTF("FIND_MODIFY_HOMEWORK");
 					conection.sendUTF(code);
 					conection.sendUTF(window.getComboBoxActivity());
@@ -348,7 +349,7 @@ public class Controller implements ActionListener {
 						conection.sendBoolean(true);
 						conection.sendUTF(code);
 						conection.sendUTF(window.getModActString());
-					}else {
+					} else {
 						conection.sendBoolean(false);
 						conection.sendUTF(code);
 						conection.sendUTF(window.getModActString());
@@ -356,8 +357,9 @@ public class Controller implements ActionListener {
 					window.resetModifyPanel();
 					window.setComboBoxActivities(conection.receiveUTF());
 					window.setVisibleModifyActivity(false);
-				}else {
-					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -374,7 +376,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxActivities(conection.receiveUTF());
 				if (!window.getSelectedItemsActivity()) {
 					window.setEditBtnDeleteAct(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteAct(true);
 				}
 				window.changeCardStudent("DeleteActivity");
@@ -400,25 +402,20 @@ public class Controller implements ActionListener {
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}			
+			}
 			break;
 		case AVG_ST:
-
 			try {
 				conection.sendUTF("AVG_ST");
 				window.resetAvgCourses();
 				conection.sendUTF(code);
 				window.setComboBoxAvgCourses(conection.receiveUTF());
 				window.changeColorMenuBtn(Event.AVG_ST);
-				if (!window.getSelectedItemsAVG()) {
-					window.setEditBtnAVG(false);
-				}else {
-					window.setEditBtnAVG(true);
-				}
+				window.setEditBtnAVG();
 				window.changeCardStudent("Average");
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}			
+			}
 			break;
 		case CALCULATE_AVG:
 			try {

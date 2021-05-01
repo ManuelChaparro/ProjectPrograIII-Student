@@ -240,12 +240,8 @@ public class JWindow extends JFrame{
 		student.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return student.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		student.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		student.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {
