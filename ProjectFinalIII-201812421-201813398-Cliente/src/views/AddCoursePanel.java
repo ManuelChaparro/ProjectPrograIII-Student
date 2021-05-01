@@ -70,7 +70,6 @@ public class AddCoursePanel extends JPanel {
 		containerButtonS.add(showInfoSchedule);
 		containerButtonS.setBackground(Color.WHITE);
 		containerBox.add(containerButtonS);
-
 		containerInsert = new JPanel();
 		containerInsert.setBorder(BorderFactory.createEmptyBorder(Constants.HEIGHT / 15, Constants.WIDTH / 10,
 				Constants.HEIGHT / 15, Constants.WIDTH / 10));

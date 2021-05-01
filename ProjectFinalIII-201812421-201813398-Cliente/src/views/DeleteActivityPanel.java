@@ -33,7 +33,6 @@ public class DeleteActivityPanel extends JPanel {
 		addComponentsSearch();
 		initWarningDelete(controller);
 	}
-
 	private void initWarningDelete(Controller controller) {
 		confirmDeleteContainer = new JPanel(new GridLayout(2, 1));
 		confirmDeleteContainer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Constants.DARK_RED, 2),

@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class SchedulePanel extends JPanel {
-	
 
 	private static final long serialVersionUID = 1L;
 	private JPanel[][] matrix;

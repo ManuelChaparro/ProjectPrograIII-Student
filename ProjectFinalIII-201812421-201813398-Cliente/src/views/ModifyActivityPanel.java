@@ -168,7 +168,6 @@ public class ModifyActivityPanel extends JPanel {
 	public void setEditableNameActivity(boolean b) {
 		name.setEditable(b);
 	}
-
 	public String getModActString() {
 		if (!name.getText().equalsIgnoreCase("")) {
 			return name.getText() + ";;;" + annotation.getText() + ";;;" + days.getSelectedItem().toString() + "#"
