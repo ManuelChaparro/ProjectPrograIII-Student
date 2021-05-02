@@ -1,43 +1,42 @@
 package views;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.Controller;
 import controller.Event;
 
-public class JWindow extends JFrame{
+public class JWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final String TITLE_WINDOW = "Xorder-Usuario";
-	
+
 	private JCardsPanel cards;
 	private LoginPanel login;
 	private StudentInterface student;
-	
-	public JWindow(Controller controller) {
+
+	public JWindow(ActionListener actionListener) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle(TITLE_WINDOW);
+		setTitle(ConstantsGUI.TITLE_WINDOW);
 		setExtendedState(MAXIMIZED_BOTH);
-		setIconImage(new ImageIcon(getClass().getResource(Constants.PATH_APP_ICON)).getImage());
+		setIconImage(new ImageIcon(getClass().getResource(ConstantsGUI.PATH_APP_ICON)).getImage());
 		setVisible(true);
-		initWindow(controller);
+		initWindow(actionListener);
 	}
 
-	private void initWindow(Controller controller) {
-		cards = new JCardsPanel(controller);
+	private void initWindow(ActionListener actionListener) {
+		cards = new JCardsPanel(actionListener);
 		add(cards);
-		
-		login = new LoginPanel(controller);
-		cards.add(login, "Login");
-		
-		student = new StudentInterface(controller);
-		cards.add(student, "Student");
+
+		login = new LoginPanel(actionListener);
+		cards.add(login, ConstantsGUI.LOGIN_TEXT_CARDLAYOUT);
+
+		student = new StudentInterface(actionListener);
+		cards.add(student, ConstantsGUI.STUDENT_TEXT_CARDLAYOUT);
 	}
-	
+
 	public void changeCard(String nameCard) {
 		cards.changeCardLayout(nameCard);
 	}
@@ -45,7 +44,7 @@ public class JWindow extends JFrame{
 	public void hidePassword() {
 		login.hidePassword();
 	}
-	
+
 	public void loginAccount() {
 		login.loginAccount();
 	}
@@ -61,7 +60,7 @@ public class JWindow extends JFrame{
 	public void changeCardStudent(String option) {
 		student.changeCardStudent(option);
 	}
-	
+
 	public void resertComboBoxCourses() {
 		student.resertComboBoxCourses();
 	}
@@ -73,19 +72,19 @@ public class JWindow extends JFrame{
 	public void setComboBoxCourses(String courses) {
 		student.setComboBoxCourses(courses);
 	}
-	
+
 	public String getComboBoxCoursesValue() {
 		return student.getComboBoxCoursesValue();
 	}
-	
+
 	public void setComboBoxTeachers(String teachers) {
 		student.setComboBoxTeachers(teachers);
 	}
-	
+
 	public void resetComboBoxTeachers() {
 		student.resetComboBoxTeachers();
 	}
-	
+
 	public String getComboBoxTeachersValue() {
 		return student.getComboBoxTeachersValue();
 	}
@@ -97,13 +96,13 @@ public class JWindow extends JFrame{
 	public void enableAddCourse(boolean isEnable) {
 		student.enableAddCourse(isEnable);
 	}
-	
+
 	public void changeColorMenuBtn(Event event) {
 		student.changeColorMenuBtn(event);
 	}
 
 	public void setVisibleTeachers(boolean isVisible) {
-		student.setVisibleTeachers(isVisible);		
+		student.setVisibleTeachers(isVisible);
 	}
 
 	public void setVisibleSchedule(boolean isVisible) {
@@ -112,7 +111,7 @@ public class JWindow extends JFrame{
 
 	public void setVisibleHomework(boolean isVisible) {
 		student.setVisibleHomework(isVisible);
-		
+
 	}
 
 	public void setVisibleModify(boolean isVisible) {
@@ -120,7 +119,7 @@ public class JWindow extends JFrame{
 	}
 
 	public void setComboBoxStudentCourses(String courses) {
-		student.setComboBoxStudentCourses(courses);		
+		student.setComboBoxStudentCourses(courses);
 	}
 
 	public String getComboModHomeworkCourse() {
@@ -140,11 +139,11 @@ public class JWindow extends JFrame{
 	}
 
 	public void setInfoHomeWork(String[] dataHomework) {
-		student.setInfoHomeWork(dataHomework);		
+		student.setInfoHomeWork(dataHomework);
 	}
 
 	public void setEditableNameHomework(boolean isEditable) {
-		student.setEditableNameHomework(isEditable);		
+		student.setEditableNameHomework(isEditable);
 	}
 
 	public boolean isNewHomework() {
@@ -162,15 +161,15 @@ public class JWindow extends JFrame{
 	public String getCalificationHomework() {
 		return student.getCalificationHomework();
 	}
-	
+
 	public void resetNameHomework() {
 		student.resetNameHomework();
 	}
-	
+
 	public void resetAnnotationHomework() {
 		student.resetAnnotationHomework();
 	}
-	
+
 	public void resetCalification() {
 		student.resetCalification();
 	}
@@ -183,28 +182,28 @@ public class JWindow extends JFrame{
 		student.resetComboDeleteHomeCourses();
 	}
 
-	public void setVisibleConfirmDelete(boolean b) {
-		student.setVisibleConfirmDelete(b);		
+	public void setVisibleConfirmDelete(boolean isVisible) {
+		student.setVisibleConfirmDelete(isVisible);
 	}
 
-	public void setVisibleDeleteCourse(boolean b) {
-		student.setVisibleDeleteCourse(b);		
+	public void setVisibleDeleteCourse(boolean isVisible) {
+		student.setVisibleDeleteCourse(isVisible);
 	}
 
-	public void setVisibleDeleteHomework(boolean b) {
-		student.setVisibleDeleteHomework(b);
+	public void setVisibleDeleteHomework(boolean isVisible) {
+		student.setVisibleDeleteHomework(isVisible);
 	}
 
-	public void setVisibleModifyActivity(boolean b) {
-		student.setVisibleModifyActivity(b);
+	public void setVisibleModifyActivity(boolean isVisible) {
+		student.setVisibleModifyActivity(isVisible);
 	}
 
 	public void resetModifyPanel() {
 		student.resetModifyPanel();
 	}
 
-	public void setEditableNameActivity(boolean b) {
-		student.setEditableNameActivity(b);
+	public void setEditableNameActivity(boolean isEditable) {
+		student.setEditableNameActivity(isEditable);
 	}
 
 	public void resetDeleteActivity() {
@@ -215,8 +214,8 @@ public class JWindow extends JFrame{
 		return student.getSelectedItemsActivity();
 	}
 
-	public void setEditBtnDeleteAct(boolean b) {
-		student.setEditBtnDeleteAct(b);
+	public void setEditBtnDeleteAct(boolean isEditable) {
+		student.setEditBtnDeleteAct(isEditable);
 	}
 
 	public String getDeleteActString() {
@@ -239,8 +238,8 @@ public class JWindow extends JFrame{
 		return student.getSelectedItemsCourse();
 	}
 
-	public void setEditBtnDeleteCourse(boolean b) {
-		student.setEditBtnDeleteCourse(b);
+	public void setEditBtnDeleteCourse(boolean isEditable) {
+		student.setEditBtnDeleteCourse(isEditable);
 	}
 
 	public void setEditBtnAVG() {
@@ -251,16 +250,16 @@ public class JWindow extends JFrame{
 		student.resetAvgCourses();
 	}
 
-	public void setVisibleAVG(boolean b) {
-		student.setVisibleAVG(b);
+	public void setVisibleAVG(boolean isVisible) {
+		student.setVisibleAVG(isVisible);
 	}
 
 	public void setComboBoxDeleteCourses(String[] split) {
-		student.setComboBoxDeleteCourses(split);	
+		student.setComboBoxDeleteCourses(split);
 	}
 
 	public void setComboBoxDeleteHomeworks(String[] homeworks) {
-		student.setComboBoxDeleteHomeworks(homeworks);		
+		student.setComboBoxDeleteHomeworks(homeworks);
 	}
 
 	public void resetFindHomework() {
@@ -268,7 +267,7 @@ public class JWindow extends JFrame{
 	}
 
 	public void resetComboDeleteCourses() {
-		student.resetComboDeleteCourses();	
+		student.resetComboDeleteCourses();
 	}
 
 	public void removeSpecificCourse(String deleteCourse) {
@@ -279,20 +278,20 @@ public class JWindow extends JFrame{
 		return student.getItemsModifyCourses();
 	}
 
-	public void setEditBtnModifyCourse(boolean b) {
-		student.setEditBtnModifyCourse(b);	
+	public void setEditBtnModifyCourse(boolean isEditable) {
+		student.setEditBtnModifyCourse(isEditable);
 	}
 
 	public void removeSpecificHomework(String deleteHomework) {
-		student.removeSpecificHomework(deleteHomework);		
+		student.removeSpecificHomework(deleteHomework);
 	}
 
 	public boolean getItemsDeleteHomework() {
 		return student.getItemsDeleteHomework();
 	}
 
-	public void setEditBtnDeleteHomework(boolean b) {
-		student.setEditBtnDeleteHomework(b);
+	public void setEditBtnDeleteHomework(boolean isEditable) {
+		student.setEditBtnDeleteHomework(isEditable);
 	}
 
 	public void setComboBoxActivities(String activities) {
@@ -303,8 +302,8 @@ public class JWindow extends JFrame{
 		return student.getComboBoxActivity();
 	}
 
-	public void setEnableModifyActivity(boolean b) {
-		student.setEnableModifyActivity(b);		
+	public void setEnableModifyActivity(boolean isEnable) {
+		student.setEnableModifyActivity(isEnable);
 	}
 
 	public boolean getEnableModifyActivity() {
@@ -331,8 +330,8 @@ public class JWindow extends JFrame{
 		student.setAvgTotal(avgTotal);
 	}
 
-	public void setScheduleInfo(String schedule) {
-		student.setScheduleInfo(schedule);
+	public void setScheduleInfo(ActionListener actionListener, String schedule) {
+		student.setScheduleInfo(actionListener, schedule);
 	}
 
 	public String getSelectedBtn(ActionEvent e) {
