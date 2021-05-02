@@ -1,12 +1,19 @@
 package controller;
 
+import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import com.google.gson.Gson;
 import models.User;
 import net.Conection;
+import views.ButtonObj;
 import views.Constants;
 import views.JWindow;
 
@@ -86,11 +93,26 @@ public class Controller implements ActionListener {
 			try {
 				window.changeColorMenuBtn(Event.SHOW_SCHEDULE);
 				conection.sendUTF("SHOW_SCHEDULE");
-				System.out.println(conection.receiveUTF());
+				conection.sendUTF(code);
+				window.setScheduleInfo(conection.receiveUTF());
 			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
 			window.changeCardStudent("Schedule");
+			break;
+		case ACTION_SCHEDULER_BTN:
+			try {
+				conection.sendUTF("ACTION_SCHEDULER_BTN");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getSelectedBtn(e));
+				if (conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, window.createPanelActivity(conection.receiveUTF()), "INFORMACION ACTIVIDAD", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, window.createPanelCourse(conection.receiveUTF()), "INFORMACION ACTIVIDAD", JOptionPane.INFORMATION_MESSAGE);
+				}
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
 			break;
 		case ADD_COURSE_ST:
 			try {
@@ -343,7 +365,8 @@ public class Controller implements ActionListener {
 			break;
 		case SEND_ACTIVITY:
 			try {
-				if (!window.getModActString().equalsIgnoreCase("emptyData")) {
+				String dataActivity = window.getModActString();
+				if (!dataActivity.equalsIgnoreCase("emptyData") && !dataActivity.equalsIgnoreCase("errorEnd")) {
 					conection.sendUTF("SEND_ACTIVITY");
 					if (window.getEnableModifyActivity()) {
 						conection.sendBoolean(true);
@@ -355,9 +378,15 @@ public class Controller implements ActionListener {
 						conection.sendUTF(window.getModActString());
 					}
 					window.resetModifyPanel();
+					if (!conection.receiveBoolean()) {
+						JOptionPane.showMessageDialog(null, "Ya hay una actividad para la hora ingresada", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 					window.setComboBoxActivities(conection.receiveUTF());
 					window.setVisibleModifyActivity(false);
-				} else {
+				} else if(window.getModActString().equalsIgnoreCase("errorEnd")){
+					JOptionPane.showMessageDialog(null, "Seleccione una hora valida", "ACTIVIDAD",
+							JOptionPane.ERROR_MESSAGE);
+				}else {
 					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD",
 							JOptionPane.ERROR_MESSAGE);
 				}

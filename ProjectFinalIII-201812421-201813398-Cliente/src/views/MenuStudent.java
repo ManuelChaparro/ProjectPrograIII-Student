@@ -314,4 +314,6 @@ public class MenuStudent extends JPanel {
 		menuAVG.setBackground(Constants.DARK_BLUE);
 		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
+	
+	
 }
