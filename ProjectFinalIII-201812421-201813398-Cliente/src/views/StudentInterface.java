@@ -316,4 +316,8 @@ public class StudentInterface extends JPanel {
 	public JPanel createPanelCourse(String namePanel) {
 		return info.createPanelCourse(namePanel);
 	}
+
+	public void setNameUser(String name) {
+		info.setNameUser(name);
+	}
 }

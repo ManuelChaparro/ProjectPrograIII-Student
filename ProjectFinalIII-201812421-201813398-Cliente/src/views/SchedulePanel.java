@@ -148,32 +148,34 @@ public class SchedulePanel extends JPanel {
 	private void initGridMatrix(String vector, int color) {
 		String[] courses = vector.split(";");
 		for (String course : courses) {
-			String[] courseInfo = course.split("&")[2].split("%");
-			for (int i = 0; i < courseInfo.length; i++) {
-				switch (courseInfo[i].split("#")[0]) {
-				case "LUNES":
-					setSchedulePanel(courseInfo[i], 0, course, color);
-					break;
-				case "MARTES":
-					setSchedulePanel(courseInfo[i], 1, course, color);
-					break;
-				case "MIERCOLES":
-					setSchedulePanel(courseInfo[i], 2, course, color);
-					break;
-				case "JUEVES":
-					setSchedulePanel(courseInfo[i], 3, course, color);
-					break;
-				case "VIERNES":
-					setSchedulePanel(courseInfo[i], 4, course, color);
-					break;
-				case "SABADO":
-					setSchedulePanel(courseInfo[i], 5, course, color);
-					break;
-				case "DOMINGO":
-					setSchedulePanel(courseInfo[i], 6, course, color);
-					break;
-				default:
-					break;
+			if (!course.equalsIgnoreCase("")) {
+				String[] courseInfo = course.split("&")[2].split("%");
+				for (int i = 0; i < courseInfo.length; i++) {
+					switch (courseInfo[i].split("#")[0]) {
+					case "LUNES":
+						setSchedulePanel(courseInfo[i], 0, course, color);
+						break;
+					case "MARTES":
+						setSchedulePanel(courseInfo[i], 1, course, color);
+						break;
+					case "MIERCOLES":
+						setSchedulePanel(courseInfo[i], 2, course, color);
+						break;
+					case "JUEVES":
+						setSchedulePanel(courseInfo[i], 3, course, color);
+						break;
+					case "VIERNES":
+						setSchedulePanel(courseInfo[i], 4, course, color);
+						break;
+					case "SABADO":
+						setSchedulePanel(courseInfo[i], 5, course, color);
+						break;
+					case "DOMINGO":
+						setSchedulePanel(courseInfo[i], 6, course, color);
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		}

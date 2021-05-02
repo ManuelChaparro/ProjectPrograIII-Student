@@ -52,6 +52,8 @@ public class Controller implements ActionListener {
 						conection.sendUTF(stringUser);
 						if (conection.receiveBoolean()) {
 							code = dataUser[0];
+							conection.sendUTF(code);
+							window.setNameUser(conection.receiveUTF());
 							window.changeCard("Student");
 						} else {
 							JOptionPane.showMessageDialog(null, "El usuario no existe");

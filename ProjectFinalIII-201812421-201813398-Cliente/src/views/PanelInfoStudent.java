@@ -1,20 +1,25 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
 import controller.Controller;
 
 public class PanelInfoStudent extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel welcomePanel;
+	private JLabel welcome;
+	private JPanel welcomePanel, containerWelcome;
 	private SchedulePanel schedule;
 	private AddCoursePanel addCourse;
 	private ModifyCoursePanel modifyCourse;
@@ -55,17 +60,22 @@ public class PanelInfoStudent extends JPanel {
 	}
 
 	private void initWelcomePanel() {
+		containerWelcome = new JPanel(new BorderLayout());
+		containerWelcome.setBackground(Constants.DARK_BLUE);
+		
 		welcomePanel = new JPanel(new GridLayout(1, 2));
 		welcomePanel.setBackground(Constants.DARK_BLUE);
 		JLabel img = new JLabel(new ImageIcon(getClass().getResource(Constants.PATH_APP_ICON)));
 		
-		JLabel welcome = new JLabel("Bienvenido");
+		welcome = new JLabel("Bienvenido");
 		welcome.setFont(new Font("Segoe UI", Font.BOLD, (int) (Constants.WIDTH/19.4)));
 		welcome.setForeground(Color.WHITE);
 		
 		welcomePanel.add(img);
 		welcomePanel.add(welcome);
-		cards.add(welcomePanel);
+		
+		containerWelcome.add(welcomePanel, BorderLayout.CENTER);
+		cards.add(containerWelcome);
 	}
 
 	public void changeCardStudent(String nameCard) {
@@ -346,5 +356,14 @@ public class PanelInfoStudent extends JPanel {
 
 	public JPanel createPanelCourse(String namePanel) {
 		return schedule.createPanelCourse(namePanel);
+	}
+
+	public void setNameUser(String name) {
+		JLabel nameLabel = new JLabel(name);
+		nameLabel.setFont(new Font("Segoe UI", Font.BOLD, (int) (Constants.WIDTH/25)));
+		nameLabel.setForeground(Color.WHITE);
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, (int) (Constants.HEIGHT/7.68), 0));
+		containerWelcome.add(nameLabel, BorderLayout.SOUTH);
 	}
 }
