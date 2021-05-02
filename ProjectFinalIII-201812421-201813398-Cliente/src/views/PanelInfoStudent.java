@@ -2,18 +2,14 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
-import controller.Controller;
 
 public class PanelInfoStudent extends JPanel {
 
@@ -29,51 +25,52 @@ public class PanelInfoStudent extends JPanel {
 	private AveragePanel average;
 	private JCardsPanel cards;
 
-	public PanelInfoStudent(Controller controller) {
+	public PanelInfoStudent(ActionListener actionListener) {
 		setBackground(Color.WHITE);
-		cards = new JCardsPanel(controller);
-		add(cards);
-		
+		cards = new JCardsPanel(actionListener);
 		initWelcomePanel();
+		initCards(actionListener);
+	}
 
-		schedule = new SchedulePanel(controller);
-		cards.add(schedule, "Schedule");
+	private void initCards(ActionListener actionListener) {
+		schedule = new SchedulePanel();
+		cards.add(schedule, ConstantsGUI.SCHEDULE_TEXT_CARDLAYOUT);
 
-		addCourse = new AddCoursePanel(controller);
-		cards.add(addCourse, "AddCourse");
+		addCourse = new AddCoursePanel(actionListener);
+		cards.add(addCourse, ConstantsGUI.ADD_COURSE_TEXT_CARDLAYOUT);
 
-		modifyCourse = new ModifyCoursePanel(controller);
-		cards.add(modifyCourse, "ModifyCourse");
+		modifyCourse = new ModifyCoursePanel(actionListener);
+		cards.add(modifyCourse, ConstantsGUI.MODIFY_COURSE_TEXT_CARDLAYOUT);
 
-		deleteCourse = new DeleteCourse(controller);
-		cards.add(deleteCourse, "DeleteCourse");
+		deleteCourse = new DeleteCourse(actionListener);
+		cards.add(deleteCourse, ConstantsGUI.DELETE_COURSE_TEXT_CARDLAYOUT);
 
-		modifyActivity = new ModifyActivityPanel(controller);
-		cards.add(modifyActivity, "ModifyActivity");
+		modifyActivity = new ModifyActivityPanel(actionListener);
+		cards.add(modifyActivity, ConstantsGUI.MODIFY_ACTIVITY_CARDLAYOUT);
 
-		deleteActivity = new DeleteActivityPanel(controller);
-		cards.add(deleteActivity, "DeleteActivity");
+		deleteActivity = new DeleteActivityPanel(actionListener);
+		cards.add(deleteActivity, ConstantsGUI.DELETE_ACTIVITY_CARDLAYOUT);
 
-		average = new AveragePanel(controller);
-		cards.add(average, "Average");
+		average = new AveragePanel(actionListener);
+		cards.add(average, ConstantsGUI.AVERAGE_TEXT_CARDLAYOUT);
 
+		add(cards);
 	}
 
 	private void initWelcomePanel() {
 		containerWelcome = new JPanel(new BorderLayout());
-		containerWelcome.setBackground(Constants.DARK_BLUE);
-		
+		containerWelcome.setBackground(ConstantsGUI.DARK_BLUE);
+
 		welcomePanel = new JPanel(new GridLayout(1, 2));
-		welcomePanel.setBackground(Constants.DARK_BLUE);
-		JLabel img = new JLabel(new ImageIcon(getClass().getResource(Constants.PATH_APP_ICON)));
-		
-		welcome = new JLabel("Bienvenido");
-		welcome.setFont(new Font("Segoe UI", Font.BOLD, (int) (Constants.WIDTH/19.4)));
-		welcome.setForeground(Color.WHITE);
-		
+		welcomePanel.setBackground(ConstantsGUI.DARK_BLUE);
+		JLabel img = new JLabel(new ImageIcon(getClass().getResource(ConstantsGUI.PATH_APP_ICON)));
 		welcomePanel.add(img);
+
+		welcome = new JLabel(ConstantsGUI.WELCOME_MESSAGE);
+		welcome.setFont(ConstantsGUI.DEFAULT_FONT_WELCOME_MESSAGE);
+		welcome.setForeground(Color.WHITE);
 		welcomePanel.add(welcome);
-		
+
 		containerWelcome.add(welcomePanel, BorderLayout.CENTER);
 		cards.add(containerWelcome);
 	}
@@ -151,8 +148,8 @@ public class PanelInfoStudent extends JPanel {
 		modifyCourse.setInfoHomeWork(dataHomework);
 	}
 
-	public void setEditableNameHomework(boolean isVisible) {
-		modifyCourse.setEditableNameHomework(isVisible);
+	public void setEditableNameHomework(boolean isEditable) {
+		modifyCourse.setEditableNameHomework(isEditable);
 	}
 
 	public boolean isNewHomework() {
@@ -191,29 +188,29 @@ public class PanelInfoStudent extends JPanel {
 		deleteCourse.resetComboDeleteHomeCourses();
 	}
 
-	public void setVisibleConfirmDelete(boolean b) {
-		deleteCourse.setVisibleConfirmDelete(b);
-		deleteActivity.setVisibleConfirmDelete(b);
+	public void setVisibleConfirmDelete(boolean isVisible) {
+		deleteCourse.setVisibleConfirmDelete(isVisible);
+		deleteActivity.setVisibleConfirmDelete(isVisible);
 	}
 
-	public void setVisibleDeleteCourse(boolean b) {
-		deleteCourse.setVisibleDeleteCourse(b);
+	public void setVisibleDeleteCourse(boolean isVisible) {
+		deleteCourse.setVisibleDeleteCourse(isVisible);
 	}
 
-	public void setVisibleDeleteHomework(boolean b) {
-		deleteCourse.setVisibleDeleteHomework(b);
+	public void setVisibleDeleteHomework(boolean isVisible) {
+		deleteCourse.setVisibleDeleteHomework(isVisible);
 	}
 
-	public void setVisibleModifyActivity(boolean b) {
-		modifyActivity.setVisibleModifyActivity(b);
+	public void setVisibleModifyActivity(boolean isVisible) {
+		modifyActivity.setVisibleModifyActivity(isVisible);
 	}
 
 	public void resetModifyPanel() {
 		modifyActivity.resetModifyPanel();
 	}
 
-	public void setEditableNameActivity(boolean b) {
-		modifyActivity.setEditableNameActivity(b);
+	public void setEditableNameActivity(boolean isEditable) {
+		modifyActivity.setEditableNameActivity(isEditable);
 	}
 
 	public void resetDeleteActivity() {
@@ -224,8 +221,8 @@ public class PanelInfoStudent extends JPanel {
 		return deleteActivity.getSelectedItemsActivity();
 	}
 
-	public void setEditBtnDeleteAct(boolean b) {
-		deleteActivity.setEditBtnDeleteAct(b);
+	public void setEditBtnDeleteAct(boolean isEditable) {
+		deleteActivity.setEditBtnDeleteAct(isEditable);
 	}
 
 	public String getDeleteActString() {
@@ -234,7 +231,7 @@ public class PanelInfoStudent extends JPanel {
 
 	public String getModActString() {
 		return modifyActivity.getModActString();
-			}
+	}
 
 	public String getDeleteHomework() {
 		return deleteCourse.getDeleteHomework();
@@ -248,8 +245,8 @@ public class PanelInfoStudent extends JPanel {
 		return deleteCourse.getSelectedItemsCourse();
 	}
 
-	public void setEditBtnDeleteCourse(boolean b) {
-		deleteCourse.setEditBtnDeleteCourse(b);
+	public void setEditBtnDeleteCourse(boolean isEditable) {
+		deleteCourse.setEditBtnDeleteCourse(isEditable);
 	}
 
 	public void setEditBtnAVG() {
@@ -260,11 +257,10 @@ public class PanelInfoStudent extends JPanel {
 		average.resetAvgCourses();
 	}
 
-	public void setVisibleAVG(boolean b) {
-		average.setVisibleAVG(b);
+	public void setVisibleAVG(boolean isVisible) {
+		average.setVisibleAVG(isVisible);
 	}
 
-	
 	public void setComboBoxDeleteCourses(String[] split) {
 		deleteCourse.setComboBoxDeleteCourses(split);
 	}
@@ -278,19 +274,19 @@ public class PanelInfoStudent extends JPanel {
 	}
 
 	public void resetComboDeleteCourses() {
-		deleteCourse.resetComboDeleteCourses();		
+		deleteCourse.resetComboDeleteCourses();
 	}
 
-	public void removeSpecificCourse(String deleteCourse2) {
-		deleteCourse.removeSpecificCourse(deleteCourse2);
+	public void removeSpecificCourse(String deleteCourses) {
+		deleteCourse.removeSpecificCourse(deleteCourses);
 	}
 
 	public boolean getItemsModifyCourses() {
 		return modifyCourse.getItemsModifyCourses();
 	}
 
-	public void setEditBtnModifyCourse(boolean b) {
-		modifyCourse.setEditBtnModifyCourse(b);
+	public void setEditBtnModifyCourse(boolean isEditable) {
+		modifyCourse.setEditBtnModifyCourse(isEditable);
 	}
 
 	public void removeSpecificHomework(String deleteHomework) {
@@ -301,8 +297,8 @@ public class PanelInfoStudent extends JPanel {
 		return deleteCourse.getItemsDeleteHomework();
 	}
 
-	public void setEditBtnDeleteHomework(boolean b) {
-		deleteCourse.setEditBtnDeleteHomework(b);
+	public void setEditBtnDeleteHomework(boolean isEditable) {
+		deleteCourse.setEditBtnDeleteHomework(isEditable);
 	}
 
 	public void setComboBoxActivities(String activities) {
@@ -314,8 +310,8 @@ public class PanelInfoStudent extends JPanel {
 		return modifyActivity.getComboBoxActivity();
 	}
 
-	public void setEnableModifyActivity(boolean b) {
-		modifyActivity.setEnableModifyActivity(b);
+	public void setEnableModifyActivity(boolean isEnable) {
+		modifyActivity.setEnableModifyActivity(isEnable);
 	}
 
 	public boolean getEnableModifyActivity() {
@@ -342,8 +338,8 @@ public class PanelInfoStudent extends JPanel {
 		average.setAvgTotal(avgTotal);
 	}
 
-	public void setScheduleInfo(String schedule2) {
-		schedule.setScheduleInfo(schedule2);
+	public void setScheduleInfo(ActionListener actionListener, String scheduler) {
+		schedule.setScheduleInfo(actionListener, scheduler);
 	}
 
 	public String getSelectedBtn(ActionEvent e) {
@@ -360,10 +356,10 @@ public class PanelInfoStudent extends JPanel {
 
 	public void setNameUser(String name) {
 		JLabel nameLabel = new JLabel(name);
-		nameLabel.setFont(new Font("Segoe UI", Font.BOLD, (int) (Constants.WIDTH/25)));
+		nameLabel.setFont(ConstantsGUI.DEFAULT_FONT_USER_WELCOME);
 		nameLabel.setForeground(Color.WHITE);
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, (int) (Constants.HEIGHT/7.68), 0));
+		nameLabel.setBorder(ConstantsGUI.BORDER_NAME_LABEL_USER_WELCOME);
 		containerWelcome.add(nameLabel, BorderLayout.SOUTH);
 	}
 }

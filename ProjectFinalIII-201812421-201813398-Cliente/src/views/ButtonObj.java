@@ -15,9 +15,9 @@ public class ButtonObj extends JButton {
 	
 	public ButtonObj(String name, ActionListener actionListener, String event) {
 		setText(name);
-		setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
+		setFont(ConstantsGUI.DEFAULT_FONT_ITALIC_MAX);
 		setForeground(Color.WHITE);
-		setBackground(Constants.DARK_BLUE);
+		setBackground(ConstantsGUI.DARK_BLUE);
 		setFocusable(false);
 		setVisible(true);
 		addActionListener(actionListener);
@@ -27,7 +27,7 @@ public class ButtonObj extends JButton {
 
 	public ButtonObj(String name, ActionListener actionListener, String event, Color border) {
 		setText(name);
-		setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
+		setFont(ConstantsGUI.DEFAULT_FONT_ITALIC_MAX);
 		setForeground(border);
 		setBackground(Color.WHITE);
 		setFocusable(false);
@@ -40,16 +40,16 @@ public class ButtonObj extends JButton {
 
 	public ButtonObj(String name, ActionListener actionListener, String event, String pathImg) {
 		setText(name);
-		setFont(Constants.DEFAULT_FONT_ITALIC_MAX);
+		setFont(ConstantsGUI.DEFAULT_FONT_ITALIC_MAX);
 		setForeground(Color.WHITE);
-		setBackground(Constants.DARK_BLUE);
+		setBackground(ConstantsGUI.DARK_BLUE);
 		setFocusable(false);
 		setVisible(true);
 		setBorder(null);
 		addActionListener(actionListener);
 		setActionCommand(event);
 		ImageIcon img = new ImageIcon(new ImageIcon(getClass().getResource(pathImg)).getImage()
-				.getScaledInstance(Constants.WIDTH / 40, Constants.WIDTH / 40, Image.SCALE_SMOOTH));
+				.getScaledInstance(ConstantsGUI.WIDTH / 40, ConstantsGUI.WIDTH / 40, Image.SCALE_SMOOTH));
 		setIcon(img);
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}

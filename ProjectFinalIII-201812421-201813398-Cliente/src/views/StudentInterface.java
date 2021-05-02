@@ -3,10 +3,10 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import controller.Controller;
 import controller.Event;
 
 public class StudentInterface extends JPanel {
@@ -15,17 +15,17 @@ public class StudentInterface extends JPanel {
 	private MenuStudent menu;
 	private PanelInfoStudent info;
 
-	public StudentInterface(Controller controller) {
+	public StudentInterface(ActionListener actionListener) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
-		initComponents(controller);
+		initComponents(actionListener);
 	}
 
-	private void initComponents(Controller controller) {
-		menu = new MenuStudent(controller);
+	private void initComponents(ActionListener actionListener) {
+		menu = new MenuStudent(actionListener);
 		add(menu, BorderLayout.WEST);
 
-		info = new PanelInfoStudent(controller);
+		info = new PanelInfoStudent(actionListener);
 		add(info, BorderLayout.CENTER);
 	}
 
@@ -153,28 +153,28 @@ public class StudentInterface extends JPanel {
 		info.resetComboDeleteHomeCourses();
 	}
 
-	public void setVisibleConfirmDelete(boolean b) {
-		info.setVisibleConfirmDelete(b);
+	public void setVisibleConfirmDelete(boolean isVisible) {
+		info.setVisibleConfirmDelete(isVisible);
 	}
 
-	public void setVisibleDeleteCourse(boolean b) {
-		info.setVisibleDeleteCourse(b);
+	public void setVisibleDeleteCourse(boolean isVisible) {
+		info.setVisibleDeleteCourse(isVisible);
 	}
 
-	public void setVisibleDeleteHomework(boolean b) {
-		info.setVisibleDeleteHomework(b);
+	public void setVisibleDeleteHomework(boolean isVisible) {
+		info.setVisibleDeleteHomework(isVisible);
 	}
 
-	public void setVisibleModifyActivity(boolean b) {
-		info.setVisibleModifyActivity(b);
+	public void setVisibleModifyActivity(boolean isVisible) {
+		info.setVisibleModifyActivity(isVisible);
 	}
 
 	public void resetModifyPanel() {
 		info.resetModifyPanel();
 	}
 
-	public void setEditableNameActivity(boolean b) {
-		info.setEditableNameActivity(b);
+	public void setEditableNameActivity(boolean isEditable) {
+		info.setEditableNameActivity(isEditable);
 	}
 
 	public void resetDeleteActivity() {
@@ -185,8 +185,8 @@ public class StudentInterface extends JPanel {
 		return info.getSelectedItemsActivity();
 	}
 
-	public void setEditBtnDeleteAct(boolean b) {
-		info.setEditBtnDeleteAct(b);
+	public void setEditBtnDeleteAct(boolean isEditable) {
+		info.setEditBtnDeleteAct(isEditable);
 	}
 
 	public String getDeleteActString() {
@@ -209,8 +209,8 @@ public class StudentInterface extends JPanel {
 		return info.getSelectedItemsCourse();
 	}
 
-	public void setEditBtnDeleteCourse(boolean b) {
-		info.setEditBtnDeleteCourse(b);
+	public void setEditBtnDeleteCourse(boolean isEditable) {
+		info.setEditBtnDeleteCourse(isEditable);
 	}
 
 	public void setEditBtnAVG() {
@@ -221,8 +221,8 @@ public class StudentInterface extends JPanel {
 		info.resetAvgCourses();
 	}
 
-	public void setVisibleAVG(boolean b) {
-		info.setVisibleAVG(b);
+	public void setVisibleAVG(boolean isVisible) {
+		info.setVisibleAVG(isVisible);
 	}
 
 	public void setComboBoxDeleteCourses(String[] split) {
@@ -249,8 +249,8 @@ public class StudentInterface extends JPanel {
 		return info.getItemsModifyCourses();
 	}
 
-	public void setEditBtnModifyCourse(boolean b) {
-		info.setEditBtnModifyCourse(b);
+	public void setEditBtnModifyCourse(boolean isEditable) {
+		info.setEditBtnModifyCourse(isEditable);
 	}
 
 	public void removeSpecificHomework(String deleteHomework) {
@@ -261,8 +261,8 @@ public class StudentInterface extends JPanel {
 		return info.getItemsDeleteHomework();
 	}
 
-	public void setEditBtnDeleteHomework(boolean b) {
-		info.setEditBtnDeleteHomework(b);
+	public void setEditBtnDeleteHomework(boolean isEditable) {
+		info.setEditBtnDeleteHomework(isEditable);
 	}
 
 	public void setComboBoxActivities(String activities) {
@@ -273,8 +273,8 @@ public class StudentInterface extends JPanel {
 		return info.getComboBoxActivity();
 	}
 
-	public void setEnableModifyActivity(boolean b) {
-		info.setEnableModifyActivity(b);
+	public void setEnableModifyActivity(boolean isEnable) {
+		info.setEnableModifyActivity(isEnable);
 	}
 
 	public boolean getEnableModifyActivity() {
@@ -301,8 +301,8 @@ public class StudentInterface extends JPanel {
 		info.setAvgTotal(avgTotal);
 	}
 
-	public void setScheduleInfo(String schedule) {
-		info.setScheduleInfo(schedule);
+	public void setScheduleInfo(ActionListener actionListener, String schedule) {
+		info.setScheduleInfo(actionListener, schedule);
 	}
 
 	public String getSelectedBtn(ActionEvent e) {
