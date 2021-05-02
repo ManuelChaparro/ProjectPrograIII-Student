@@ -346,4 +346,8 @@ public class JWindow extends JFrame{
 	public JPanel createPanelCourse(String namePanel) {
 		return student.createPanelCourse(namePanel);
 	}
+
+	public void setNameUser(String name) {
+		student.setNameUser(name);
+	}
 }
