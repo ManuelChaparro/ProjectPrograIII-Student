@@ -1,7 +1,10 @@
 package views;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import controller.Controller;
 import controller.Event;
@@ -240,12 +243,8 @@ public class JWindow extends JFrame{
 		student.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return student.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		student.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		student.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {
@@ -330,5 +329,21 @@ public class JWindow extends JFrame{
 
 	public void setAvgTotal(String avgTotal) {
 		student.setAvgTotal(avgTotal);
+	}
+
+	public void setScheduleInfo(String schedule) {
+		student.setScheduleInfo(schedule);
+	}
+
+	public String getSelectedBtn(ActionEvent e) {
+		return student.getSelectedBtn(e);
+	}
+
+	public JPanel createPanelActivity(String namePanel) {
+		return student.createPanelActivity(namePanel);
+	}
+
+	public JPanel createPanelCourse(String namePanel) {
+		return student.createPanelCourse(namePanel);
 	}
 }

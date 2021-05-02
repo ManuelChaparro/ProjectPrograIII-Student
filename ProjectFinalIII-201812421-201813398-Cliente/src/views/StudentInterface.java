@@ -2,6 +2,7 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
 
@@ -212,12 +213,8 @@ public class StudentInterface extends JPanel {
 		info.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return info.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		info.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		info.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {
@@ -302,5 +299,21 @@ public class StudentInterface extends JPanel {
 
 	public void setAvgTotal(String avgTotal) {
 		info.setAvgTotal(avgTotal);
+	}
+
+	public void setScheduleInfo(String schedule) {
+		info.setScheduleInfo(schedule);
+	}
+
+	public String getSelectedBtn(ActionEvent e) {
+		return info.getSelectedBtn(e);
+	}
+
+	public JPanel createPanelActivity(String namePanel) {
+		return info.createPanelActivity(namePanel);
+	}
+
+	public JPanel createPanelCourse(String namePanel) {
+		return info.createPanelCourse(namePanel);
 	}
 }

@@ -78,9 +78,9 @@ public class MenuStudent extends JPanel {
 		menuSchedule.setBorder(BorderFactory.createMatteBorder(Constants.HEIGHT / 200, Constants.WIDTH / 137,
 				Constants.HEIGHT / 400, 0, Color.BLACK));
 		menuSchedule.setPreferredSize(new Dimension(Constants.WIDTH / 4, Constants.HEIGHT / 20));
-		menuSchedule.setBackground(Constants.DARK_YELLOW);
+		menuSchedule.setBackground(Constants.DARK_BLUE);
 		showScheduleBtn = new ButtonObj(Constants.BT_SCHEDULE_ST, actionListener, Event.SHOW_SCHEDULE.toString());
-		showScheduleBtn.setBackground(Constants.DARK_YELLOW);
+		showScheduleBtn.setBackground(Constants.DARK_BLUE);
 		showScheduleBtn.setBorder(null);
 		menuSchedule.add(showScheduleBtn);
 		add(menuSchedule);
@@ -314,4 +314,6 @@ public class MenuStudent extends JPanel {
 		menuAVG.setBackground(Constants.DARK_BLUE);
 		avgBtn.setBackground(Constants.DARK_BLUE);
 	}
+	
+	
 }

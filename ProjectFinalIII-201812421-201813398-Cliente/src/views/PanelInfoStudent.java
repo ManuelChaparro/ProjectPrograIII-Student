@@ -1,12 +1,20 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import controller.Controller;
 
 public class PanelInfoStudent extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JPanel welcomePanel;
 	private SchedulePanel schedule;
 	private AddCoursePanel addCourse;
 	private ModifyCoursePanel modifyCourse;
@@ -20,8 +28,10 @@ public class PanelInfoStudent extends JPanel {
 		setBackground(Color.WHITE);
 		cards = new JCardsPanel(controller);
 		add(cards);
+		
+		initWelcomePanel();
 
-		schedule = new SchedulePanel();
+		schedule = new SchedulePanel(controller);
 		cards.add(schedule, "Schedule");
 
 		addCourse = new AddCoursePanel(controller);
@@ -42,6 +52,20 @@ public class PanelInfoStudent extends JPanel {
 		average = new AveragePanel(controller);
 		cards.add(average, "Average");
 
+	}
+
+	private void initWelcomePanel() {
+		welcomePanel = new JPanel(new GridLayout(1, 2));
+		welcomePanel.setBackground(Constants.DARK_BLUE);
+		JLabel img = new JLabel(new ImageIcon(getClass().getResource(Constants.PATH_APP_ICON)));
+		
+		JLabel welcome = new JLabel("Bienvenido");
+		welcome.setFont(new Font("Segoe UI", Font.BOLD, (int) (Constants.WIDTH/19.4)));
+		welcome.setForeground(Color.WHITE);
+		
+		welcomePanel.add(img);
+		welcomePanel.add(welcome);
+		cards.add(welcomePanel);
 	}
 
 	public void changeCardStudent(String nameCard) {
@@ -218,12 +242,8 @@ public class PanelInfoStudent extends JPanel {
 		deleteCourse.setEditBtnDeleteCourse(b);
 	}
 
-	public boolean getSelectedItemsAVG() {
-		return average.getSelectedItemsAVG();
-	}
-
-	public void setEditBtnAVG(boolean b) {
-		average.setEditBtnAVG(b);
+	public void setEditBtnAVG() {
+		average.setEditBtnAVG();
 	}
 
 	public void resetAvgCourses() {
@@ -310,5 +330,21 @@ public class PanelInfoStudent extends JPanel {
 
 	public void setAvgTotal(String avgTotal) {
 		average.setAvgTotal(avgTotal);
+	}
+
+	public void setScheduleInfo(String schedule2) {
+		schedule.setScheduleInfo(schedule2);
+	}
+
+	public String getSelectedBtn(ActionEvent e) {
+		return schedule.getSelectedBtn(e);
+	}
+
+	public JPanel createPanelActivity(String namePanel) {
+		return schedule.createPanelActivity(namePanel);
+	}
+
+	public JPanel createPanelCourse(String namePanel) {
+		return schedule.createPanelCourse(namePanel);
 	}
 }

@@ -12,6 +12,8 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.Controller;
 import controller.Event;
@@ -117,7 +119,7 @@ public class ModifyActivityPanel extends JPanel {
 
 		JPanel containerHours = new JPanel(new GridLayout(1, 2));
 		containerHours.setBackground(Color.WHITE);
-		SpinnerModel modelInit = new SpinnerNumberModel(10, 0, 23, 1);
+		SpinnerModel modelInit = new SpinnerNumberModel(10, 6, 20, 1);
 		init = new JSpinner(modelInit);
 		init.setBackground(Color.WHITE);
 		((DefaultEditor) init.getEditor()).getTextField().setEditable(false);
@@ -127,7 +129,7 @@ public class ModifyActivityPanel extends JPanel {
 		init.setFont(Constants.DEFAULT_FONT_BOLD);
 		init.setForeground(Color.GRAY);
 
-		SpinnerModel modelEnd = new SpinnerNumberModel(10, 0, 23, 1);
+		SpinnerModel modelEnd = new SpinnerNumberModel(11, 7, 21, 1);
 		end = new JSpinner(modelEnd);
 		end.setBackground(Color.WHITE);
 		((DefaultEditor) end.getEditor()).getTextField().setEditable(false);
@@ -136,6 +138,12 @@ public class ModifyActivityPanel extends JPanel {
 				"HORA FIN", TitledBorder.LEFT, TitledBorder.TOP, Constants.DEFAULT_FONT_BOLD, Constants.DARK_BLUE));
 		end.setFont(Constants.DEFAULT_FONT_BOLD);
 		end.setForeground(Color.GRAY);
+
+		init.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				end.setValue((int) init.getValue() + 1);
+			}
+		});
 
 		containerHours.add(init);
 		containerHours.add(end);
@@ -168,11 +176,14 @@ public class ModifyActivityPanel extends JPanel {
 	public void setEditableNameActivity(boolean b) {
 		name.setEditable(b);
 	}
+
 	public String getModActString() {
-		if (!name.getText().equalsIgnoreCase("")) {
+		if (!name.getText().equalsIgnoreCase("") && (int) end.getValue() > (int) init.getValue()) {
 			return name.getText() + ";;;" + annotation.getText() + ";;;" + days.getSelectedItem().toString() + "#"
 					+ init.getValue() + "#" + end.getValue();
-		} else {
+		} else if((int) end.getValue() <= (int) init.getValue()){
+			return "errorEnd";
+		}else {
 			return "emptyData";
 		}
 

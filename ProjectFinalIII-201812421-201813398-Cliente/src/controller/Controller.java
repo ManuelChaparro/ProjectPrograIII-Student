@@ -1,12 +1,19 @@
 package controller;
 
+import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import com.google.gson.Gson;
 import models.User;
 import net.Conection;
+import views.ButtonObj;
 import views.Constants;
 import views.JWindow;
 
@@ -86,11 +93,26 @@ public class Controller implements ActionListener {
 			try {
 				window.changeColorMenuBtn(Event.SHOW_SCHEDULE);
 				conection.sendUTF("SHOW_SCHEDULE");
-				System.out.println(conection.receiveUTF());
+				conection.sendUTF(code);
+				window.setScheduleInfo(conection.receiveUTF());
 			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
 			window.changeCardStudent("Schedule");
+			break;
+		case ACTION_SCHEDULER_BTN:
+			try {
+				conection.sendUTF("ACTION_SCHEDULER_BTN");
+				conection.sendUTF(code);
+				conection.sendUTF(window.getSelectedBtn(e));
+				if (conection.receiveBoolean()) {
+					JOptionPane.showMessageDialog(null, window.createPanelActivity(conection.receiveUTF()), "INFORMACION ACTIVIDAD", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, window.createPanelCourse(conection.receiveUTF()), "INFORMACION ACTIVIDAD", JOptionPane.INFORMATION_MESSAGE);
+				}
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
 			break;
 		case ADD_COURSE_ST:
 			try {
@@ -160,7 +182,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxStudentCourses(conection.receiveUTF());
 				if (!window.getItemsModifyCourses()) {
 					window.setEditBtnModifyCourse(false);
-				}else {
+				} else {
 					window.setEditBtnModifyCourse(true);
 				}
 				window.changeCardStudent("ModifyCourse");
@@ -244,7 +266,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxDeleteCourses(conection.receiveUTF().split(";"));
 				if (!window.getSelectedItemsCourse()) {
 					window.setEditBtnDeleteCourse(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteCourse(true);
 				}
 				window.changeCardStudent("DeleteCourse");
@@ -262,7 +284,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxDeleteHomeworks(conection.receiveUTF().split(";"));
 				if (!window.getItemsDeleteHomework()) {
 					window.setEditBtnDeleteHomework(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteHomework(true);
 				}
 			} catch (IOException e1) {
@@ -283,7 +305,7 @@ public class Controller implements ActionListener {
 				window.removeSpecificCourse(window.getDeleteCourse());
 				if (!window.getSelectedItemsCourse()) {
 					window.setEditBtnDeleteCourse(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteCourse(true);
 				}
 			} catch (IOException e1) {
@@ -299,7 +321,7 @@ public class Controller implements ActionListener {
 				window.removeSpecificHomework(window.getDeleteHomework());
 				if (!window.getItemsDeleteHomework()) {
 					window.setEditBtnDeleteHomework(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteHomework(true);
 				}
 				window.setVisibleConfirmDelete(false);
@@ -324,8 +346,9 @@ public class Controller implements ActionListener {
 			window.setVisibleModifyActivity(true);
 			if (window.getComboBoxActivity().equalsIgnoreCase("AÑADIR ACTIVIDAD")) {
 				window.setEnableModifyActivity(true);
-			}else {
-				try {window.setEnableModifyActivity(false);
+			} else {
+				try {
+					window.setEnableModifyActivity(false);
 					conection.sendUTF("FIND_MODIFY_HOMEWORK");
 					conection.sendUTF(code);
 					conection.sendUTF(window.getComboBoxActivity());
@@ -342,22 +365,30 @@ public class Controller implements ActionListener {
 			break;
 		case SEND_ACTIVITY:
 			try {
-				if (!window.getModActString().equalsIgnoreCase("emptyData")) {
+				String dataActivity = window.getModActString();
+				if (!dataActivity.equalsIgnoreCase("emptyData") && !dataActivity.equalsIgnoreCase("errorEnd")) {
 					conection.sendUTF("SEND_ACTIVITY");
 					if (window.getEnableModifyActivity()) {
 						conection.sendBoolean(true);
 						conection.sendUTF(code);
 						conection.sendUTF(window.getModActString());
-					}else {
+					} else {
 						conection.sendBoolean(false);
 						conection.sendUTF(code);
 						conection.sendUTF(window.getModActString());
 					}
 					window.resetModifyPanel();
+					if (!conection.receiveBoolean()) {
+						JOptionPane.showMessageDialog(null, "Ya hay una actividad para la hora ingresada", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
 					window.setComboBoxActivities(conection.receiveUTF());
 					window.setVisibleModifyActivity(false);
+				} else if(window.getModActString().equalsIgnoreCase("errorEnd")){
+					JOptionPane.showMessageDialog(null, "Seleccione una hora valida", "ACTIVIDAD",
+							JOptionPane.ERROR_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ingrese los datos obligatorios", "ACTIVIDAD",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -374,7 +405,7 @@ public class Controller implements ActionListener {
 				window.setComboBoxActivities(conection.receiveUTF());
 				if (!window.getSelectedItemsActivity()) {
 					window.setEditBtnDeleteAct(false);
-				}else {
+				} else {
 					window.setEditBtnDeleteAct(true);
 				}
 				window.changeCardStudent("DeleteActivity");
@@ -400,25 +431,20 @@ public class Controller implements ActionListener {
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}			
+			}
 			break;
 		case AVG_ST:
-
 			try {
 				conection.sendUTF("AVG_ST");
 				window.resetAvgCourses();
 				conection.sendUTF(code);
 				window.setComboBoxAvgCourses(conection.receiveUTF());
 				window.changeColorMenuBtn(Event.AVG_ST);
-				if (!window.getSelectedItemsAVG()) {
-					window.setEditBtnAVG(false);
-				}else {
-					window.setEditBtnAVG(true);
-				}
+				window.setEditBtnAVG();
 				window.changeCardStudent("Average");
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}			
+			}
 			break;
 		case CALCULATE_AVG:
 			try {

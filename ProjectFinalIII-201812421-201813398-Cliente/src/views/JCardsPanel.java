@@ -2,6 +2,7 @@ package views;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
@@ -12,7 +13,7 @@ public class JCardsPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public JCardsPanel(Controller controller) {
+	public JCardsPanel(ActionListener controller) {
 		setLayout(new CardLayout());
 		setBackground(Color.WHITE);
 	}

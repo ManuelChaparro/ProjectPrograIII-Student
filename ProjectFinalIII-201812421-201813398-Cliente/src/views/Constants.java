@@ -10,6 +10,8 @@ public class Constants {
 	public static final Color DARK_BLUE = Color.decode("#2D366F");
 	public static final Color DARK_YELLOW = Color.decode("#EC9C11");
 	public static final Color DARK_RED = Color.decode("#BB0001");
+	public static final Color LIGHT_BLUE = Color.decode("#128DCC");
+	public static final Color DARK_PURPLE = Color.decode("#5A277E");
 	
 	//Panels
 	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -31,7 +33,7 @@ public class Constants {
 	public static final String[] DAYS = {"HORAS", "LUNES", "MARTES", "MIERCOLES" , "JUEVES" , "VIERNES" , "SABADO" , "DOMINGO"};
 
 	//Constants
-	public static final int TOTAL_HOURS = 24;
+	public static final int TOTAL_HOURS = 15;
 	public static final int TOTAL_DAYS = 8;
 	public static final String NAME_APP = "Xorder";
 	public static final String INFO_LOGIN = "INICIO DE SESION";

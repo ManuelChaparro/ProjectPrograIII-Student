@@ -93,17 +93,18 @@ public class AveragePanel extends JPanel{
 	}
 
 	public boolean getSelectedItemsAVG() {
-		if (course.getItemAt(0) != null) {
-			return true;
-		}else {
+		if (course.getItemAt(0) == null || course.getItemAt(0).equalsIgnoreCase("")) {
 			return false;
+		}else {
+			return true;
 		}
 	}
 
-	public void setEditBtnAVG(boolean b) {
-		calculateAVG.setEnabled(b);
-		course.setVisible(b);
-		if (b) {
+	public void setEditBtnAVG() {
+		boolean isEditable = getSelectedItemsAVG();
+		calculateAVG.setEnabled(isEditable);
+		course.setVisible(isEditable);
+		if (isEditable) {
 			calculateAVG.setText("PROMEDIAR ASIGNATURA");
 		}else {
 			calculateAVG.setText("No hay Asignaturas para promediar");
@@ -135,9 +136,17 @@ public class AveragePanel extends JPanel{
 	}
 
 	public void setAvgCourse(String avgCourse) {
-		courseAVG.setText(avgCourse.substring(0, 3));
+		if (!avgCourse.equalsIgnoreCase("NaN")) {
+			courseAVG.setText(avgCourse.substring(0, 3));
+		}else {
+			courseAVG.setText("X");
+		}
 	}
 	public void setAvgTotal(String avgTotal) {
-		totalAVG.setText(avgTotal.substring(0, 3));
+		if (!avgTotal.equalsIgnoreCase("NaN")) {
+			totalAVG.setText(avgTotal.substring(0, 3));
+		}else {
+			totalAVG.setText("X");
+		}
 	}
 }
