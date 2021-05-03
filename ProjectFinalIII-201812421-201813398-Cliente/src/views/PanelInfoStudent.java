@@ -346,14 +346,6 @@ public class PanelInfoStudent extends JPanel {
 		return schedule.getSelectedBtn(e);
 	}
 
-	public JPanel createPanelActivity(String namePanel) {
-		return schedule.createPanelActivity(namePanel);
-	}
-
-	public JPanel createPanelCourse(String namePanel) {
-		return schedule.createPanelCourse(namePanel);
-	}
-
 	public void setNameUser(String name) {
 		JLabel nameLabel = new JLabel(name);
 		nameLabel.setFont(ConstantsGUI.DEFAULT_FONT_USER_WELCOME);

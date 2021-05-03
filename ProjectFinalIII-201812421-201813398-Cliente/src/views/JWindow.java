@@ -338,14 +338,6 @@ public class JWindow extends JFrame {
 		return student.getSelectedBtn(e);
 	}
 
-	public JPanel createPanelActivity(String namePanel) {
-		return student.createPanelActivity(namePanel);
-	}
-
-	public JPanel createPanelCourse(String namePanel) {
-		return student.createPanelCourse(namePanel);
-	}
-
 	public void setNameUser(String name) {
 		student.setNameUser(name);
 	}

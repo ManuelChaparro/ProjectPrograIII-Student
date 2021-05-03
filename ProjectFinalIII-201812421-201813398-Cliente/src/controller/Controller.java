@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -11,6 +13,7 @@ import com.google.gson.Gson;
 import models.User;
 import net.Conection;
 import views.ConstantsGUI;
+import views.DialogInfoSchedule;
 import views.JWindow;
 
 public class Controller implements ActionListener {
@@ -22,6 +25,18 @@ public class Controller implements ActionListener {
 	public Controller() {
 		conection = new Conection();
 		window = new JWindow(this);
+		closeConection();
+	}
+
+	private void closeConection() {
+		window.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				try {
+					conection.closeConection();
+					System.exit(0);
+				} catch (IOException e1) {}
+			}
+		});
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -134,8 +149,6 @@ public class Controller implements ActionListener {
 		case VISIBLE_AVG:
 			window.setVisibleAVG(false);
 			break;
-		default:
-			break;
 		}
 	}
 
@@ -211,16 +224,17 @@ public class Controller implements ActionListener {
 	}
 
 	private void actionScheduleBtn(ActionEvent e) {
+		DialogInfoSchedule dialog = new DialogInfoSchedule();
 		try {
 			conection.sendUTF(ConstantsCnt.ACTION_SCHEDULER_BTN_TEXT_SUBCOMMAND);
 			conection.sendUTF(code);
 			conection.sendUTF(window.getSelectedBtn(e));
 			if (conection.receiveBoolean()) {
-				JOptionPane.showMessageDialog(null, window.createPanelActivity(conection.receiveUTF()),
-						ConstantsCnt.ACTIVITY_INFO_TITLE_TEXT, JOptionPane.INFORMATION_MESSAGE);
+				dialog.setInfoActivity(conection.receiveUTF());
+				dialog.setVisible(true);
 			} else {
-				JOptionPane.showMessageDialog(null, window.createPanelCourse(conection.receiveUTF()),
-						ConstantsCnt.ACTIVITY_INFO_TITLE_TEXT, JOptionPane.INFORMATION_MESSAGE);
+				dialog.setInfoCourse(conection.receiveUTF());
+				dialog.setVisible(true);
 			}
 		} catch (IOException e2) {
 			JOptionPane.showMessageDialog(null, ConstantsCnt.ERROR_MESSAGE_FAILED_CONNECTION,

@@ -41,7 +41,7 @@ public class SchedulePanel extends JPanel {
 
 	private void initNorth() {
 		north = new JPanel();
-		north.setPreferredSize(new Dimension((int) (ConstantsGUI.WIDTH / 1.4), (int) (ConstantsGUI.HEIGHT / 16)));
+		north.setPreferredSize(new Dimension((int) (ConstantsGUI.WIDTH / 1.4), (int) (ConstantsGUI.HEIGHT / 20)));
 		north.setLayout(new GridLayout(1, ConstantsGUI.TOTAL_DAYS, 20, 10));
 		north.setBorder(BORDER_NORTH_SCHEDULE_PANEL);
 		north.setBackground(Color.WHITE);
@@ -54,7 +54,7 @@ public class SchedulePanel extends JPanel {
 		scroll.setPreferredSize(new Dimension((int) (ConstantsGUI.WIDTH / 1.4), (int) (ConstantsGUI.HEIGHT / 1.2)));
 		center.setLayout(new GridLayout(ConstantsGUI.TOTAL_HOURS, ConstantsGUI.TOTAL_DAYS, 20, 10));
 		center.setBackground(Color.WHITE);
-		center.setPreferredSize(new Dimension((int) (ConstantsGUI.WIDTH / 2), (int) (ConstantsGUI.HEIGHT * 2)));
+		center.setPreferredSize(new Dimension((int) (ConstantsGUI.WIDTH / 2), ConstantsGUI.HEIGHT ));
 		add(scroll);
 	}
 
@@ -84,16 +84,16 @@ public class SchedulePanel extends JPanel {
 	private void initDays() {
 		for (int i = 0; i < ConstantsGUI.TOTAL_DAYS; i++) {
 			JPanel panel = new JPanel();
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			panel.setBorder(null);
 			panel.setPreferredSize(new Dimension(ConstantsGUI.WIDTH / 10, ConstantsGUI.HEIGHT / 20));
-			panel.setBackground(ConstantsGUI.DARK_BLUE);
+			panel.setBackground(Color.WHITE);
 
 			JLabel day = new JLabel();
-			day.setFont(ConstantsGUI.DEFAULT_FONT_BOLD);
-			day.setForeground(Color.WHITE);
+			day.setFont(new Font("Segoe UI", Font.BOLD, 17));
+			day.setForeground(ConstantsGUI.DARK_BLUE);
 			day.setText(ConstantsGUI.DAYS[i]);
 			if (ConstantsGUI.DAYS[i].equalsIgnoreCase("HORAS")) {
-				panel.setBackground(ConstantsGUI.DARK_YELLOW);
+				day.setForeground(ConstantsGUI.DARK_YELLOW);
 			}
 			day.setBorder(BorderFactory.createEmptyBorder(0, ConstantsGUI.WIDTH / 100, 0, ConstantsGUI.WIDTH / 100));
 			panel.add(day);
@@ -105,9 +105,9 @@ public class SchedulePanel extends JPanel {
 		int count = 0;
 		for (int i = 6; i < 21; i++) {
 			JPanel panel = new JPanel();
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			panel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 5, ConstantsGUI.DARK_YELLOW));
 			panel.setPreferredSize(new Dimension(ConstantsGUI.WIDTH / 5, ConstantsGUI.HEIGHT / 20));
-			panel.setBackground(ConstantsGUI.DARK_YELLOW);
+			panel.setBackground(Color.WHITE);
 			doHoursColumn(i, panel, count);
 			count++;
 		}
@@ -124,8 +124,8 @@ public class SchedulePanel extends JPanel {
 
 	private void doHoursColumn(int i, JPanel panel, int count) {
 		JLabel day = new JLabel();
-		day.setFont(ConstantsGUI.DEFAULT_FONT_MIN);
-		day.setForeground(Color.WHITE);
+		day.setFont(ConstantsGUI.DEFAULT_FONT_MIN_BOLD);
+		day.setForeground(ConstantsGUI.DARK_YELLOW);
 		day.setText(i + ":00 - " + (i + 1) + ":00");
 		day.setAlignmentX(RIGHT_ALIGNMENT);
 		panel.add(day);
@@ -210,53 +210,5 @@ public class SchedulePanel extends JPanel {
 	public String getSelectedBtn(ActionEvent e) {
 		ButtonObj btn = (ButtonObj) e.getSource();
 		return btn.getText();
-	}
-
-	public JPanel createPanelActivity(String namePanel) {
-		JLabel name = new JLabel("ACTIVIDAD: " + namePanel.split("&")[0]);
-		JLabel anotation = new JLabel("DESCRIPCION: " + namePanel.split("&")[1]);
-		JLabel day = new JLabel("DIA: " + namePanel.split("&")[2].split("#")[0]);
-		JLabel schedule = new JLabel(
-				"HORA: " + namePanel.split("&")[2].split("#")[1] + " - " + namePanel.split("&")[2].split("#")[2]);
-
-		JPanel panel = new JPanel(new GridLayout(5, 1));
-
-		name.setFont(ConstantsGUI.DEFAULT_FONT);
-		anotation.setFont(ConstantsGUI.DEFAULT_FONT);
-		day.setFont(ConstantsGUI.DEFAULT_FONT);
-		schedule.setFont(ConstantsGUI.DEFAULT_FONT);
-
-		panel.add(name);
-		panel.add(anotation);
-		panel.add(day);
-		panel.add(schedule);
-
-		return panel;
-	}
-
-	public JPanel createPanelCourse(String namePanel) {
-		String[] courseVector = namePanel.split("&");
-
-		JPanel panel = new JPanel(new GridLayout(5, 1));
-		JLabel name = new JLabel("ACTIVIDAD: " + courseVector[0]);
-		JLabel teacher = new JLabel("PROFESOR: " + courseVector[1]);
-		JLabel anotation = new JLabel("DESCRIPCION: " + courseVector[2]);
-
-		name.setFont(ConstantsGUI.DEFAULT_FONT);
-		teacher.setFont(ConstantsGUI.DEFAULT_FONT);
-		anotation.setFont(ConstantsGUI.DEFAULT_FONT);
-
-		panel.add(name);
-		panel.add(teacher);
-		panel.add(anotation);
-
-		String[] schedules = courseVector[3].split("%");
-		for (String schedule : schedules) {
-			JLabel day = new JLabel("DIA: " + schedule.split("#")[0] + "  HORA: " + schedule.split("#")[1] + " - "
-					+ schedule.split("#")[2].split(";")[0]);
-			day.setFont(ConstantsGUI.DEFAULT_FONT);
-			panel.add(day);
-		}
-		return panel;
 	}
 }

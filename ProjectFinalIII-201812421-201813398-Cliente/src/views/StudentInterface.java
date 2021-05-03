@@ -309,14 +309,6 @@ public class StudentInterface extends JPanel {
 		return info.getSelectedBtn(e);
 	}
 
-	public JPanel createPanelActivity(String namePanel) {
-		return info.createPanelActivity(namePanel);
-	}
-
-	public JPanel createPanelCourse(String namePanel) {
-		return info.createPanelCourse(namePanel);
-	}
-
 	public void setNameUser(String name) {
 		info.setNameUser(name);
 	}
