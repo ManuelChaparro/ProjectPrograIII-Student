@@ -2,14 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
-
 import javax.swing.JOptionPane;
-
 import com.google.gson.Gson;
-
 import models.User;
 import net.Conection;
 import views.ConstantsGUI;
@@ -25,18 +20,6 @@ public class Controller implements ActionListener {
 	public Controller() {
 		conection = new Conection();
 		window = new JWindow(this);
-		closeConection();
-	}
-
-	private void closeConection() {
-		window.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				try {
-					conection.closeConection();
-					System.exit(0);
-				} catch (IOException e1) {}
-			}
-		});
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -148,7 +131,7 @@ public class Controller implements ActionListener {
 			break;
 		case VISIBLE_AVG:
 			window.setVisibleAVG(false);
-			break;
+			break;		
 		}
 	}
 
