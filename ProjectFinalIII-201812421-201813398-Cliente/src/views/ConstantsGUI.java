@@ -31,6 +31,7 @@ public class ConstantsGUI{
 	public static final Font DEFAULT_FONT_MAX = new Font("Segoe UI", Font.PLAIN, 30);
 	public static final Font DEFAULT_FONT_MAX_BOLD = new Font("Segoe UI", Font.BOLD, 30);
 	public static final Font DEFAULT_FONT_MIN = new Font("Segoe UI", Font.PLAIN, 15);
+	public static final Font DEFAULT_FONT_MIN_BOLD = new Font("Segoe UI", Font.BOLD, 15);
 	
 	//Days
 	public static final String[] DAYS = {"HORAS", "LUNES", "MARTES", "MIERCOLES" , "JUEVES" , "VIERNES" , "SABADO" , "DOMINGO"};
