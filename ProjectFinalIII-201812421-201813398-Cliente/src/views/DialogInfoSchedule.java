@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -141,32 +142,33 @@ public class DialogInfoSchedule extends JDialog {
 		
 		String[] schedules = courseVector[3].split("%");
 		
-		JPanel containerDays = new JPanel(new GridLayout(schedules.length, 1));
+		JPanel containerDays = new JPanel(new GridLayout(schedules.length-1, 1));
 		for (String scheduleInfo : schedules) {
-			JTextArea day = new JTextArea();
-			day.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(ConstantsGUI.DARK_BLUE),
-					"DIA", TitledBorder.LEFT, TitledBorder.TOP, ConstantsGUI.DEFAULT_FONT_MIN, ConstantsGUI.DARK_BLUE));
-			day.setText(scheduleInfo.split("#")[0]);
-			day.setFont(ConstantsGUI.DEFAULT_FONT);
-			day.setBackground(Color.WHITE);
-			day.setForeground(Color.BLACK);
-			day.setEditable(false);
-			day.setFont(ConstantsGUI.DEFAULT_FONT);
-			containerDays.add(day);
+			if (!scheduleInfo.equalsIgnoreCase(";")) {
+				JTextArea day = new JTextArea();
+				day.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(ConstantsGUI.DARK_BLUE),
+						"DIA", TitledBorder.LEFT, TitledBorder.TOP, ConstantsGUI.DEFAULT_FONT_MIN, ConstantsGUI.DARK_BLUE));
+				day.setText(scheduleInfo.split("#")[0]);
+				day.setFont(ConstantsGUI.DEFAULT_FONT);
+				day.setBackground(Color.WHITE);
+				day.setForeground(Color.BLACK);
+				day.setEditable(false);
+				day.setFont(ConstantsGUI.DEFAULT_FONT);
+				containerDays.add(day);
 
-			JTextArea hour = new JTextArea();
-			hour.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(ConstantsGUI.DARK_BLUE),
-					"HORA", TitledBorder.LEFT, TitledBorder.TOP, ConstantsGUI.DEFAULT_FONT_MIN,
-					ConstantsGUI.DARK_BLUE));
-			hour.setText(scheduleInfo.split("#")[1] + " - " + scheduleInfo.split("#")[2].split(";")[0]);
-			hour.setFont(ConstantsGUI.DEFAULT_FONT);
-			hour.setBackground(Color.WHITE);
-			hour.setForeground(Color.BLACK);
-			hour.setEditable(false);
-			hour.setFont(ConstantsGUI.DEFAULT_FONT);
-			containerDays.add(hour);
+				JTextArea hour = new JTextArea();
+				hour.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(ConstantsGUI.DARK_BLUE),
+						"HORA", TitledBorder.LEFT, TitledBorder.TOP, ConstantsGUI.DEFAULT_FONT_MIN,
+						ConstantsGUI.DARK_BLUE));
+				hour.setText(scheduleInfo.split("#")[1] + " - " + scheduleInfo.split("#")[2]);
+				hour.setFont(ConstantsGUI.DEFAULT_FONT);
+				hour.setBackground(Color.WHITE);
+				hour.setForeground(Color.BLACK);
+				hour.setEditable(false);
+				hour.setFont(ConstantsGUI.DEFAULT_FONT);
+				containerDays.add(hour);
+			}
 		}
-		
 		JScrollPane scrollShedules = new JScrollPane(containerDays);
 		scrollShedules.setBackground(Color.WHITE);
 		scrollShedules.setBorder(

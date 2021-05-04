@@ -149,6 +149,7 @@ public class Controller implements ActionListener {
 						stringUser = new Gson().toJson(new User(ConstantsCnt.EMPTY_STRING, ConstantsCnt.EMPTY_STRING,
 								ConstantsCnt.EMPTY_STRING)).toString();
 					}
+					conection.sendUTF("STUDENT");
 					conection.sendBoolean(true);
 					conection.sendUTF(stringUser);
 					if (conection.receiveBoolean()) {
@@ -176,6 +177,7 @@ public class Controller implements ActionListener {
 		String[] dataUser = dataCreateLog.split(ConstantsCnt.COMA);
 		try {
 			String stringUser = new Gson().toJson(new User(dataUser[0], dataUser[1], dataUser[2])).toString();
+			conection.sendUTF("STUDENT");
 			conection.sendBoolean(false);
 			conection.sendUTF(stringUser);
 			if (conection.receiveBoolean()) {

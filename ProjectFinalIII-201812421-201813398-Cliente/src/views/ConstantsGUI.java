@@ -42,8 +42,8 @@ public class ConstantsGUI{
 	public static final String NAME_APP = "Xorder";
 	public static final String INFO_LOGIN = "INICIO DE SESION";
 	public static final String INFO_CREATE = "CREAR NUEVA CUENTA";
-	public static final String MSJ_CREATE_ACCOUNT = "�No tienes una cuenta? �Crea una nueva!";
-	public static final String MSJ_LOGIN_ACCOUNT = "�Tienes una cuenta? �Inicia Sesion!";
+	public static final String MSJ_CREATE_ACCOUNT = "No tienes una cuenta? Crea una nueva!";
+	public static final String MSJ_LOGIN_ACCOUNT = "Tienes una cuenta? Inicia sesion!";
 	public static final String BT_CREATE_ACCOUNT = "Crear cuenta";
 	public static final String BT_LOGIN_ACCOUNT = "Iniciar sesion";
 	public static final String CONFIRM_DATA = "CONFIRMAR DATOS";
