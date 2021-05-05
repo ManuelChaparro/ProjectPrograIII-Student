@@ -10,7 +10,6 @@ import controller.Event;
 public class JWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
 	private JCardsPanel cards;
 	private LoginPanel login;
 	private StudentInterface student;
