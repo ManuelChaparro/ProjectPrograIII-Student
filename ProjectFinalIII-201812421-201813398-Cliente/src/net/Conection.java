@@ -15,6 +15,7 @@ public class Conection {
 	private DataInputStream input;
 	private DataOutputStream output;
 	private int port = 24211;
+//	private String host = "186.114.217.181";
 	private String host = "localhost";
 
 	public Conection() {
